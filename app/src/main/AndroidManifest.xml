@@ -16,6 +16,28 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SignUp_Activity">
+            
+        </activity>
+        <activity android:name=".basic_activity">
+
+        </activity>
+        <activity android:name=".bmr_activity">
+
+        </activity>
+        <activity android:name=".diet_calender_activity">
+
+        </activity>
+        <activity android:name=".find_password">
+
+        </activity>
+        <activity android:name=".metabolism_coustom">
+
+
+        </activity>
+        <activity android:name=".weight_graph">
+
+        </activity>
     </application>
 
 </manifest>

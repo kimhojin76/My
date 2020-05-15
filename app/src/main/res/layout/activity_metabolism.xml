@@ -14,7 +14,7 @@
         android:textSize="20sp"
         android:layout_marginBottom="15dp"
 
-        android:text=">"
+        android:text="]"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="@+id/button"
         app:layout_constraintHorizontal_bias="1.0"
@@ -114,7 +114,7 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:layout_marginBottom="15dp"
-        android:text="<"
+        android:text="["
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toStartOf="@+id/textView2"
         app:layout_constraintHorizontal_bias="0.0"
@@ -264,6 +264,80 @@
         app:layout_constraintLeft_toLeftOf="@id/par_button4"
         app:layout_constraintTop_toBottomOf="@id/par_button4">
     </Button>
+    <Button
+        android:id="@+id/par_coustom_button1"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/btn_gray2"
+        android:text="커스텀1"
+        app:layout_constraintLeft_toLeftOf="@id/imageView6"
+        app:layout_constraintTop_toBottomOf="@id/textView">
+    </Button>
+    <Button
+        android:id="@+id/par_coustom_button2"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/btn_gray2"
+        android:text="커스텀2"
+        app:layout_constraintLeft_toRightOf="@id/par_coustom_button1"
+        app:layout_constraintTop_toBottomOf="@id/textView">
+    </Button>
+    <Button
+        android:id="@+id/par_coustom_button3"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/btn_gray2"
+        android:text="커스텀3"
+        app:layout_constraintLeft_toLeftOf="@id/imageView6"
+        app:layout_constraintTop_toBottomOf="@id/par_coustom_button1">
+    </Button>
+    <Button
+        android:id="@+id/par_coustom_button4"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/btn_gray2"
+        android:text="커스텀4"
+        app:layout_constraintLeft_toRightOf="@id/par_coustom_button3"
+        app:layout_constraintTop_toBottomOf="@id/par_coustom_button2">
+    </Button>
+    <Button
+        android:id="@+id/par_coustom_button5"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/btn_gray2"
+        android:text="커스텀5"
+        app:layout_constraintLeft_toLeftOf="@id/imageView6"
+        app:layout_constraintTop_toBottomOf="@id/par_coustom_button3">
+    </Button>
+    <Button
+        android:id="@+id/par_coustom_button6"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/btn_gray2"
+        android:text="커스텀6"
+        app:layout_constraintLeft_toRightOf="@id/par_coustom_button5"
+        app:layout_constraintTop_toBottomOf="@id/par_coustom_button4">
+    </Button>
+
+
 
     <ImageView
         android:id="@+id/imageView3"
