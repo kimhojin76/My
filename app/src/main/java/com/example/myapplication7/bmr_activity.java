@@ -2,17 +2,40 @@ package com.example.myapplication7;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class bmr_activity extends AppCompatActivity implements View.OnClickListener {
+
+
+
     @Override
     protected void onCreate(Bundle bundle){
+        Log.v("BMR 엑티비티","create");
         super.onCreate(bundle);
         setContentView(R.layout.bmr_calculator);
+        EditText age = (EditText) findViewById(R.id.now_age_input);
+        EditText target_weight = (EditText) findViewById(R.id.taget_weight_input);
+        RadioButton male = (RadioButton) findViewById(R.id.gender_input_male);
+        RadioButton female = (RadioButton) findViewById(R.id.gender_input2_female);
+
+        Button start_diet = (Button) findViewById(R.id.start_diet);
+        EditText weight = (EditText) findViewById(R.id.now_weight_input);
+        EditText stature = (EditText) findViewById(R.id.now_stature_input);
+        TextView BMR = (TextView) findViewById(R.id.bmr_input);
+        TextView PAL = (TextView) findViewById(R.id.pal_input) ;
+        TextView diet_date = (TextView) findViewById(R.id.diet_date) ;
+
+
+
         final TextView bmr_summation = (TextView) findViewById(R.id.bmr_textView2);
         bmr_summation.setOnClickListener(this);
         final TextView bmr_helper = (TextView) findViewById(R.id.bmr_textView5);
@@ -36,41 +59,85 @@ public class bmr_activity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        if(v.getId() == R.id.bmr_textView2){
-            Intent intent = new Intent(bmr_activity.this,basic_activity.class);
+        if (v.getId() == R.id.bmr_textView2) {
+            Intent intent = new Intent(bmr_activity.this, basic_activity.class);
             startActivity(intent);
-        }else if(v.getId() == R.id.bmr_textView5){
-            Intent intent = new Intent(bmr_activity.this,bmr_activity.class);
+        } else if (v.getId() == R.id.bmr_textView5) {
+            Intent intent = new Intent(bmr_activity.this, bmr_activity.class);
             startActivity(intent);
             //활동칼로리 계산
-        }else if(v.getId() == R.id.bmr_textView6) {
+        } else if (v.getId() == R.id.bmr_textView6) {
             Intent intent = new Intent(bmr_activity.this, active_metabolism.class);
             startActivity(intent);
             //식단으로 이동
-        }else if(v.getId() == R.id.bmr_textView8) {
+        } else if (v.getId() == R.id.bmr_textView8) {
             Intent intent = new Intent(bmr_activity.this, diet_calender_activity.class);
             startActivity(intent);
             // 그래프로 이동
-        }else if(v.getId() == R.id.bmr_textView9) {
+        } else if (v.getId() == R.id.bmr_textView9) {
             Intent intent = new Intent(bmr_activity.this, weight_graph.class);
             startActivity(intent);
         }
         //지금 속해있는 액티비티
-        else if(v.getId() == R.id.bmr_textView10){
-            Intent intent = new Intent(bmr_activity.this,basic_activity.class);
+        else if (v.getId() == R.id.bmr_textView10) {
+            Intent intent = new Intent(bmr_activity.this, basic_activity.class);
             startActivity(intent);
             //하단 식단그림 클릭시 이동
-        }else if(v.getId() == R.id.bmr_imageView3) {
+        } else if (v.getId() == R.id.bmr_imageView3) {
             Intent intent = new Intent(bmr_activity.this, diet_calender_activity.class);
             startActivity(intent);
             //하단 매뉴 그래프 그림 클릭시 이동
-        }else if(v.getId() == R.id.bmr_imageView4) {
+        } else if (v.getId() == R.id.bmr_imageView4) {
             Intent intent = new Intent(bmr_activity.this, weight_graph.class);
             startActivity(intent);
             //하단 매뉴 메인메뉴 클릭시 (현재 액티비티)
-        }else if(v.getId() == R.id.bmr_imageView5) {
+        } else if (v.getId() == R.id.bmr_imageView5) {
             Intent intent = new Intent(bmr_activity.this, basic_activity.class);
             startActivity(intent);
+        } else if (v.getId() == R.id.start_diet) {
+            EditText age = (EditText) findViewById(R.id.now_age_input);
+            EditText target_weight = (EditText) findViewById(R.id.taget_weight_input);
+            RadioButton male = (RadioButton) findViewById(R.id.gender_input_male);
+            RadioButton female = (RadioButton) findViewById(R.id.gender_input2_female);
+            Button start_diet = (Button) findViewById(R.id.start_diet);
+            EditText weight = (EditText) findViewById(R.id.now_weight_input);
+            EditText stature = (EditText) findViewById(R.id.now_stature_input);
+
+            Toast.makeText(bmr_activity.this, weight.getText(),Toast.LENGTH_SHORT).show();
+            //기초대사량 공식 남성 : BMR(기초대사량) = (10*체중)+(6.25*신장)-(5*나이)+5
+            //기초대사량 공식 여성 : BMR(기초대사량) = (10*체중)+(6.25*신장)-(5*나이)-161
+
+        } else if (v.getId() == R.id.end_diet) {
+
         }
     }
+    @Override
+    protected void onResume() {
+        Log.v("BMR 엑티비티","Resume");
+        super.onResume();
+    }
+
+    @Override
+    protected void onStart() {
+        Log.v("BMR 엑티비티","Start");
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        Log.v("BMR 엑티비티","Stop");
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        Log.v("BMR 엑티비티","Destroy");
+        super.onDestroy();
+    }
+    protected void onPause() {
+        Log.v("BMR 엑티비티","Pause");
+        super.onPause();
+    }
+
+
 }

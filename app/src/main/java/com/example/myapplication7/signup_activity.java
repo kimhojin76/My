@@ -2,6 +2,7 @@ package com.example.myapplication7;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -12,6 +13,8 @@ public class signup_activity extends AppCompatActivity
         implements View.OnClickListener{
     @Override
     protected void onCreate(Bundle bundle){
+        Log.v("회원가입 엑티비티","create");
+
         super.onCreate(bundle);
         setContentView(R.layout.acrivi_sign_up);
         Button id_test_button = (Button) findViewById(R.id.button9);
@@ -27,5 +30,33 @@ public class signup_activity extends AppCompatActivity
         }else if(v.getId() == R.id.button3){
             Toast.makeText(signup_activity.this, "회원가입 되었습니다.",Toast.LENGTH_SHORT).show();
         }
+    }
+    @Override
+    protected void onResume() {
+        Log.v("회원가입 엑티비티","Resume");
+        super.onResume();
+
+    }
+
+    @Override
+    protected void onStart() {
+        Log.v("회원가입 엑티비티","Start");
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        Log.v("회원가입 엑티비티","Stop");
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        Log.v("회원가입 엑티비티","Destroy");
+        super.onDestroy();
+    }
+    protected void onPause() {
+        Log.v("회원가입 엑티비티","Pause");
+        super.onPause();
     }
 }

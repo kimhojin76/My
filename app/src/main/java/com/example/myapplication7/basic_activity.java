@@ -2,6 +2,7 @@ package com.example.myapplication7;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,6 +13,8 @@ public class basic_activity extends AppCompatActivity
         implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle bundle){
+        Log.v("베이직 엑티비티","create");
+
         super.onCreate(bundle);
         setContentView(R.layout.basic);
         final TextView summation = (TextView) findViewById(R.id.textView2);
@@ -77,4 +80,32 @@ public class basic_activity extends AppCompatActivity
 
         }
     }
+    @Override
+    protected void onResume() {
+        Log.v("베이직 엑티비티","Resume");
+        super.onResume();
+    }
+
+    @Override
+    protected void onStart() {
+        Log.v("베이직 엑티비티","Start");
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        Log.v("베이직 엑티비티","Stop");
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        Log.v("베이직 엑티비티","Destroy");
+        super.onDestroy();
+    }
+    protected void onPause() {
+        Log.v("베이직 엑티비티","Pause");
+        super.onPause();
+    }
+
 }

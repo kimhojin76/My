@@ -2,6 +2,7 @@ package com.example.myapplication7;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 public class weight_graph extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle bundle){
+        Log.v("체중그래프 엑티비티","create");
+
         super.onCreate(bundle);
         setContentView(R.layout.weight_graph);
         final TextView basic_food = (TextView) findViewById(R.id.textView8);
@@ -56,5 +59,31 @@ public class weight_graph extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
 
         }
+    }
+    protected void onResume() {
+        Log.v("체중그래프 엑티비티","Resume");
+        super.onResume();
+
+    }
+    @Override
+    protected void onStart() {
+        Log.v("체중그래프 엑티비티","Start");
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        Log.v("체중그래프 엑티비티","Stop");
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        Log.v("체중그래프 엑티비티","Destroy");
+        super.onDestroy();
+    }
+    protected void onPause() {
+        Log.v("체중그래프 엑티비티","Pause");
+        super.onPause();
     }
 }

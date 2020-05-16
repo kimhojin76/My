@@ -2,6 +2,7 @@ package com.example.myapplication7;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,6 +13,8 @@ public class diet_calender_activity extends AppCompatActivity
         implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle bundle){
+        Log.v("식단/체중 엑티비티","create");
+
         super.onCreate(bundle);
         setContentView(R.layout.diet_weight_calender);
         final TextView basic_food = (TextView) findViewById(R.id.textView8);
@@ -57,5 +60,30 @@ public class diet_calender_activity extends AppCompatActivity
         startActivity(intent);
 
     }
+    }
+    protected void onResume() {
+        Log.v("체중/식단 엑티비티","Resume");
+        super.onResume();
+    }
+    @Override
+    protected void onStart() {
+        Log.v("체중/식단 엑티비티","Start");
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        Log.v("체중/식단 엑티비티","Stop");
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        Log.v("체중/식단 엑티비티","Destroy");
+        super.onDestroy();
+    }
+    protected void onPause() {
+        Log.v("체중/식단 엑티비티","Pause");
+        super.onPause();
     }
 }
