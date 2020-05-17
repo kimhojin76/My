@@ -49,18 +49,26 @@ public class basic_activity extends AppCompatActivity
         }else if(v.getId() == R.id.textView5){
             Intent intent = new Intent(basic_activity.this,bmr_activity.class);
             startActivity(intent);
+            finish();
+
             //활동칼로리 계산
         }else if(v.getId() == R.id.textView6) {
             Intent intent = new Intent(basic_activity.this, active_metabolism.class);
             startActivity(intent);
+            finish();
+
             //식단으로 이동
         }else if(v.getId() == R.id.textView8) {
             Intent intent = new Intent(basic_activity.this, diet_calender_activity.class);
             startActivity(intent);
+            finish();
+
             // 그래프로 이동
         }else if(v.getId() == R.id.textView9) {
             Intent intent = new Intent(basic_activity.this, weight_graph.class);
             startActivity(intent);
+            finish();
+
         }
         //지금 속해있는 액티비티
         else if(v.getId() == R.id.textView10){
@@ -70,10 +78,14 @@ public class basic_activity extends AppCompatActivity
         }else if(v.getId() == R.id.imageView3) {
             Intent intent = new Intent(basic_activity.this, diet_calender_activity.class);
             startActivity(intent);
+            finish();
+
             //하단 매뉴 그래프 그림 클릭시 이동
         }else if(v.getId() == R.id.imageView4) {
             Intent intent = new Intent(basic_activity.this, weight_graph.class);
             startActivity(intent);
+            finish();
+
             //하단 매뉴 메인메뉴 클릭시 (현재 액티비티)
         }else if(v.getId() == R.id.imageView5) {
             Intent intent = new Intent(basic_activity.this, diet_calender_activity.class);

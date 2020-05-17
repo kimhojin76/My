@@ -16,28 +16,58 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".signup_activity">
-            
-        </activity>
-        <activity android:name=".basic_activity">
+        <activity android:name=".signup_activity"
+            android:launchMode="singleTop"
+            android:label="회원가입">
+
+            >
 
         </activity>
-        <activity android:name=".bmr_activity">
+        <activity android:name=".basic_activity"
+            android:launchMode="singleTop"
+
+            android:label="기본 화면">
 
         </activity>
-        <activity android:name=".diet_calender_activity">
+        <activity android:name=".bmr_activity"
+            android:launchMode="singleTop"
+
+            android:label="기초대사량 계산기">
 
         </activity>
-        <activity android:name=".find_password">
+        <activity android:name=".diet_calender_activity"
+            android:launchMode="singleTop"
+
+            android:label="식단/체중">
+            >
 
         </activity>
-        <activity android:name=".metabolism_coustom">
+        <activity android:name=".find_password"
+            android:launchMode="singleTop"
+
+            android:label="비밀번호 찾기">
+            >
 
         </activity>
-        <activity android:name=".weight_graph">
+        <activity android:name=".metabolism_coustom"
+            android:launchMode="singleTop"
+
+            android:label="활동량 커스텀 추가화면">
+            >
 
         </activity>
-        <activity android:name=".active_metabolism">
+        <activity android:name=".weight_graph"
+            android:launchMode="singleTop"
+
+            android:label="체중 그래프">
+            >
+
+        </activity>
+        <activity android:name=".active_metabolism"
+            android:launchMode="singleTop"
+
+            android:label="활동대사량">
+            >
 
         </activity>
     </application>

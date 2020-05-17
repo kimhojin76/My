@@ -15,6 +15,13 @@ public class active_metabolism extends AppCompatActivity implements View.OnClick
         Log.v("활동관리 엑티비티","create");
 
         super.onCreate(bundle);
+        TextView BMR_input = (TextView) findViewById(R.id.basal_metabolism) ;
+        Intent intent = getIntent();
+        String BMR = intent.getExtras().getString("기초대사량");
+        BMR_input.setText("기초대사량");
+
+
+
         setContentView(R.layout.activity_metabolism);
         final TextView summation = (TextView) findViewById(R.id.textView2);
         summation.setOnClickListener(this);
@@ -36,6 +43,10 @@ public class active_metabolism extends AppCompatActivity implements View.OnClick
         basic_main_image.setOnClickListener(this);
         final ImageView active_metabolism_add = (ImageView) findViewById(R.id.imageView8);
         active_metabolism_add.setOnClickListener(this);
+
+
+
+
     }
 
     @Override
@@ -43,44 +54,63 @@ public class active_metabolism extends AppCompatActivity implements View.OnClick
         if(v.getId() == R.id.textView2){
             Intent intent = new Intent(active_metabolism.this,basic_activity.class);
             startActivity(intent);
+            finish();
 
             //지금 속해있는 액티비티
         }else if(v.getId() == R.id.textView5){
             Intent intent = new Intent(active_metabolism.this,bmr_activity.class);
             startActivity(intent);
+            finish();
+
             //활동칼로리 계산
         }else if(v.getId() == R.id.textView6) {
             Intent intent = new Intent(active_metabolism.this, active_metabolism.class);
             startActivity(intent);
+            finish();
+
             //식단으로 이동
         }else if(v.getId() == R.id.textView8) {
             Intent intent = new Intent(active_metabolism.this, diet_calender_activity.class);
             startActivity(intent);
+            finish();
+
             // 그래프로 이동
         }else if(v.getId() == R.id.textView9) {
             Intent intent = new Intent(active_metabolism.this, weight_graph.class);
             startActivity(intent);
+            finish();
+
         }
         //지금 속해있는 액티비티
         else if(v.getId() == R.id.textView10){
             Intent intent = new Intent(active_metabolism.this,basic_activity.class);
             startActivity(intent);
+            finish();
+
 
             //하단 식단그림 클릭시 이동
         }else if(v.getId() == R.id.imageView3) {
             Intent intent = new Intent(active_metabolism.this, diet_calender_activity.class);
             startActivity(intent);
+            finish();
+
             //하단 매뉴 그래프 그림 클릭시 이동
         }else if(v.getId() == R.id.imageView4) {
             Intent intent = new Intent(active_metabolism.this, weight_graph.class);
             startActivity(intent);
+            finish();
+
             //하단 매뉴 메인메뉴 클릭시 (현재 액티비티)
         }else if(v.getId() == R.id.imageView5) {
             Intent intent = new Intent(active_metabolism.this, basic_activity.class);
             startActivity(intent);
+            finish();
+
         }else if(v.getId() == R.id.imageView8) {
             Intent intent = new Intent(active_metabolism.this, metabolism_coustom.class);
             startActivity(intent);
+            finish();
+
         }
     }
     @Override
