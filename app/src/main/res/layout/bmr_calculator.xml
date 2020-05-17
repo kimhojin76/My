@@ -443,9 +443,10 @@
         app:layout_constraintTop_toTopOf="@id/bmr_image9"
         app:layout_constraintVertical_bias="0.262" />
 
-    <SeekBar
+    <ProgressBar
         android:id="@+id/last_kcal_seekbar_car"
         android:layout_width="60dp"
+        style="?android:attr/progressBarStyleHorizontal"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_marginLeft="10dp"
@@ -487,9 +488,11 @@
         app:layout_constraintLeft_toRightOf="@id/lastkcal_pro_text"
         app:layout_constraintStart_toStartOf="@+id/last_kcal_seekbar_fat"
         app:layout_constraintTop_toTopOf="@id/lastkcal_pro_text" />
-    <SeekBar
+    <ProgressBar
         android:id="@+id/last_kcal_seekbar_pro"
         android:layout_width="60dp"
+        style="?android:attr/progressBarStyleHorizontal"
+
         android:layout_height="wrap_content"
         android:gravity="center"
         app:layout_constraintLeft_toRightOf="@id/last_kcal_seekbar_car"
@@ -499,11 +502,13 @@
         />
 
 
-    <SeekBar
+    <ProgressBar
         android:id="@+id/last_kcal_seekbar_fat"
         android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="60dp"
+        style="?android:attr/progressBarStyleHorizontal"
+
         android:layout_marginRight="60dp"
         android:gravity="center"
         android:textSize="12sp"
@@ -640,4 +645,6 @@
         android:textSize="20sp"
         android:text="여성"/>
     </RadioGroup>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

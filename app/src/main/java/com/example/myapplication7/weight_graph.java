@@ -34,28 +34,40 @@ public class weight_graph extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         if(v.getId() == R.id.textView8) {
             Intent intent = new Intent(weight_graph.this, diet_calender_activity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
             startActivity(intent);
             // 그래프로 이동
         }else if(v.getId() == R.id.textView9) {
             Intent intent = new Intent(weight_graph.this, weight_graph.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
             startActivity(intent);
         }
         //지금 속해있는 액티비티
         else if(v.getId() == R.id.textView10){
             Intent intent = new Intent(weight_graph.this,basic_activity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
             startActivity(intent);
 
             //하단 식단그림 클릭시 이동
         }else if(v.getId() == R.id.imageView3) {
             Intent intent = new Intent(weight_graph.this, diet_calender_activity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
             startActivity(intent);
             //하단 매뉴 그래프 그림 클릭시 이동
         }else if(v.getId() == R.id.imageView4) {
             Intent intent = new Intent(weight_graph.this, weight_graph.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
             startActivity(intent);
             //하단 매뉴 메인메뉴 클릭시 (현재 액티비티)
         }else if(v.getId() == R.id.imageView5) {
             Intent intent = new Intent(weight_graph.this, basic_activity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
             startActivity(intent);
 
         }

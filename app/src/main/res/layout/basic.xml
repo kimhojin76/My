@@ -166,9 +166,10 @@
         app:layout_constraintRight_toRightOf="@id/basic_intext3"
         app:layout_constraintTop_toBottomOf="@id/basic_intext1" />
 //SeekBar 시크바 입력 막을것 sb = (SeekBar)findViewById(R.id.sb); sb.setOnTouchListener(new View.OnTouchListener() { @Override public boolean onTouch(View v, MotionEvent event) { return true; } });
-    <SeekBar
+    <ProgressBar
         android:id="@+id/basic_in_seekBar1"
-        android:layout_width="80dp"
+        android:layout_width="70dp"
+        style="?android:attr/progressBarStyleHorizontal"
         android:layout_height="wrap_content"
         android:outlineAmbientShadowColor="@color/colorPrimary"
         android:outlineSpotShadowColor="@color/colorPrimary"
@@ -176,8 +177,9 @@
         app:layout_constraintRight_toRightOf="@id/basic_intext4"
         app:layout_constraintTop_toBottomOf="@id/basic_intext4"
 />
-    <SeekBar
+    <ProgressBar
         android:id="@+id/basic_in_seekBar2"
+        style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:outlineAmbientShadowColor="@color/colorPrimary"
@@ -187,7 +189,8 @@
         app:layout_constraintTop_toBottomOf="@id/basic_intext4"
         />
 
-    <SeekBar
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
         android:id="@+id/basic_in_seekBar3"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
@@ -243,7 +246,8 @@
         app:layout_constraintRight_toRightOf="@id/basic_intext6"
         />
     //탄수화물 시크바
-    <SeekBar
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
         android:id="@+id/basic_in_seekBar4"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
@@ -254,7 +258,8 @@
         app:layout_constraintTop_toBottomOf="@id/basic_intext7"
         />
 //단백질 시크바
-    <SeekBar
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
         android:id="@+id/basic_in_seekBar5"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
@@ -265,7 +270,8 @@
         app:layout_constraintTop_toBottomOf="@id/basic_intext8"
         />
     //지방 시크바
-    <SeekBar
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
         android:id="@+id/basic_in_seekBar6"
         android:layout_width="80dp"
         android:layout_height="wrap_content"

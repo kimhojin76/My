@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,14 +16,24 @@ public class active_metabolism extends AppCompatActivity implements View.OnClick
         Log.v("활동관리 엑티비티","create");
 
         super.onCreate(bundle);
-        TextView BMR_input = (TextView) findViewById(R.id.basal_metabolism) ;
-        Intent intent = getIntent();
-        String BMR = intent.getExtras().getString("기초대사량");
-        BMR_input.setText("기초대사량");
 
 
+        //BMR
 
         setContentView(R.layout.activity_metabolism);
+
+
+        Button pal_level1 = (Button) findViewById(R.id.par_button1);
+        pal_level1.setOnClickListener(this);
+        Button pal_level2 = (Button) findViewById(R.id.par_button4);
+        pal_level2.setOnClickListener(this);
+        Button pal_level3 = (Button) findViewById(R.id.par_button3);
+        pal_level3.setOnClickListener(this);
+        Button pal_level4 = (Button) findViewById(R.id.par_button5);
+        pal_level4.setOnClickListener(this);
+
+
+
         final TextView summation = (TextView) findViewById(R.id.textView2);
         summation.setOnClickListener(this);
         final TextView helper = (TextView) findViewById(R.id.textView5);
@@ -51,6 +62,10 @@ public class active_metabolism extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
+        TextView BMR_input = (TextView) findViewById(R.id.basal_metabolism) ;
+        TextView active_input = (TextView) findViewById(R.id.activity_metabolism) ;
+
+        double active_kcal;
         if(v.getId() == R.id.textView2){
             Intent intent = new Intent(active_metabolism.this,basic_activity.class);
             startActivity(intent);
@@ -80,9 +95,30 @@ public class active_metabolism extends AppCompatActivity implements View.OnClick
             startActivity(intent);
             finish();
 
-        }
-        //지금 속해있는 액티비티
-        else if(v.getId() == R.id.textView10){
+        }else if(v.getId() == R.id.par_button1) {
+
+            Log.v("활동관리 엑티비티","par 버튼 1 클릭");
+            Log.v("활동관리 엑티비티",BMR_input.getText().toString());
+            double BMR = Double.parseDouble(BMR_input.getText().toString());
+            active_input.setText(Double.toString(Math.round(BMR*1.5*10)/10));
+
+        }else if(v.getId() == R.id.par_button4) {
+            Log.v("활동관리 엑티비티","par 버튼 2 클릭");
+            Log.v("활동관리 엑티비티",BMR_input.getText().toString());
+            double BMR = Double.parseDouble(BMR_input.getText().toString());
+            active_input.setText(Double.toString(Math.round(BMR*1.75*10)/10));
+        }else if(v.getId() == R.id.par_button3) {
+            Log.v("활동관리 엑티비티","par 버튼 3 클릭");
+            Log.v("활동관리 엑티비티",BMR_input.getText().toString());
+            double BMR = Double.parseDouble(BMR_input.getText().toString());
+            active_input.setText(Double.toString(Math.round(BMR*1.62*10)/10));
+        }else if(v.getId() == R.id.par_button5) {
+            Log.v("활동관리 엑티비티","par 버튼 4 클릭");
+            Log.v("활동관리 엑티비티",BMR_input.getText().toString());
+            double BMR = Double.parseDouble(BMR_input.getText().toString());
+            active_input.setText(Double.toString(Math.round(BMR*1.65*10)/10));
+            //지금 속해있는 액티비티
+        }else if(v.getId() == R.id.textView10){
             Intent intent = new Intent(active_metabolism.this,basic_activity.class);
             startActivity(intent);
             finish();
@@ -123,6 +159,16 @@ public class active_metabolism extends AppCompatActivity implements View.OnClick
     protected void onStart() {
         Log.v("활동관리 엑티비티","Start");
         super.onStart();
+        TextView BMR_input = (TextView) findViewById(R.id.basal_metabolism) ;
+        Intent intent = getIntent();
+        String BMR = intent.getStringExtra("BMR");
+        if (BMR == null){
+
+        }else {
+            System.out.println(" BMR값 ");
+            System.out.println(BMR);
+            BMR_input.setText(BMR);
+        }
     }
 
     @Override

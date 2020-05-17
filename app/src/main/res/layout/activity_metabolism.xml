@@ -145,6 +145,7 @@
         android:id="@+id/activity_metabolism"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="right"
         android:text=""
         android:hint="활동 대사량"
         android:textSize="35sp"
