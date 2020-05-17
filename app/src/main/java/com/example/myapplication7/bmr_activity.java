@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,6 +61,17 @@ public class bmr_activity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        EditText target_weight = (EditText) findViewById(R.id.taget_weight_input);
+        RadioButton male = (RadioButton) findViewById(R.id.gender_input_male);
+        RadioButton female = (RadioButton) findViewById(R.id.gender_input2_female);
+        Button start_diet = (Button) findViewById(R.id.start_diet);
+        EditText weight = (EditText) findViewById(R.id.now_weight_input);
+        EditText age = (EditText) findViewById(R.id.now_age_input);
+        EditText stature = (EditText) findViewById(R.id.now_stature_input);
+        TextView BMR = (TextView) findViewById(R.id.bmr_input) ;
+        TextView PAL = (TextView) findViewById(R.id.pal_input) ;
+        TextView diet_date = (TextView) findViewById(R.id.diet_date) ;
+        RadioGroup gender = (RadioGroup) findViewById(R.id.gender_group) ;
         if (v.getId() == R.id.bmr_textView2) {
             Intent intent = new Intent(bmr_activity.this, basic_activity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -74,7 +86,6 @@ public class bmr_activity extends AppCompatActivity implements View.OnClickListe
 
             //활동칼로리 계산
         } else if (v.getId() == R.id.bmr_textView6) {
-            TextView BMR = (TextView) findViewById(R.id.bmr_input) ;
             double bmr_next = Double.parseDouble(BMR.getText().toString());
 
             Intent intent = new Intent(bmr_activity.this, active_metabolism.class );
@@ -130,25 +141,18 @@ public class bmr_activity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
 
         } else if (v.getId() == R.id.start_diet) {
-            EditText target_weight = (EditText) findViewById(R.id.taget_weight_input);
-            RadioButton male = (RadioButton) findViewById(R.id.gender_input_male);
-            RadioButton female = (RadioButton) findViewById(R.id.gender_input2_female);
-            Button start_diet = (Button) findViewById(R.id.start_diet);
-            EditText weight = (EditText) findViewById(R.id.now_weight_input);
-            EditText age = (EditText) findViewById(R.id.now_age_input);
-            EditText stature = (EditText) findViewById(R.id.now_stature_input);
-            TextView BMR = (TextView) findViewById(R.id.bmr_input) ;
-            TextView PAL = (TextView) findViewById(R.id.pal_input) ;
-            TextView diet_date = (TextView) findViewById(R.id.diet_date) ;
+
             Log.v("BMR엑티비티","스타트버튼 클릭");
             //기초대사량 공식 남성 : BMR(기초대사량) = (10*체중)+(6.25*신장)-(5*나이)+5
             //기초대사량 공식 여성 : BMR(기초대사량) = (10*체중)+(6.25*신장)-(5*나이)-161
-            if(TextUtils.isEmpty(weight.getText().toString()) == true || TextUtils.isEmpty(stature.getText().toString()) == true||TextUtils.isEmpty(age.getText().toString()) == true){
-
+            if(TextUtils.isEmpty(weight.getText().toString()) == true || TextUtils.isEmpty(stature.getText().toString()) == true||TextUtils.isEmpty(age.getText().toString()) == true ||gender.getCheckedRadioButtonId() == -1||TextUtils.isEmpty(target_weight.getText().toString()) == true){
                 Log.v("BMR엑티비티","스타트버튼 클릭, 필수입력값 선택안함.");
                 Toast.makeText(bmr_activity.this,"체중,신장,목표체중,나이,성별을 입력해주세요",Toast.LENGTH_LONG).show();
 
             }else {
+                if (male.isChecked()){
+
+                }
                 double weightint = (10 * Integer.parseInt(weight.getText().toString())) + (6.25 * Integer.parseInt(stature.getText().toString())) - (5 * Integer.parseInt(age.getText().toString()));
                 System.out.println(weightint);
                 double now_weight_double = Double.parseDouble(weight.getText().toString());
