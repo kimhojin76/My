@@ -87,16 +87,19 @@ public class bmr_activity extends AppCompatActivity implements View.OnClickListe
             //활동칼로리 계산
         } else if (v.getId() == R.id.bmr_textView6) {
             double bmr_next = Double.parseDouble(BMR.getText().toString());
+            if(TextUtils.isEmpty(weight.getText().toString()) == true || TextUtils.isEmpty(stature.getText().toString()) == true||TextUtils.isEmpty(age.getText().toString()) == true ||gender.getCheckedRadioButtonId() == -1||TextUtils.isEmpty(target_weight.getText().toString()) == true) {
+                Log.v("BMR엑티비티", "스타트버튼 클릭, 필수입력값 선택안함.");
+                Toast.makeText(bmr_activity.this, "체중,신장,목표체중,나이,성별을 입력해주세요", Toast.LENGTH_LONG).show();
+            }else {
+                Intent intent = new Intent(bmr_activity.this, active_metabolism.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                Log.v("BMR 엑티비티", Double.toString(bmr_next));
 
-            Intent intent = new Intent(bmr_activity.this, active_metabolism.class );
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            Log.v("BMR 엑티비티",Double.toString(bmr_next));
-
-            intent.putExtra("BMR",Double.toString(bmr_next));
+                intent.putExtra("BMR", Double.toString(bmr_next));
 
 
-            startActivity(intent);
-
+                startActivity(intent);
+            }
             //식단으로 이동
         } else if (v.getId() == R.id.bmr_textView8) {
 

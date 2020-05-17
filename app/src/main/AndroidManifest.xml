@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".signup_activity"
+
             android:launchMode="singleTop"
             android:label="회원가입">
 

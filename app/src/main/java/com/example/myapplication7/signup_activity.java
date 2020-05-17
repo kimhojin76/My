@@ -1,6 +1,8 @@
 package com.example.myapplication7;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +13,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class signup_activity extends AppCompatActivity
         implements View.OnClickListener{
+    static final int REQUEST_IMAGE_GET = 1;
+
+
+
     @Override
     protected void onCreate(Bundle bundle){
         Log.v("회원가입 엑티비티","create");
