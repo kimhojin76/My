@@ -1,651 +1,657 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-
-    android:layout_height="match_parent">
-//bmr
-
-    <TextView
-        android:id="@+id/bmr_textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="]"
-        android:textSize="20dp"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toTopOf="@id/bmr_image1"
-        app:layout_constraintRight_toRightOf="@id/bmr_image3"
-
-   />
-    <TextView
-        android:id="@+id/bmr_textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="요약"
-        android:textSize="20dp"
-
-        app:layout_constraintRight_toLeftOf="@id/bmr_textView5"
-        app:layout_constraintBottom_toBottomOf="@+id/bmr_textView3"
-        app:layout_constraintLeft_toRightOf="@id/textView1"
-        tools:layout_editor_absoluteX="89dp" />
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".MainActivity">
 
 
-    <TextView
-        android:id="@+id/bmr_textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="칼로리계산기"
-        android:textSize="20dp"
-
-        app:layout_constraintBottom_toBottomOf="@+id/bmr_textView3"
-        app:layout_constraintEnd_toStartOf="@+id/bmr_textView6"
-        app:layout_constraintHorizontal_bias="0.581"
-        app:layout_constraintStart_toEndOf="@+id/bmr_textView2" />
-
-    <TextView
-        android:id="@+id/bmr_textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="활동관리"
-        android:textSize="20dp"
-
-        app:layout_constraintLeft_toRightOf="@id/bmr_textView5"
-        app:layout_constraintRight_toLeftOf="@id/bmr_textView3"
-        app:layout_constraintBottom_toBottomOf="@+id/bmr_textView3"
-        tools:layout_editor_absoluteX="265dp" />
-
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="["
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="@id/bmr_textView3"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="@+id/bmr_image1"
-        />
-
-    <ImageView
-        android:id="@+id/bottom_imageView1"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="@drawable/btn_yellow"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="@id/bmr_imageView3"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        android:layout_height="match_parent">
+        //bmr
 
-    <ImageView
-        android:id="@+id/bmr_image1"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="55dp"
-        android:background="@drawable/background"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-></ImageView>
+        <TextView
+            android:id="@+id/bmr_textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="]"
+            android:textSize="20dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toTopOf="@id/bmr_image1"
+            app:layout_constraintRight_toRightOf="@id/bmr_image3"
 
-    <ImageView
-        android:id="@+id/bmr_image2"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="@drawable/background"
-        app:layout_constraintRight_toLeftOf="@id/bmr_image3"
-        app:layout_constraintLeft_toRightOf="@id/bmr_image1"
-        app:layout_constraintTop_toTopOf="@id/bmr_image1">
-    </ImageView>
-    <ImageView
-        android:id="@+id/bmr_image3"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginRight="12dp"
-        android:background="@drawable/background"
-        app:layout_constraintLeft_toRightOf="@id/bmr_image2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/bmr_image1">
-    </ImageView>
-    <ImageView
-        android:id="@+id/bmr_image4"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/background"
-        app:layout_constraintTop_toBottomOf="@id/bmr_image1"
-        app:layout_constraintLeft_toLeftOf="@id/bmr_image1">
-    </ImageView>
-    <ImageView
-        android:id="@+id/bmr_image5"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/background"
-        app:layout_constraintTop_toBottomOf="@id/bmr_image2"
-        app:layout_constraintRight_toLeftOf="@id/bmr_image6"
-        app:layout_constraintLeft_toRightOf="@id/bmr_image4">
-    </ImageView>
-    <ImageView
-        android:id="@+id/bmr_image6"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginRight="12dp"
-        android:background="@drawable/background"
-        app:layout_constraintTop_toBottomOf="@id/bmr_image3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/bmr_image5">
-    </ImageView>
-    <ImageView
-        android:id="@+id/bmr_image7"
-        android:layout_width="100dp"
-        android:layout_height="105dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/background"
-        app:layout_constraintTop_toBottomOf="@id/bmr_image4"
-        app:layout_constraintLeft_toLeftOf="@id/bmr_image1">
-    </ImageView>
+            />
+        <TextView
+            android:id="@+id/bmr_textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="요약"
+            android:textSize="20dp"
 
-    <ImageView
-        android:id="@+id/bmr_image8"
-        android:layout_width="100dp"
-        android:layout_height="105dp"
-        android:layout_marginTop="12dp"
-
-        android:background="@drawable/btn_yellow"
-        app:layout_constraintLeft_toRightOf="@id/bmr_image7"
-        app:layout_constraintRight_toLeftOf="@id/start_diet"
-        app:layout_constraintTop_toBottomOf="@id/bmr_image5">
-    </ImageView>
-    <ImageView
-        android:id="@+id/bmr_image9"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginRight="12dp"
-        android:layout_marginLeft="12dp"
-        android:background="@drawable/btn_blue2"
-        app:layout_constraintLeft_toLeftOf="@id/bmr_image7"
-        app:layout_constraintRight_toRightOf="@id/start_diet"
-        app:layout_constraintTop_toBottomOf="@id/bmr_image7">
-    </ImageView>
+            app:layout_constraintRight_toLeftOf="@id/bmr_textView5"
+            app:layout_constraintBottom_toBottomOf="@+id/bmr_textView3"
+            app:layout_constraintLeft_toRightOf="@id/textView1"
+            tools:layout_editor_absoluteX="89dp" />
 
 
-    <TextView
-        android:id="@+id/now_weight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        app:layout_constraintLeft_toLeftOf="@id/bmr_image1"
-        app:layout_constraintTop_toTopOf="@id/bmr_image1"
-        android:textSize="12sp"
-        android:text="체중"/>
-    <EditText
-        android:id="@+id/now_weight_input"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:gravity="center"
-        app:layout_constraintLeft_toLeftOf="@id/bmr_image1"
-        app:layout_constraintRight_toRightOf="@id/bmr_image1"
-        app:layout_constraintTop_toTopOf="@id/bmr_image1"
-        app:layout_constraintBottom_toBottomOf="@id/bmr_image1"
-        android:hint="입력"
-        android:textSize="30sp"
-        android:text=""/>
-    <TextView
-        android:id="@+id/kg_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        app:layout_constraintRight_toRightOf="@id/bmr_image1"
-        app:layout_constraintBottom_toBottomOf="@id/bmr_image1"
-        android:hint="kg"
-        android:textSize="12sp"
-        android:text=""/>
+        <TextView
+            android:id="@+id/bmr_textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="칼로리계산기"
+            android:textSize="20dp"
+
+            app:layout_constraintBottom_toBottomOf="@+id/bmr_textView3"
+            app:layout_constraintEnd_toStartOf="@+id/bmr_textView6"
+            app:layout_constraintHorizontal_bias="0.581"
+            app:layout_constraintStart_toEndOf="@+id/bmr_textView2" />
+
+        <TextView
+            android:id="@+id/bmr_textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="활동관리"
+            android:textSize="20dp"
+
+            app:layout_constraintLeft_toRightOf="@id/bmr_textView5"
+            app:layout_constraintRight_toLeftOf="@id/bmr_textView3"
+            app:layout_constraintBottom_toBottomOf="@+id/bmr_textView3"
+            tools:layout_editor_absoluteX="265dp" />
 
 
-    <TextView
-        android:id="@+id/stature"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        app:layout_constraintLeft_toLeftOf="@id/bmr_image2"
-        app:layout_constraintTop_toTopOf="@id/bmr_image2"
-        android:textSize="12sp"
-        android:text="(키)신장"/>
-    <EditText
-        android:id="@+id/now_stature_input"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="number"
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="["
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="@id/bmr_textView3"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="@+id/bmr_image1"
+            />
 
-        android:gravity="center"
-        app:layout_constraintLeft_toLeftOf="@id/bmr_image2"
-        app:layout_constraintRight_toRightOf="@id/bmr_image2"
-        app:layout_constraintTop_toTopOf="@id/bmr_image2"
-        app:layout_constraintBottom_toBottomOf="@id/bmr_image2"
-        android:hint="입력"
-        android:textSize="30sp"
-        android:text=""/>
-    <TextView
-        android:id="@+id/cm_text1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        app:layout_constraintRight_toRightOf="@id/bmr_image2"
-        app:layout_constraintBottom_toBottomOf="@id/bmr_image2"
-        android:hint="cm"
-        android:textSize="12sp"
-        android:text=""/>
+        <ImageView
+            android:id="@+id/bottom_imageView1"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@drawable/btn_yellow"
+            app:layout_constraintLeft_toLeftOf="@id/bmr_imageView3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
 
-    <TextView
-        android:id="@+id/age"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        app:layout_constraintLeft_toLeftOf="@id/bmr_image3"
-        app:layout_constraintTop_toTopOf="@id/bmr_image3"
-        android:textSize="12sp"
-        android:text="나이"/>
-    <EditText
-        android:id="@+id/now_age_input"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="number"
+        <ImageView
+            android:id="@+id/bmr_image1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="55dp"
+            android:background="@drawable/background"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            ></ImageView>
 
-        android:gravity="center"
-        app:layout_constraintLeft_toLeftOf="@id/bmr_image3"
-        app:layout_constraintRight_toRightOf="@id/bmr_image3"
-        app:layout_constraintTop_toTopOf="@id/bmr_image3"
-        app:layout_constraintBottom_toBottomOf="@id/bmr_image3"
-        android:hint="입력"
-        android:textSize="30sp"
-        android:text=""/>
-    <TextView
-        android:id="@+id/age_text1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        app:layout_constraintRight_toRightOf="@id/bmr_image3"
-        app:layout_constraintBottom_toBottomOf="@id/bmr_image3"
-        android:hint="살"
-        android:textSize="12sp"
-        android:text=""/>
+        <ImageView
+            android:id="@+id/bmr_image2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/background"
+            app:layout_constraintRight_toLeftOf="@id/bmr_image3"
+            app:layout_constraintLeft_toRightOf="@id/bmr_image1"
+            app:layout_constraintTop_toTopOf="@id/bmr_image1">
+        </ImageView>
+        <ImageView
+            android:id="@+id/bmr_image3"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/background"
+            app:layout_constraintLeft_toRightOf="@id/bmr_image2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/bmr_image1">
+        </ImageView>
+        <ImageView
+            android:id="@+id/bmr_image4"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/background"
+            app:layout_constraintTop_toBottomOf="@id/bmr_image1"
+            app:layout_constraintLeft_toLeftOf="@id/bmr_image1">
+        </ImageView>
+        <ImageView
+            android:id="@+id/bmr_image5"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/background"
+            app:layout_constraintTop_toBottomOf="@id/bmr_image2"
+            app:layout_constraintRight_toLeftOf="@id/bmr_image6"
+            app:layout_constraintLeft_toRightOf="@id/bmr_image4">
+        </ImageView>
+        <ImageView
+            android:id="@+id/bmr_image6"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/background"
+            app:layout_constraintTop_toBottomOf="@id/bmr_image3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/bmr_image5">
+        </ImageView>
+        <ImageView
+            android:id="@+id/bmr_image7"
+            android:layout_width="100dp"
+            android:layout_height="105dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/background"
+            app:layout_constraintTop_toBottomOf="@id/bmr_image4"
+            app:layout_constraintLeft_toLeftOf="@id/bmr_image1">
+        </ImageView>
 
-    <TextView
-        android:id="@+id/gender"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        app:layout_constraintLeft_toLeftOf="@id/bmr_image4"
-        app:layout_constraintTop_toTopOf="@id/bmr_image4"
-        android:textSize="12sp"
-        android:text="성별"/>
+        <ImageView
+            android:id="@+id/bmr_image8"
+            android:layout_width="100dp"
+            android:layout_height="105dp"
+            android:layout_marginTop="12dp"
 
-
-
-
-
-
-    <TextView
-        android:id="@+id/bmr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        app:layout_constraintLeft_toLeftOf="@id/bmr_image6"
-        app:layout_constraintTop_toTopOf="@id/bmr_image6"
-        android:textSize="12sp"
-        android:text="기초대사량"/>
-    <TextView
-        android:id="@+id/bmr_input"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        app:layout_constraintLeft_toLeftOf="@id/bmr_image6"
-        app:layout_constraintRight_toRightOf="@id/bmr_image6"
-        app:layout_constraintTop_toTopOf="@id/bmr_image6"
-        app:layout_constraintBottom_toBottomOf="@id/bmr_image6"
-        android:hint="자동"
-        android:textSize="30sp"
-        android:text=""/>
-    <TextView
-        android:id="@+id/kcal_text1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        app:layout_constraintRight_toRightOf="@id/bmr_image6"
-        app:layout_constraintBottom_toBottomOf="@id/bmr_image6"
-        android:hint="살"
-        android:textSize="12sp"
-        android:text="Kcal"/>
-
-    <TextView
-        android:id="@+id/start_down_kcal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        app:layout_constraintLeft_toLeftOf="@id/bmr_image5"
-        app:layout_constraintTop_toTopOf="@id/bmr_image5"
-        android:textSize="12sp"
-        android:text="목표 체중"/>
-    <EditText
-        android:id="@+id/taget_weight_input"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:inputType="numberDecimal"
-        app:layout_constraintLeft_toLeftOf="@id/bmr_image5"
-        app:layout_constraintRight_toRightOf="@id/bmr_image5"
-        app:layout_constraintTop_toTopOf="@id/bmr_image5"
-        app:layout_constraintBottom_toBottomOf="@id/bmr_image5"
-        android:hint="입력"
-        android:textSize="30sp"
-        />
-    <TextView
-        android:id="@+id/kcal_text2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        app:layout_constraintRight_toRightOf="@id/bmr_image5"
-        app:layout_constraintBottom_toBottomOf="@id/bmr_image5"
-        android:textSize="12sp"
-        android:text="Kg"/>
-
-    <TextView
-        android:id="@+id/par"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        app:layout_constraintLeft_toLeftOf="@id/bmr_image7"
-        app:layout_constraintTop_toTopOf="@id/bmr_image7"
-        android:textSize="12sp"
-        android:text="활동대사량"/>
-    <TextView
-        android:id="@+id/pal_input"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        app:layout_constraintLeft_toLeftOf="@id/bmr_image7"
-        app:layout_constraintRight_toRightOf="@id/bmr_image7"
-        app:layout_constraintTop_toTopOf="@id/bmr_image7"
-        app:layout_constraintBottom_toBottomOf="@id/bmr_image7"
-        android:hint="자동"
-
-        android:textSize="30sp"
-        android:text=""/>
-    <TextView
-        android:id="@+id/kcal_text3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        app:layout_constraintRight_toRightOf="@id/bmr_image7"
-        app:layout_constraintBottom_toBottomOf="@id/bmr_image7"
-        android:hint="살"
-        android:textSize="12sp"
-        android:text="Kcal"/>
-
-    <TextView
-        android:id="@+id/notice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginLeft="2dp"
-        app:layout_constraintLeft_toLeftOf="@id/bmr_image8"
-        app:layout_constraintTop_toTopOf="@id/bmr_image8"
-        android:textSize="12sp"
-        android:text="다이어트 기간"/>
-
-    <TextView
-        android:id="@+id/diet_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="2dp"
-        android:gravity="center"
-        android:hint="자동"
-        android:textSize="30dp"
-        app:layout_constraintBottom_toBottomOf="@+id/bmr_image8"
-        app:layout_constraintLeft_toLeftOf="@id/bmr_image8"
-        app:layout_constraintRight_toRightOf="@+id/bmr_image8"
-        app:layout_constraintTop_toTopOf="@+id/bmr_image8" />
-    <TextView
-        android:id="@+id/date_text1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginRight="2dp"
-        app:layout_constraintRight_toRightOf="@id/bmr_image8"
-        app:layout_constraintBottom_toBottomOf="@id/bmr_image8"
-        android:textSize="12sp"
-        android:text="일"/>
-    <TextView
-        android:id="@+id/start_kcal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        app:layout_constraintLeft_toLeftOf="@id/bmr_image9"
-        app:layout_constraintTop_toTopOf="@id/bmr_image9"
-        android:textSize="12sp"
-        android:text="최종 칼로리,탄단지 비율"/>
-
-    <TextView
-        android:id="@+id/last_kcal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:hint="최종 칼로리"
-        android:text=""
-        app:layout_constraintBottom_toBottomOf="@id/bmr_image9"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintLeft_toLeftOf="@id/bmr_image9"
-        app:layout_constraintRight_toRightOf="@id/bmr_image9"
-        app:layout_constraintTop_toTopOf="@id/bmr_image9"
-        app:layout_constraintVertical_bias="0.262" />
-
-    <ProgressBar
-        android:id="@+id/last_kcal_seekbar_car"
-        android:layout_width="60dp"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginLeft="10dp"
-        android:textSize="12sp"
-        app:layout_constraintLeft_toLeftOf="@id/bmr_image9"
-        app:layout_constraintRight_toLeftOf="@id/last_kcal_seekbar_pro"
-        app:layout_constraintTop_toBottomOf="@id/last_kcal" />
-
-    <TextView
-        android:id="@+id/lastkcal_car_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:hint="탄수00/00"
-        android:text=""
-        app:layout_constraintBottom_toBottomOf="@id/bmr_image9"
-        app:layout_constraintLeft_toLeftOf="@id/last_kcal_seekbar_car"
-        app:layout_constraintTop_toBottomOf="@id/last_kcal_seekbar_car"
- />
-
-    <TextView
-        android:id="@+id/lastkcal_pro_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:hint="단백질00/00"
-        android:text=""
-        app:layout_constraintLeft_toRightOf="@id/lastkcal_car_text"
-        app:layout_constraintStart_toStartOf="@+id/last_kcal_seekbar_pro"
-        app:layout_constraintTop_toTopOf="@id/lastkcal_car_text" />
-
-    <TextView
-        android:id="@+id/lastkcal_fat_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:hint="지방00/00"
-        android:text=""
-        app:layout_constraintLeft_toRightOf="@id/lastkcal_pro_text"
-        app:layout_constraintStart_toStartOf="@+id/last_kcal_seekbar_fat"
-        app:layout_constraintTop_toTopOf="@id/lastkcal_pro_text" />
-    <ProgressBar
-        android:id="@+id/last_kcal_seekbar_pro"
-        android:layout_width="60dp"
-        style="?android:attr/progressBarStyleHorizontal"
-
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        app:layout_constraintLeft_toRightOf="@id/last_kcal_seekbar_car"
-        app:layout_constraintRight_toLeftOf="@id/last_kcal_seekbar_fat"
-        app:layout_constraintTop_toBottomOf="@id/last_kcal"
-        android:textSize="12sp"
-        />
+            android:background="@drawable/btn_yellow"
+            app:layout_constraintLeft_toRightOf="@id/bmr_image7"
+            app:layout_constraintRight_toLeftOf="@id/start_diet"
+            app:layout_constraintTop_toBottomOf="@id/bmr_image5">
+        </ImageView>
+        <ImageView
+            android:id="@+id/bmr_image9"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginLeft="12dp"
+            android:background="@drawable/btn_blue2"
+            app:layout_constraintLeft_toLeftOf="@id/bmr_image7"
+            app:layout_constraintRight_toRightOf="@id/start_diet"
+            app:layout_constraintTop_toBottomOf="@id/bmr_image7">
+        </ImageView>
 
 
-    <ProgressBar
-        android:id="@+id/last_kcal_seekbar_fat"
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="60dp"
-        style="?android:attr/progressBarStyleHorizontal"
-
-        android:layout_marginRight="60dp"
-        android:gravity="center"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/bmr_image9"
-        app:layout_constraintLeft_toRightOf="@id/last_kcal_seekbar_pro"
-        app:layout_constraintTop_toBottomOf="@id/last_kcal" />
-
-    <ImageView
-        android:id="@+id/bmr_imageView3"
-        android:layout_width="85dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="30dp"
-        app:srcCompat="@drawable/food"
-        app:layout_constraintStart_toStartOf="@id/bmr_textView8"
-        app:layout_constraintEnd_toEndOf="@id/bmr_textView8"
-        app:layout_constraintBottom_toTopOf="@id/bmr_textView8"
-        />
-    <TextView
-        android:id="@+id/bmr_textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="식단/체중"
-        android:textSize="20sp"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintRight_toLeftOf="@id/bmr_textView9"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/bottom_imageView1"
-        app:layout_constraintHorizontal_bias="0.0"
-        />
-    <ImageView
-        android:id="@+id/bmr_imageView4"
-        android:layout_width="98dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="30dp"
-        app:srcCompat="@drawable/baseline_show_chart_black_36dp"
-        app:layout_constraintEnd_toEndOf="@id/bmr_textView9"
-        app:layout_constraintStart_toStartOf="@id/bmr_textView9"
-        app:layout_constraintLeft_toRightOf="@id/bmr_imageView3"
-        app:layout_constraintBottom_toTopOf="@id/bmr_textView9"
-        />
-
-    <Button
-        android:id="@+id/start_diet"
-        android:layout_width="100dp"
-        android:layout_height="65dp"
-        android:text="계산"
-        android:textSize="30sp"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="@id/bmr_image6"
-        app:layout_constraintRight_toRightOf="@id/bmr_image6"
-        app:layout_constraintTop_toBottomOf="@id/bmr_image6"></Button>
-
-    <Button
-        android:id="@+id/end_diet"
-        android:layout_width="100dp"
-        android:layout_height="65dp"
-        android:text="초기화"
-        android:textSize="20sp"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="@id/start_diet"
-        app:layout_constraintRight_toRightOf="@id/start_diet"
-        app:layout_constraintTop_toBottomOf="@id/start_diet"></Button>
-
-    <TextView
-        android:id="@+id/bmr_textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:text="체중 그래프"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@id/bmr_textView8"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toRightOf="@+id/bmr_textView8"
-        app:layout_constraintRight_toLeftOf="@id/bmr_textView10"
-        />
-
-    <TextView
-        android:id="@+id/bmr_textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="20dp"
-        android:text="메인화면"
-        android:textSize="20sp"
-
-        app:layout_constraintLeft_toRightOf="@+id/textView9"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/bmr_textView8"
-        app:layout_constraintHorizontal_bias="0.0"
-        />
-    <ImageView
-        android:id="@+id/bmr_imageView5"
-        android:layout_width="85dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="30dp"
-        app:srcCompat="@drawable/hiclipart2"
-        app:layout_constraintEnd_toEndOf="@id/bmr_textView10"
-        app:layout_constraintStart_toStartOf="@id/bmr_textView10"
-        app:layout_constraintLeft_toRightOf="@id/bmr_imageView3"
-        app:layout_constraintBottom_toTopOf="@id/bmr_textView9"
-        />
-
-    <RadioGroup
-        android:id="@+id/gender_group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/bmr_image4"
-        app:layout_constraintLeft_toLeftOf="@id/bmr_image4"
-        app:layout_constraintRight_toRightOf="@+id/bmr_image4"
-        app:layout_constraintTop_toTopOf="@+id/bmr_image4">
-
-    <RadioButton
-        android:id="@+id/gender_input_male"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:hint="입력"
-        android:text="남성"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@id/bmr_image4"
-        app:layout_constraintHorizontal_bias="0.509"
-        app:layout_constraintLeft_toLeftOf="@id/bmr_image4"
-        app:layout_constraintRight_toRightOf="@id/bmr_image4"
-        app:layout_constraintTop_toTopOf="@id/bmr_image4"
-        app:layout_constraintVertical_bias="0.329" />
-
-    <RadioButton
-        android:id="@+id/gender_input2_female"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        app:layout_constraintLeft_toLeftOf="@id/bmr_image4"
-        app:layout_constraintRight_toRightOf="@id/bmr_image4"
-        app:layout_constraintTop_toBottomOf="@id/gender_input_male"
-        android:hint="입력"
-        android:textSize="20sp"
-        android:text="여성"/>
-    </RadioGroup>
+        <TextView
+            android:id="@+id/now_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintLeft_toLeftOf="@id/bmr_image1"
+            app:layout_constraintTop_toTopOf="@id/bmr_image1"
+            android:textSize="12sp"
+            android:text="체중"/>
+        <EditText
+            android:id="@+id/now_weight_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:gravity="center"
+            app:layout_constraintLeft_toLeftOf="@id/bmr_image1"
+            app:layout_constraintRight_toRightOf="@id/bmr_image1"
+            app:layout_constraintTop_toTopOf="@id/bmr_image1"
+            app:layout_constraintBottom_toBottomOf="@id/bmr_image1"
+            android:hint="입력"
+            android:textSize="30sp"
+            android:text=""/>
+        <TextView
+            android:id="@+id/kg_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintRight_toRightOf="@id/bmr_image1"
+            app:layout_constraintBottom_toBottomOf="@id/bmr_image1"
+            android:hint="kg"
+            android:textSize="12sp"
+            android:text=""/>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/stature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintLeft_toLeftOf="@id/bmr_image2"
+            app:layout_constraintTop_toTopOf="@id/bmr_image2"
+            android:textSize="12sp"
+            android:text="(키)신장"/>
+        <EditText
+            android:id="@+id/now_stature_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+
+            android:gravity="center"
+            app:layout_constraintLeft_toLeftOf="@id/bmr_image2"
+            app:layout_constraintRight_toRightOf="@id/bmr_image2"
+            app:layout_constraintTop_toTopOf="@id/bmr_image2"
+            app:layout_constraintBottom_toBottomOf="@id/bmr_image2"
+            android:hint="입력"
+            android:textSize="30sp"
+            android:text=""/>
+        <TextView
+            android:id="@+id/cm_text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintRight_toRightOf="@id/bmr_image2"
+            app:layout_constraintBottom_toBottomOf="@id/bmr_image2"
+            android:hint="cm"
+            android:textSize="12sp"
+            android:text=""/>
+
+        <TextView
+            android:id="@+id/age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintLeft_toLeftOf="@id/bmr_image3"
+            app:layout_constraintTop_toTopOf="@id/bmr_image3"
+            android:textSize="12sp"
+            android:text="나이"/>
+        <EditText
+            android:id="@+id/now_age_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+
+            android:gravity="center"
+            app:layout_constraintLeft_toLeftOf="@id/bmr_image3"
+            app:layout_constraintRight_toRightOf="@id/bmr_image3"
+            app:layout_constraintTop_toTopOf="@id/bmr_image3"
+            app:layout_constraintBottom_toBottomOf="@id/bmr_image3"
+            android:hint="입력"
+            android:textSize="30sp"
+            android:text=""/>
+        <TextView
+            android:id="@+id/age_text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintRight_toRightOf="@id/bmr_image3"
+            app:layout_constraintBottom_toBottomOf="@id/bmr_image3"
+            android:hint="살"
+            android:textSize="12sp"
+            android:text=""/>
+
+        <TextView
+            android:id="@+id/gender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintLeft_toLeftOf="@id/bmr_image4"
+            app:layout_constraintTop_toTopOf="@id/bmr_image4"
+            android:textSize="12sp"
+            android:text="성별"/>
+
+
+
+
+
+
+        <TextView
+            android:id="@+id/bmr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintLeft_toLeftOf="@id/bmr_image6"
+            app:layout_constraintTop_toTopOf="@id/bmr_image6"
+            android:textSize="12sp"
+            android:text="기초대사량"/>
+        <TextView
+            android:id="@+id/bmr_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintLeft_toLeftOf="@id/bmr_image6"
+            app:layout_constraintRight_toRightOf="@id/bmr_image6"
+            app:layout_constraintTop_toTopOf="@id/bmr_image6"
+            app:layout_constraintBottom_toBottomOf="@id/bmr_image6"
+            android:hint="자동"
+            android:textSize="30sp"
+            android:text=""/>
+        <TextView
+            android:id="@+id/kcal_text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintRight_toRightOf="@id/bmr_image6"
+            app:layout_constraintBottom_toBottomOf="@id/bmr_image6"
+            android:hint="살"
+            android:textSize="12sp"
+            android:text="Kcal"/>
+
+        <TextView
+            android:id="@+id/start_down_kcal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintLeft_toLeftOf="@id/bmr_image5"
+            app:layout_constraintTop_toTopOf="@id/bmr_image5"
+            android:textSize="12sp"
+            android:text="목표 체중"/>
+        <EditText
+            android:id="@+id/taget_weight_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:inputType="numberDecimal"
+            app:layout_constraintLeft_toLeftOf="@id/bmr_image5"
+            app:layout_constraintRight_toRightOf="@id/bmr_image5"
+            app:layout_constraintTop_toTopOf="@id/bmr_image5"
+            app:layout_constraintBottom_toBottomOf="@id/bmr_image5"
+            android:hint="입력"
+            android:textSize="30sp"
+            />
+        <TextView
+            android:id="@+id/kcal_text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintRight_toRightOf="@id/bmr_image5"
+            app:layout_constraintBottom_toBottomOf="@id/bmr_image5"
+            android:textSize="12sp"
+            android:text="Kg"/>
+
+        <TextView
+            android:id="@+id/par"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintLeft_toLeftOf="@id/bmr_image7"
+            app:layout_constraintTop_toTopOf="@id/bmr_image7"
+            android:textSize="12sp"
+            android:text="활동대사량"/>
+        <TextView
+            android:id="@+id/pal_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintLeft_toLeftOf="@id/bmr_image7"
+            app:layout_constraintRight_toRightOf="@id/bmr_image7"
+            app:layout_constraintTop_toTopOf="@id/bmr_image7"
+            app:layout_constraintBottom_toBottomOf="@id/bmr_image7"
+            android:hint="자동"
+
+            android:textSize="30sp"
+            android:text=""/>
+        <TextView
+            android:id="@+id/kcal_text3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintRight_toRightOf="@id/bmr_image7"
+            app:layout_constraintBottom_toBottomOf="@id/bmr_image7"
+            android:hint="살"
+            android:textSize="12sp"
+            android:text="Kcal"/>
+
+        <TextView
+            android:id="@+id/notice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginLeft="2dp"
+            app:layout_constraintLeft_toLeftOf="@id/bmr_image8"
+            app:layout_constraintTop_toTopOf="@id/bmr_image8"
+            android:textSize="12sp"
+            android:text="다이어트 기간"/>
+
+        <TextView
+            android:id="@+id/diet_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:gravity="center"
+            android:hint="자동"
+            android:textSize="30dp"
+            app:layout_constraintBottom_toBottomOf="@+id/bmr_image8"
+            app:layout_constraintLeft_toLeftOf="@id/bmr_image8"
+            app:layout_constraintRight_toRightOf="@+id/bmr_image8"
+            app:layout_constraintTop_toTopOf="@+id/bmr_image8" />
+        <TextView
+            android:id="@+id/date_text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginRight="2dp"
+            app:layout_constraintRight_toRightOf="@id/bmr_image8"
+            app:layout_constraintBottom_toBottomOf="@id/bmr_image8"
+            android:textSize="12sp"
+            android:text="일"/>
+        <TextView
+            android:id="@+id/start_kcal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintLeft_toLeftOf="@id/bmr_image9"
+            app:layout_constraintTop_toTopOf="@id/bmr_image9"
+            android:textSize="12sp"
+            android:text="최종 칼로리,탄단지 비율"/>
+
+        <TextView
+            android:id="@+id/last_kcal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="최종 칼로리"
+            android:text=""
+            app:layout_constraintBottom_toBottomOf="@id/bmr_image9"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintLeft_toLeftOf="@id/bmr_image9"
+            app:layout_constraintRight_toRightOf="@id/bmr_image9"
+            app:layout_constraintTop_toTopOf="@id/bmr_image9"
+            app:layout_constraintVertical_bias="0.262" />
+
+        <ProgressBar
+            android:id="@+id/last_kcal_seekbar_car"
+            android:layout_width="60dp"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginLeft="10dp"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toLeftOf="@id/bmr_image9"
+            app:layout_constraintRight_toLeftOf="@id/last_kcal_seekbar_pro"
+            app:layout_constraintTop_toBottomOf="@id/last_kcal" />
+
+        <TextView
+            android:id="@+id/lastkcal_car_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="탄수00/00"
+            android:text=""
+            app:layout_constraintBottom_toBottomOf="@id/bmr_image9"
+            app:layout_constraintLeft_toLeftOf="@id/last_kcal_seekbar_car"
+            app:layout_constraintTop_toBottomOf="@id/last_kcal_seekbar_car"
+            />
+
+        <TextView
+            android:id="@+id/lastkcal_pro_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="단백질00/00"
+            android:text=""
+            app:layout_constraintLeft_toRightOf="@id/lastkcal_car_text"
+            app:layout_constraintStart_toStartOf="@+id/last_kcal_seekbar_pro"
+            app:layout_constraintTop_toTopOf="@id/lastkcal_car_text" />
+
+        <TextView
+            android:id="@+id/lastkcal_fat_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="지방00/00"
+            android:text=""
+            app:layout_constraintLeft_toRightOf="@id/lastkcal_pro_text"
+            app:layout_constraintStart_toStartOf="@+id/last_kcal_seekbar_fat"
+            app:layout_constraintTop_toTopOf="@id/lastkcal_pro_text" />
+        <ProgressBar
+            android:id="@+id/last_kcal_seekbar_pro"
+            android:layout_width="60dp"
+            style="?android:attr/progressBarStyleHorizontal"
+
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintLeft_toRightOf="@id/last_kcal_seekbar_car"
+            app:layout_constraintRight_toLeftOf="@id/last_kcal_seekbar_fat"
+            app:layout_constraintTop_toBottomOf="@id/last_kcal"
+            android:textSize="12sp"
+            />
+
+
+        <ProgressBar
+            android:id="@+id/last_kcal_seekbar_fat"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="60dp"
+            style="?android:attr/progressBarStyleHorizontal"
+
+            android:layout_marginRight="60dp"
+            android:gravity="center"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/bmr_image9"
+            app:layout_constraintLeft_toRightOf="@id/last_kcal_seekbar_pro"
+            app:layout_constraintTop_toBottomOf="@id/last_kcal" />
+
+        <ImageView
+            android:id="@+id/bmr_imageView3"
+            android:layout_width="85dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="30dp"
+            app:srcCompat="@drawable/food"
+            app:layout_constraintStart_toStartOf="@id/bmr_textView8"
+            app:layout_constraintEnd_toEndOf="@id/bmr_textView8"
+            app:layout_constraintBottom_toTopOf="@id/bmr_textView8"
+            />
+        <TextView
+            android:id="@+id/bmr_textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="식단/체중"
+            android:textSize="20sp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintRight_toLeftOf="@id/bmr_textView9"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/bottom_imageView1"
+            app:layout_constraintHorizontal_bias="0.0"
+            />
+        <ImageView
+            android:id="@+id/bmr_imageView4"
+            android:layout_width="98dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="30dp"
+            app:srcCompat="@drawable/baseline_show_chart_black_36dp"
+            app:layout_constraintEnd_toEndOf="@id/bmr_textView9"
+            app:layout_constraintStart_toStartOf="@id/bmr_textView9"
+            app:layout_constraintLeft_toRightOf="@id/bmr_imageView3"
+            app:layout_constraintBottom_toTopOf="@id/bmr_textView9"
+            />
+
+        <Button
+            android:id="@+id/start_diet"
+            android:layout_width="100dp"
+            android:layout_height="65dp"
+            android:text="계산"
+            android:textSize="30sp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="@id/bmr_image6"
+            app:layout_constraintRight_toRightOf="@id/bmr_image6"
+            app:layout_constraintTop_toBottomOf="@id/bmr_image6"></Button>
+
+        <Button
+            android:id="@+id/end_diet"
+            android:layout_width="100dp"
+            android:layout_height="65dp"
+            android:text="초기화"
+            android:textSize="20sp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="@id/start_diet"
+            app:layout_constraintRight_toRightOf="@id/start_diet"
+            app:layout_constraintTop_toBottomOf="@id/start_diet"></Button>
+
+        <TextView
+            android:id="@+id/bmr_textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:text="체중 그래프"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@id/bmr_textView8"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toRightOf="@+id/bmr_textView8"
+            app:layout_constraintRight_toLeftOf="@id/bmr_textView10"
+            />
+
+        <TextView
+            android:id="@+id/bmr_textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:text="메인화면"
+            android:textSize="20sp"
+
+            app:layout_constraintLeft_toRightOf="@+id/textView9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/bmr_textView8"
+            app:layout_constraintHorizontal_bias="0.0"
+            />
+        <ImageView
+            android:id="@+id/bmr_imageView5"
+            android:layout_width="85dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="30dp"
+            app:srcCompat="@drawable/hiclipart2"
+            app:layout_constraintEnd_toEndOf="@id/bmr_textView10"
+            app:layout_constraintStart_toStartOf="@id/bmr_textView10"
+            app:layout_constraintLeft_toRightOf="@id/bmr_imageView3"
+            app:layout_constraintBottom_toTopOf="@id/bmr_textView9"
+            />
+
+        <RadioGroup
+            android:id="@+id/gender_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/bmr_image4"
+            app:layout_constraintLeft_toLeftOf="@id/bmr_image4"
+            app:layout_constraintRight_toRightOf="@+id/bmr_image4"
+            app:layout_constraintTop_toTopOf="@+id/bmr_image4">
+
+            <RadioButton
+                android:id="@+id/gender_input_male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:hint="입력"
+                android:text="남성"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@id/bmr_image4"
+                app:layout_constraintHorizontal_bias="0.509"
+                app:layout_constraintLeft_toLeftOf="@id/bmr_image4"
+                app:layout_constraintRight_toRightOf="@id/bmr_image4"
+                app:layout_constraintTop_toTopOf="@id/bmr_image4"
+                app:layout_constraintVertical_bias="0.329" />
+
+            <RadioButton
+                android:id="@+id/gender_input2_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                app:layout_constraintLeft_toLeftOf="@id/bmr_image4"
+                app:layout_constraintRight_toRightOf="@id/bmr_image4"
+                app:layout_constraintTop_toBottomOf="@id/gender_input_male"
+                android:hint="입력"
+                android:textSize="20sp"
+                android:text="여성"/>
+        </RadioGroup>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
+
+
