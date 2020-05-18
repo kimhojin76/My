@@ -2,14 +2,17 @@ package com.example.myapplication7;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class find_password extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle bundle){
-        Log.v("비번찾기 엑티비티","create");
 
+        Log.v("비번찾기 엑티비티","create");
         super.onCreate(bundle);
         setContentView(R.layout.activity_find_password);
 

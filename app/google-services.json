@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "885051895420",
+    "firebase_url": "https://diet-helper-ab769.firebaseio.com",
+    "project_id": "diet-helper-ab769",
+    "storage_bucket": "diet-helper-ab769.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:885051895420:android:874314ad9ae0e6d50723f9",
+        "android_client_info": {
+          "package_name": "com.example.myapplication7"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "885051895420-9s76rt2jtgvirobpjtpkg0vrs3ntq2bj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaRsIqFylBSCmKPYtI2sBUURlgLnHDS3g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "885051895420-9s76rt2jtgvirobpjtpkg0vrs3ntq2bj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
