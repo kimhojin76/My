@@ -553,8 +553,8 @@
     <Button
         android:id="@+id/start_diet"
         android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:text="시작"
+        android:layout_height="65dp"
+        android:text="계산"
         android:textSize="30sp"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="@id/bmr_image6"
@@ -564,9 +564,9 @@
     <Button
         android:id="@+id/end_diet"
         android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:text="종료"
-        android:textSize="30sp"
+        android:layout_height="65dp"
+        android:text="초기화"
+        android:textSize="20sp"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="@id/start_diet"
         app:layout_constraintRight_toRightOf="@id/start_diet"
