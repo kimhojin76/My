@@ -18,7 +18,7 @@ public class active_metabolism extends AppCompatActivity implements View.OnClick
         super.onCreate(bundle);
 
 
-        //BMR
+        //BMR d
 
         setContentView(R.layout.activity_metabolism);
 
