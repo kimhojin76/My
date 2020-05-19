@@ -88,10 +88,12 @@ public class bmr_activity extends AppCompatActivity implements View.OnClickListe
             //활동칼로리 계산
         } else if (v.getId() == R.id.bmr_textView6) {
             double bmr_next = Double.parseDouble(BMR.getText().toString());
+
             if(TextUtils.isEmpty(weight.getText().toString()) || TextUtils.isEmpty(stature.getText().toString()) || TextUtils.isEmpty(age.getText().toString()) ||gender.getCheckedRadioButtonId() == -1|| TextUtils.isEmpty(target_weight.getText().toString())) {
                 Log.v("BMR엑티비티", "스타트버튼 클릭, 필수입력값 선택안함.");
                 Toast.makeText(bmr_activity.this, "체중,신장,나이,성별,목표체중 을 입력해주세요", Toast.LENGTH_LONG).show();
             }else {
+
                 Intent intent = new Intent(bmr_activity.this, active_metabolism.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 Log.v("BMR 엑티비티", Double.toString(bmr_next));
@@ -99,7 +101,7 @@ public class bmr_activity extends AppCompatActivity implements View.OnClickListe
                 intent.putExtra("BMR", Double.toString(bmr_next));
 
 
-                startActivity(intent);
+                startActivityForResult(intent,77);
             }
             //식단으로 이동
         } else if (v.getId() == R.id.bmr_textView8) {
@@ -145,7 +147,7 @@ public class bmr_activity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
 
         } else if (v.getId() == R.id.start_diet) {
-
+//계산버튼 클릭
             Log.v("BMR엑티비티","계산버튼 클릭");
             //기초대사량 공식 남성 : BMR(기초대사량) = (10*체중)+(6.25*신장)-(5*나이)+5
             //기초대사량 공식 여성 : BMR(기초대사량) = (10*체중)+(6.25*신장)-(5*나이)-161
@@ -154,11 +156,15 @@ public class bmr_activity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(bmr_activity.this,"체중,신장,목표체중,나이,성별을 입력해주세요",Toast.LENGTH_LONG).show();
 
             }else {
-                if (male.isChecked()){
-
+                double gender_Kcal;
+                if (male.isChecked()==true){
+                    gender_Kcal = 5;
+                }else{
+                    gender_Kcal = -161;
                 }
-                double weightint = (10 * Integer.parseInt(weight.getText().toString())) + (6.25 * Integer.parseInt(stature.getText().toString())) - (5 * Integer.parseInt(age.getText().toString()));
+                double weightint = (10 * Integer.parseInt(weight.getText().toString())) + (6.25 * Integer.parseInt(stature.getText().toString())) - (5 * Integer.parseInt(age.getText().toString()))+gender_Kcal;
                 System.out.println(weightint);
+
                 double now_weight_double = Double.parseDouble(weight.getText().toString());
                 double target_weight_double = Double.parseDouble(target_weight.getText().toString());
                 double diet_date_double = ((now_weight_double - target_weight_double) * 7000) / 500;
