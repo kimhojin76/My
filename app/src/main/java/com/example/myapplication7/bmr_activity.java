@@ -17,7 +17,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class bmr_activity extends AppCompatActivity implements View.OnClickListener {
-
+    public final String PREFERENCE = "com.studio572.samplesharepreference";
 
 
     @Override
@@ -25,15 +25,16 @@ public class bmr_activity extends AppCompatActivity implements View.OnClickListe
         Log.v("BMR 엑티비티","create");
         super.onCreate(bundle);
         setContentView(R.layout.bmr_calculator);
-        final EditText age = (EditText) findViewById(R.id.now_age_input);
+        EditText age = (EditText) findViewById(R.id.now_age_input);
         EditText target_weight = (EditText) findViewById(R.id.taget_weight_input);
         RadioButton male = (RadioButton) findViewById(R.id.gender_input_male);
         RadioButton female = (RadioButton) findViewById(R.id.gender_input2_female);
         Button start_diet = (Button) findViewById(R.id.start_diet);
-        EditText weight = (EditText) findViewById(R.id.now_weight_input);
         EditText stature = (EditText) findViewById(R.id.now_stature_input);
         TextView PAL = (TextView) findViewById(R.id.pal_input) ;
         TextView diet_date = (TextView) findViewById(R.id.diet_date) ;
+        EditText weight = (EditText) findViewById(R.id.now_weight_input);
+
 
 
         final TextView bmr_summation = (TextView) findViewById(R.id.bmr_textView2);
@@ -87,9 +88,9 @@ public class bmr_activity extends AppCompatActivity implements View.OnClickListe
             //활동칼로리 계산
         } else if (v.getId() == R.id.bmr_textView6) {
             double bmr_next = Double.parseDouble(BMR.getText().toString());
-            if(TextUtils.isEmpty(weight.getText().toString()) == true || TextUtils.isEmpty(stature.getText().toString()) == true||TextUtils.isEmpty(age.getText().toString()) == true ||gender.getCheckedRadioButtonId() == -1||TextUtils.isEmpty(target_weight.getText().toString()) == true) {
+            if(TextUtils.isEmpty(weight.getText().toString()) || TextUtils.isEmpty(stature.getText().toString()) || TextUtils.isEmpty(age.getText().toString()) ||gender.getCheckedRadioButtonId() == -1|| TextUtils.isEmpty(target_weight.getText().toString())) {
                 Log.v("BMR엑티비티", "스타트버튼 클릭, 필수입력값 선택안함.");
-                Toast.makeText(bmr_activity.this, "체중,신장,목표체중,나이,성별을 입력해주세요", Toast.LENGTH_LONG).show();
+                Toast.makeText(bmr_activity.this, "체중,신장,나이,성별,목표체중 을 입력해주세요", Toast.LENGTH_LONG).show();
             }else {
                 Intent intent = new Intent(bmr_activity.this, active_metabolism.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -145,7 +146,7 @@ public class bmr_activity extends AppCompatActivity implements View.OnClickListe
 
         } else if (v.getId() == R.id.start_diet) {
 
-            Log.v("BMR엑티비티","스타트버튼 클릭");
+            Log.v("BMR엑티비티","계산버튼 클릭");
             //기초대사량 공식 남성 : BMR(기초대사량) = (10*체중)+(6.25*신장)-(5*나이)+5
             //기초대사량 공식 여성 : BMR(기초대사량) = (10*체중)+(6.25*신장)-(5*나이)-161
             if(TextUtils.isEmpty(weight.getText().toString()) == true || TextUtils.isEmpty(stature.getText().toString()) == true||TextUtils.isEmpty(age.getText().toString()) == true ||gender.getCheckedRadioButtonId() == -1||TextUtils.isEmpty(target_weight.getText().toString()) == true){
@@ -176,7 +177,38 @@ public class bmr_activity extends AppCompatActivity implements View.OnClickListe
     }
     @Override
     protected void onResume() {
+
+
         Log.v("BMR 엑티비티","Resume");
+        EditText age = (EditText) findViewById(R.id.now_age_input);
+        EditText target_weight = (EditText) findViewById(R.id.taget_weight_input);
+        RadioButton male = (RadioButton) findViewById(R.id.gender_input_male);
+        RadioButton female = (RadioButton) findViewById(R.id.gender_input2_female);
+        Button start_diet = (Button) findViewById(R.id.start_diet);
+        EditText stature = (EditText) findViewById(R.id.now_stature_input);
+        TextView BMR = (TextView) findViewById(R.id.bmr_input) ;
+
+        TextView PAL = (TextView) findViewById(R.id.pal_input) ;
+        TextView diet_date = (TextView) findViewById(R.id.diet_date) ;
+        EditText weight = (EditText) findViewById(R.id.now_weight_input);
+        SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
+        String bmr_weight = pref.getString("weight","");
+        String bmr_stature = pref.getString("stature","");
+        String bmr_age = pref.getString("age","");
+        String bmr_target_weight = pref.getString("target_weight","");
+        String bmr_diet_date = pref.getString("diet_date","");
+        String bmr_BMR = pref.getString("BMR","");
+        weight.setText(bmr_weight);
+        stature.setText(bmr_stature);
+        age.setText(bmr_age);
+        target_weight.setText(bmr_target_weight);
+        diet_date.setText(bmr_diet_date);
+        BMR.setText(bmr_BMR);
+
+
+
+
+
         super.onResume();
     }
 
@@ -199,6 +231,32 @@ public class bmr_activity extends AppCompatActivity implements View.OnClickListe
     }
     protected void onPause() {
         Log.v("BMR 엑티비티","Pause");
+        SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
+        EditText age = (EditText) findViewById(R.id.now_age_input);
+        EditText target_weight = (EditText) findViewById(R.id.taget_weight_input);
+        RadioButton male = (RadioButton) findViewById(R.id.gender_input_male);
+        RadioButton female = (RadioButton) findViewById(R.id.gender_input2_female);
+        Button start_diet = (Button) findViewById(R.id.start_diet);
+        EditText stature = (EditText) findViewById(R.id.now_stature_input);
+        TextView PAL = (TextView) findViewById(R.id.pal_input) ;
+        TextView diet_date = (TextView) findViewById(R.id.diet_date) ;
+        EditText weight = (EditText) findViewById(R.id.now_weight_input);
+        TextView BMR = (TextView) findViewById(R.id.bmr_input) ;
+
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString("weight",weight.getText().toString());
+        editor.putString("stature",stature.getText().toString());
+        editor.putString("age",age.getText().toString());
+        editor.putString("target_weight",target_weight.getText().toString());
+        editor.putString("diet_date",diet_date.getText().toString());
+        editor.putString("BMR",BMR.getText().toString());
+
+
+
+
+
+
+        editor.commit();
         super.onPause();
     }
 

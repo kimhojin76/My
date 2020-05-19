@@ -28,6 +28,7 @@
             android:label="기본 화면">
 
         </activity>
+
         <activity android:name=".bmr_activity"
             android:launchMode="singleTop"
 
@@ -41,20 +42,19 @@
 
 
         </activity>
-        <activity android:name=".find_password"
-            android:launchMode="singleTop"
 
+        <activity
+            android:name=".find_password"
+            android:launchMode="singleTop"
             android:label="비밀번호 찾기">
-
-
         </activity>
-        <activity android:name=".metabolism_coustom"
-            android:launchMode="singleTop"
-
+        <activity
+            android:name=".metabolism_coustom"
+            android:theme="@style/Theme.AppCompat.Dialog"
             android:label="활동량 커스텀 추가화면">
-
-
         </activity>
+
+
         <activity android:name=".weight_graph"
             android:launchMode="singleTop"
 

@@ -1,16 +1,21 @@
 package com.example.myapplication7;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class basic_activity extends AppCompatActivity
         implements View.OnClickListener {
+    public final String PREFERENCE = "com.studio572.samplesharepreference";
+
     @Override
     protected void onCreate(Bundle bundle){
         Log.v("베이직 엑티비티","create");
@@ -37,7 +42,6 @@ public class basic_activity extends AppCompatActivity
         basic_main_image.setOnClickListener(this);
 
 
-
     }
 
     @Override
@@ -49,50 +53,41 @@ public class basic_activity extends AppCompatActivity
             //지금 속해있는 액티비티
         }else if(v.getId() == R.id.textView5){
             Intent intent = new Intent(basic_activity.this,bmr_activity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
 
             //활동칼로리 계산
         }else if(v.getId() == R.id.textView6) {
             Intent intent = new Intent(basic_activity.this, active_metabolism.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
 
             //식단으로 이동
         }else if(v.getId() == R.id.textView8) {
             Intent intent = new Intent(basic_activity.this, diet_calender_activity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
 
             // 그래프로 이동
         }else if(v.getId() == R.id.textView9) {
             Intent intent = new Intent(basic_activity.this, weight_graph.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
 
         }
         //지금 속해있는 액티비티
         else if(v.getId() == R.id.textView10){
             Intent intent = new Intent(basic_activity.this,bmr_activity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
             //하단 식단그림 클릭시 이동
         }else if(v.getId() == R.id.imageView3) {
             Intent intent = new Intent(basic_activity.this, diet_calender_activity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
 
             //하단 매뉴 그래프 그림 클릭시 이동
         }else if(v.getId() == R.id.imageView4) {
             Intent intent = new Intent(basic_activity.this, weight_graph.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
 
             //하단 매뉴 메인메뉴 클릭시 (현재 액티비티)
         }else if(v.getId() == R.id.imageView5) {
             Intent intent = new Intent(basic_activity.this, diet_calender_activity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
 
         }
     }

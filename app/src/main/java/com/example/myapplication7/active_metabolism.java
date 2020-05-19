@@ -55,7 +55,16 @@ public class active_metabolism extends AppCompatActivity implements View.OnClick
         final ImageView active_metabolism_add = (ImageView) findViewById(R.id.imageView8);
         active_metabolism_add.setOnClickListener(this);
 
+        TextView BMR_input = (TextView) findViewById(R.id.basal_metabolism) ;
+        Intent intent = getIntent();
+        String BMR = intent.getStringExtra("BMR");
+        if (BMR == null){
 
+        }else {
+            System.out.println(" BMR값 ");
+            System.out.println(BMR);
+            BMR_input.setText(BMR);
+        }
 
 
     }
@@ -145,7 +154,8 @@ public class active_metabolism extends AppCompatActivity implements View.OnClick
         }else if(v.getId() == R.id.imageView8) {
             Intent intent = new Intent(active_metabolism.this, metabolism_coustom.class);
             startActivity(intent);
-            finish();
+
+
 
         }
     }
@@ -159,16 +169,7 @@ public class active_metabolism extends AppCompatActivity implements View.OnClick
     protected void onStart() {
         Log.v("활동관리 엑티비티","Start");
         super.onStart();
-        TextView BMR_input = (TextView) findViewById(R.id.basal_metabolism) ;
-        Intent intent = getIntent();
-        String BMR = intent.getStringExtra("BMR");
-        if (BMR == null){
 
-        }else {
-            System.out.println(" BMR값 ");
-            System.out.println(BMR);
-            BMR_input.setText(BMR);
-        }
     }
 
     @Override

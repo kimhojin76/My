@@ -1,17 +1,39 @@
 package com.example.myapplication7;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class metabolism_coustom extends AppCompatActivity {
 
+
+
     @Override
     protected void onCreate(Bundle bundle){
         Log.v("활동관리커스텀 엑티비티","create");
         super.onCreate(bundle);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.metabolism_coustom);
+        Display display = ((WindowManager)getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+        int width = (int)(display.getWidth()*0.85); //display 사이즈의 70%
+        int height = (int)(display.getHeight()*0.6);//90%
+        getWindow().getAttributes().width=width;
+        getWindow().getAttributes().height=height;
+
+        Button save = (Button)findViewById(R.id.mc_button8);
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
 
