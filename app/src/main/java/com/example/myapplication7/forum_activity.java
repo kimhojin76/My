@@ -9,13 +9,14 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class weight_graph extends AppCompatActivity implements View.OnClickListener {
+public class forum_activity extends AppCompatActivity
+        implements View.OnClickListener {
     @Override
-    protected void onCreate(Bundle bundle){
-        Log.v("체중그래프 엑티비티","create");
+    protected void onCreate(Bundle bundle) {
+        Log.v("식단/체중 엑티비티", "create");
 
         super.onCreate(bundle);
-        setContentView(R.layout.weight_graph);
+        setContentView(R.layout.forum);
 
         final TextView kcal = (TextView) findViewById(R.id.textView5);
         kcal.setOnClickListener(this);
@@ -43,88 +44,90 @@ public class weight_graph extends AppCompatActivity implements View.OnClickListe
     @Override
     //인터페이스 활용하여 클릭시 이곳으로 오게 하였음
     public void onClick(View v) {
+        //칼로리 계산
         if (v.getId() == R.id.textView5) {
-            Intent intent = new Intent(weight_graph.this, bmr_activity.class);
+            Intent intent = new Intent(forum_activity.this, bmr_activity.class);
             startActivity(intent);
             finish();
 
-            //활동칼로리 계산
+            //달력
         } else if (v.getId() == R.id.textView8) {
-            Intent intent = new Intent(weight_graph.this, diet_calender_activity.class);
+            Intent intent = new Intent(forum_activity.this, diet_calender_activity.class);
             startActivity(intent);
             finish();
 
             // 그래프로 이동
         } else if (v.getId() == R.id.textView9) {
-
-
-        }
-        //지금 속해있는 액티비티
-        else if (v.getId() == R.id.textView10) {
-            Intent intent = new Intent(weight_graph.this, basic_activity.class);
+            Intent intent = new Intent(forum_activity.this, weight_graph.class);
             startActivity(intent);
             finish();
 
+        }
+        //메인 액티비티
+        else if (v.getId() == R.id.textView10) {
+            Intent intent = new Intent(forum_activity.this, basic_activity.class);
+            startActivity(intent);
+            finish();
 
             //게시판 텍스트 클릭
         } else if (v.getId() == R.id.textView16) {
-            Intent intent = new Intent(weight_graph.this, forum_activity.class);
-            startActivity(intent);
-            finish();
 
 
         } else if (v.getId() == R.id.imageView3) {
-            Intent intent = new Intent(weight_graph.this, diet_calender_activity.class);
+            Intent intent = new Intent(forum_activity.this, diet_calender_activity.class);
             startActivity(intent);
             finish();
 
             //하단 매뉴 그래프 그림 클릭시 이동
         } else if (v.getId() == R.id.imageView4) {
-
+            Intent intent = new Intent(forum_activity.this, weight_graph.class);
+            startActivity(intent);
+            finish();
 
             //하단 매뉴 메인메뉴 클릭시 (현재 액티비티)
         } else if (v.getId() == R.id.imageView5) {
-            Intent intent = new Intent(weight_graph.this, basic_activity.class);
+            Intent intent = new Intent(forum_activity.this, basic_activity.class);
             startActivity(intent);
             finish();
 
         } else if (v.getId() == R.id.imageView6) {
-            Intent intent = new Intent(weight_graph.this, bmr_activity.class);
+            Intent intent = new Intent(forum_activity.this, bmr_activity.class);
             startActivity(intent);
             finish();
         } else if (v.getId() == R.id.imageView7) {
-            Intent intent = new Intent(weight_graph.this, forum_activity.class);
-            startActivity(intent);
-            finish();
+
 
 
         }
     }
 
-    protected void onResume() {
-        Log.v("체중그래프 엑티비티","Resume");
-        super.onResume();
 
+    @Override
+    protected void onResume() {
+        Log.v("포럼 엑티비티", "Resume");
+        super.onResume();
     }
+
     @Override
     protected void onStart() {
-        Log.v("체중그래프 엑티비티","Start");
+        Log.v("포럼 엑티비티", "Start");
         super.onStart();
     }
 
     @Override
     protected void onStop() {
-        Log.v("체중그래프 엑티비티","Stop");
+        Log.v("포럼 엑티비티", "Stop");
         super.onStop();
     }
 
     @Override
     protected void onDestroy() {
-        Log.v("체중그래프 엑티비티","Destroy");
+        Log.v("포럼 엑티비티", "Destroy");
         super.onDestroy();
     }
+
     protected void onPause() {
-        Log.v("체중그래프 엑티비티","Pause");
+        Log.v("포럼 엑티비티", "Pause");
         super.onPause();
     }
 }

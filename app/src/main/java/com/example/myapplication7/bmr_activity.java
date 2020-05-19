@@ -27,12 +27,13 @@ public class bmr_activity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.bmr_calculator);
         RadioButton male = (RadioButton) findViewById(R.id.gender_input_male);
         RadioButton female = (RadioButton) findViewById(R.id.gender_input2_female);
-        Button start_diet = (Button) findViewById(R.id.start_diet);
-        Button activity_move = (Button) findViewById(R.id.activity_move);
-        Button reset_button = (Button) findViewById(R.id.reset_button);
+        final Button start_diet = (Button) findViewById(R.id.start_diet);
+        final Button activity_move = (Button) findViewById(R.id.activity_move);
+        final Button reset_button = (Button) findViewById(R.id.reset_button);
 
 
         activity_move.setOnClickListener(this);
+        start_diet.setOnClickListener(this);
         reset_button.setOnClickListener(this);
         final TextView bmr_helper = (TextView) findViewById(R.id.textView5);
         bmr_helper.setOnClickListener(this);
@@ -42,13 +43,18 @@ public class bmr_activity extends AppCompatActivity implements View.OnClickListe
         bmr_graph.setOnClickListener(this);
         final TextView bmr_main = (TextView) findViewById(R.id.textView10);
         bmr_main.setOnClickListener(this);
+        final TextView basic_forum = (TextView) findViewById(R.id.textView16);
+        basic_forum.setOnClickListener(this);
         final ImageView bmr_food_image = (ImageView) findViewById(R.id.imageView3);
         bmr_food_image.setOnClickListener(this);
         final ImageView bmr_graph_image = (ImageView) findViewById(R.id.imageView4);
         bmr_graph_image.setOnClickListener(this);
         final ImageView bmr_main_image = (ImageView) findViewById(R.id.imageView5);
         bmr_main_image.setOnClickListener(this);
-        start_diet.setOnClickListener(this);
+        final ImageView basic_kcal_image = (ImageView) findViewById(R.id.imageView6);
+        basic_kcal_image.setOnClickListener(this);
+        final ImageView basic_forum_image = (ImageView) findViewById(R.id.imageView7);
+        basic_forum_image.setOnClickListener(this);
         //스타트 버튼 클릭
 
     }
@@ -71,34 +77,36 @@ public class bmr_activity extends AppCompatActivity implements View.OnClickListe
 
 
         if (v.getId() == R.id.textView5) {
-            Intent intent = new Intent(bmr_activity.this, bmr_activity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-            startActivity(intent);
 
             //활동칼로리 계산
         } else if (v.getId() == R.id.textView8) {
 
             Intent intent = new Intent(bmr_activity.this, diet_calender_activity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
+            finish();
 
             // 그래프로 이동
         } else if (v.getId() == R.id.textView9) {
             Intent intent = new Intent(bmr_activity.this, weight_graph.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
             startActivity(intent);
+            finish();
 
         }
         //지금 속해있는 액티비티
         else if (v.getId() == R.id.textView10) {
             Intent intent = new Intent(bmr_activity.this, basic_activity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
             startActivity(intent);
+            finish();
+
 
             //하단 식단그림 클릭시 이동
+        }else if(v.getId() == R.id.textView16) {
+            Intent intent = new Intent(bmr_activity.this, forum_activity.class);
+            startActivity(intent);
+            finish();
+
+
         }else if (v.getId() == R.id.activity_move) {
             Log.v("BMR 엑티비티","활동대사 버튼 클릭");
             Intent intent = new Intent(bmr_activity.this, active_metabolism.class);
@@ -116,25 +124,28 @@ public class bmr_activity extends AppCompatActivity implements View.OnClickListe
             female.setChecked(false);
         } else if (v.getId() == R.id.imageView3) {
             Intent intent = new Intent(bmr_activity.this, diet_calender_activity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
             startActivity(intent);
+            finish();
 
             //하단 매뉴 그래프 그림 클릭시 이동
         } else if (v.getId() == R.id.imageView4) {
             Intent intent = new Intent(bmr_activity.this, weight_graph.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
             startActivity(intent);
+            finish();
 
             //하단 매뉴 메인메뉴 클릭시 (현재 액티비티)
         } else if (v.getId() == R.id.imageView5) {
             Intent intent = new Intent(bmr_activity.this, basic_activity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
             startActivity(intent);
+            finish();
 
-        } else if (v.getId() == R.id.start_diet) {
+        }  else if (v.getId() == R.id.imageView7) {
+            Intent intent = new Intent(bmr_activity.this, forum_activity.class);
+            startActivity(intent);
+            finish();
+
+            //하단 매뉴 메인메뉴 클릭시 (현재 액티비티)
+        }  else if (v.getId() == R.id.start_diet) {
 //계산버튼 클릭
             Log.v("BMR엑티비티", "계산버튼 클릭");
             //기초대사량 공식 남성 : BMR(기초대사량) = (10*체중)+(6.25*신장)-(5*나이)+5
