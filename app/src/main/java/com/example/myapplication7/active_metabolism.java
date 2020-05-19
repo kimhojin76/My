@@ -39,12 +39,9 @@ public class active_metabolism extends AppCompatActivity implements View.OnClick
 
 
 
-        final TextView summation = (TextView) findViewById(R.id.textView2);
-        summation.setOnClickListener(this);
+
         final TextView helper = (TextView) findViewById(R.id.textView5);
         helper.setOnClickListener(this);
-        final TextView metabolism_management = (TextView) findViewById(R.id.textView6);
-        metabolism_management.setOnClickListener(this);
         final TextView basic_food = (TextView) findViewById(R.id.textView8);
         basic_food.setOnClickListener(this);
         final TextView basic_graph = (TextView) findViewById(R.id.textView9);
@@ -80,24 +77,12 @@ public class active_metabolism extends AppCompatActivity implements View.OnClick
         TextView active_input = (TextView) findViewById(R.id.activity_metabolism) ;
 
         double active_kcal;
-        if(v.getId() == R.id.textView2){
-            Intent intent = new Intent(active_metabolism.this,basic_activity.class);
-            startActivity(intent);
-            finish();
-
-            //지금 속해있는 액티비티
-        }else if(v.getId() == R.id.textView5){
+        if(v.getId() == R.id.textView5){
             Intent intent = new Intent(active_metabolism.this,bmr_activity.class);
             startActivity(intent);
             finish();
 
             //활동칼로리 계산
-        }else if(v.getId() == R.id.textView6) {
-            Intent intent = new Intent(active_metabolism.this, active_metabolism.class);
-            startActivity(intent);
-            finish();
-
-            //식단으로 이동
         }else if(v.getId() == R.id.textView8) {
             Intent intent = new Intent(active_metabolism.this, diet_calender_activity.class);
             startActivity(intent);

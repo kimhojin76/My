@@ -12,75 +12,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         //bmr
-
-        <TextView
-            android:id="@+id/bmr_textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="]"
-            android:textSize="20dp"
-            android:layout_marginBottom="10dp"
-            app:layout_constraintBottom_toTopOf="@id/bmr_image1"
-            app:layout_constraintRight_toRightOf="@id/bmr_image3"
-
-            />
-        <TextView
-            android:id="@+id/bmr_textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="요약"
-            android:textSize="20dp"
-
-            app:layout_constraintRight_toLeftOf="@id/bmr_textView5"
-            app:layout_constraintBottom_toBottomOf="@+id/bmr_textView3"
-            app:layout_constraintLeft_toRightOf="@id/textView1"
-            tools:layout_editor_absoluteX="89dp" />
-
-
-        <TextView
-            android:id="@+id/bmr_textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="칼로리계산기"
-            android:textSize="20dp"
-
-            app:layout_constraintBottom_toBottomOf="@+id/bmr_textView3"
-            app:layout_constraintEnd_toStartOf="@+id/bmr_textView6"
-            app:layout_constraintHorizontal_bias="0.581"
-            app:layout_constraintStart_toEndOf="@+id/bmr_textView2" />
-
-        <TextView
-            android:id="@+id/bmr_textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="활동관리"
-            android:textSize="20dp"
-
-            app:layout_constraintLeft_toRightOf="@id/bmr_textView5"
-            app:layout_constraintRight_toLeftOf="@id/bmr_textView3"
-            app:layout_constraintBottom_toBottomOf="@+id/bmr_textView3"
-            tools:layout_editor_absoluteX="265dp" />
-
-
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="["
-            android:textSize="20dp"
-            app:layout_constraintBottom_toBottomOf="@id/bmr_textView3"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="@+id/bmr_image1"
-            />
-
         <ImageView
             android:id="@+id/bottom_imageView1"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="65dp"
             android:background="@drawable/btn_yellow"
-            app:layout_constraintLeft_toLeftOf="@id/bmr_imageView3"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="@id/imageView3"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
 
         <ImageView
             android:id="@+id/bmr_image1"
@@ -521,40 +461,6 @@
             app:layout_constraintLeft_toRightOf="@id/last_kcal_seekbar_pro"
             app:layout_constraintTop_toBottomOf="@id/last_kcal" />
 
-        <ImageView
-            android:id="@+id/bmr_imageView3"
-            android:layout_width="85dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="30dp"
-            app:srcCompat="@drawable/food"
-            app:layout_constraintStart_toStartOf="@id/bmr_textView8"
-            app:layout_constraintEnd_toEndOf="@id/bmr_textView8"
-            app:layout_constraintBottom_toTopOf="@id/bmr_textView8"
-            />
-        <TextView
-            android:id="@+id/bmr_textView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="식단/체중"
-            android:textSize="20sp"
-            android:layout_marginBottom="10dp"
-            app:layout_constraintRight_toLeftOf="@id/bmr_textView9"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintBottom_toBottomOf="@id/bottom_imageView1"
-            app:layout_constraintHorizontal_bias="0.0"
-            />
-        <ImageView
-            android:id="@+id/bmr_imageView4"
-            android:layout_width="98dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="30dp"
-            app:srcCompat="@drawable/baseline_show_chart_black_36dp"
-            app:layout_constraintEnd_toEndOf="@id/bmr_textView9"
-            app:layout_constraintStart_toStartOf="@id/bmr_textView9"
-            app:layout_constraintLeft_toRightOf="@id/bmr_imageView3"
-            app:layout_constraintBottom_toTopOf="@id/bmr_textView9"
-            />
-
         <Button
             android:id="@+id/start_diet"
             android:layout_width="100dp"
@@ -588,44 +494,6 @@
             app:layout_constraintRight_toRightOf="@id/reset_button"
             app:layout_constraintStart_toStartOf="@+id/activity_move"
             app:layout_constraintTop_toBottomOf="@id/activity_move"></Button>
-
-        <TextView
-            android:id="@+id/bmr_textView9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
-            android:text="체중 그래프"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@id/bmr_textView8"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toRightOf="@+id/bmr_textView8"
-            app:layout_constraintRight_toLeftOf="@id/bmr_textView10"
-            />
-
-        <TextView
-            android:id="@+id/bmr_textView10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
-            android:text="메인화면"
-            android:textSize="20sp"
-
-            app:layout_constraintLeft_toRightOf="@+id/textView9"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="@id/bmr_textView8"
-            app:layout_constraintHorizontal_bias="0.0"
-            />
-        <ImageView
-            android:id="@+id/bmr_imageView5"
-            android:layout_width="85dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="30dp"
-            app:srcCompat="@drawable/hiclipart2"
-            app:layout_constraintEnd_toEndOf="@id/bmr_textView10"
-            app:layout_constraintStart_toStartOf="@id/bmr_textView10"
-            app:layout_constraintLeft_toRightOf="@id/bmr_imageView3"
-            app:layout_constraintBottom_toTopOf="@id/bmr_textView9"
-            />
 
         <RadioGroup
             android:id="@+id/gender_group"
@@ -663,6 +531,123 @@
                 android:textSize="20sp"
                 android:text="여성"/>
         </RadioGroup>
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="30dp"
+            app:srcCompat="@drawable/food"
+            app:layout_constraintStart_toStartOf="@id/textView8"
+            app:layout_constraintEnd_toEndOf="@id/textView8"
+            app:layout_constraintBottom_toTopOf="@id/textView8"
+            />
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="식단"
+            android:textSize="17dp"
+            app:layout_constraintRight_toLeftOf="@id/textView9"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/bottom_imageView1"
+            />
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="30dp"
+            app:srcCompat="@drawable/baseline_show_chart_black_36dp"
+            app:layout_constraintEnd_toEndOf="@id/textView9"
+            app:layout_constraintStart_toStartOf="@id/textView9"
+            app:layout_constraintLeft_toRightOf="@id/imageView3"
+            app:layout_constraintBottom_toTopOf="@id/textView9"
+            />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:text="그래프"
+            android:textSize="17dp"
+            app:layout_constraintBottom_toBottomOf="@id/textView8"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toRightOf="@+id/textView8"
+            app:layout_constraintRight_toLeftOf="@id/textView10"
+            />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="메인"
+            android:textSize="17dp"
+            app:layout_constraintBottom_toBottomOf="@id/textView8"
+            app:layout_constraintLeft_toRightOf="@+id/textView9"
+            app:layout_constraintRight_toLeftOf="@id/textView5" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="30dp"
+            app:srcCompat="@drawable/hiclipart2"
+
+            app:layout_constraintEnd_toEndOf="@id/textView10"
+            app:layout_constraintStart_toStartOf="@id/textView10"
+            app:layout_constraintLeft_toRightOf="@id/imageView3"
+            app:layout_constraintBottom_toTopOf="@id/textView9"
+            />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            app:layout_constraintBottom_toTopOf="@id/textView9"
+
+            app:layout_constraintEnd_toEndOf="@+id/textView5"
+            app:layout_constraintLeft_toRightOf="@id/imageView3"
+            app:layout_constraintStart_toStartOf="@+id/textView5"
+            app:srcCompat="@drawable/calculator" />
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            app:layout_constraintBottom_toTopOf="@id/textView9"
+
+            app:layout_constraintEnd_toEndOf="@+id/textView16"
+            app:layout_constraintLeft_toRightOf="@id/imageView3"
+            app:layout_constraintStart_toStartOf="@+id/textView16"
+            app:srcCompat="@drawable/chat" />
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="칼로리"
+            android:textSize="17dp"
+            app:layout_constraintLeft_toRightOf="@id/textView10"
+            app:layout_constraintRight_toLeftOf="@id/textView16"
+            app:layout_constraintTop_toTopOf="@+id/textView10" />
+
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="게시판"
+            android:textSize="17dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/textView5"
+            app:layout_constraintTop_toTopOf="@+id/textView10" />
+
+
+
+
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
 

@@ -22,13 +22,10 @@ public class basic_activity extends AppCompatActivity
         Log.v("베이직 엑티비티","create");
 
         super.onCreate(bundle);
-        setContentView(R.layout.basic);
-        final TextView summation = (TextView) findViewById(R.id.textView2);
-        summation.setOnClickListener(this);
+
         final TextView helper = (TextView) findViewById(R.id.textView5);
         helper.setOnClickListener(this);
-        final TextView metabolism_management = (TextView) findViewById(R.id.textView6);
-        metabolism_management.setOnClickListener(this);
+
         final TextView basic_food = (TextView) findViewById(R.id.textView8);
         basic_food.setOnClickListener(this);
         final TextView basic_graph = (TextView) findViewById(R.id.textView9);
@@ -48,20 +45,11 @@ public class basic_activity extends AppCompatActivity
     @Override
     //인터페이스 활용하여 클릭시 이곳으로 오게 하였음
     public void onClick(View v) {
-        if(v.getId() == R.id.textView2){
-            Intent intent = new Intent(basic_activity.this,basic_activity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            //지금 속해있는 액티비티
-        }else if(v.getId() == R.id.textView5){
+        if(v.getId() == R.id.textView5){
             Intent intent = new Intent(basic_activity.this,bmr_activity.class);
             startActivity(intent);
 
             //활동칼로리 계산
-        }else if(v.getId() == R.id.textView6) {
-            Intent intent = new Intent(basic_activity.this, active_metabolism.class);
-            startActivity(intent);
-
-            //식단으로 이동
         }else if(v.getId() == R.id.textView8) {
             Intent intent = new Intent(basic_activity.this, diet_calender_activity.class);
             startActivity(intent);

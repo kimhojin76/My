@@ -34,23 +34,19 @@ public class bmr_activity extends AppCompatActivity implements View.OnClickListe
 
         activity_move.setOnClickListener(this);
         reset_button.setOnClickListener(this);
-        final TextView bmr_summation = (TextView) findViewById(R.id.bmr_textView2);
-        bmr_summation.setOnClickListener(this);
-        final TextView bmr_helper = (TextView) findViewById(R.id.bmr_textView5);
+        final TextView bmr_helper = (TextView) findViewById(R.id.textView5);
         bmr_helper.setOnClickListener(this);
-        final TextView bmr_metabolism_management = (TextView) findViewById(R.id.bmr_textView6);
-        bmr_metabolism_management.setOnClickListener(this);
-        final TextView bmr_food = (TextView) findViewById(R.id.bmr_textView8);
+        final TextView bmr_food = (TextView) findViewById(R.id.textView8);
         bmr_food.setOnClickListener(this);
-        final TextView bmr_graph = (TextView) findViewById(R.id.bmr_textView9);
+        final TextView bmr_graph = (TextView) findViewById(R.id.textView9);
         bmr_graph.setOnClickListener(this);
-        final TextView bmr_main = (TextView) findViewById(R.id.bmr_textView10);
+        final TextView bmr_main = (TextView) findViewById(R.id.textView10);
         bmr_main.setOnClickListener(this);
-        final ImageView bmr_food_image = (ImageView) findViewById(R.id.bmr_imageView3);
+        final ImageView bmr_food_image = (ImageView) findViewById(R.id.imageView3);
         bmr_food_image.setOnClickListener(this);
-        final ImageView bmr_graph_image = (ImageView) findViewById(R.id.bmr_imageView4);
+        final ImageView bmr_graph_image = (ImageView) findViewById(R.id.imageView4);
         bmr_graph_image.setOnClickListener(this);
-        final ImageView bmr_main_image = (ImageView) findViewById(R.id.bmr_imageView5);
+        final ImageView bmr_main_image = (ImageView) findViewById(R.id.imageView5);
         bmr_main_image.setOnClickListener(this);
         start_diet.setOnClickListener(this);
         //스타트 버튼 클릭
@@ -73,35 +69,22 @@ public class bmr_activity extends AppCompatActivity implements View.OnClickListe
 
 
 
-        if (v.getId() == R.id.bmr_textView2) {
-            Intent intent = new Intent(bmr_activity.this, basic_activity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-            startActivity(intent);
-
-        } else if (v.getId() == R.id.bmr_textView5) {
+        if (v.getId() == R.id.textView5) {
             Intent intent = new Intent(bmr_activity.this, bmr_activity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
             startActivity(intent);
 
             //활동칼로리 계산
-        } else if (v.getId() == R.id.bmr_textView6) {
-                Intent intent = new Intent(bmr_activity.this, active_metabolism.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                Log.v("BMR 엑티비티", "활동관리이동");
-                startActivity(intent);
-
-
-            //식단으로 이동
-        } else if (v.getId() == R.id.bmr_textView8) {
+        } else if (v.getId() == R.id.textView8) {
 
             Intent intent = new Intent(bmr_activity.this, diet_calender_activity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
 
             // 그래프로 이동
-        } else if (v.getId() == R.id.bmr_textView9) {
+        } else if (v.getId() == R.id.textView9) {
             Intent intent = new Intent(bmr_activity.this, weight_graph.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
@@ -109,7 +92,7 @@ public class bmr_activity extends AppCompatActivity implements View.OnClickListe
 
         }
         //지금 속해있는 액티비티
-        else if (v.getId() == R.id.bmr_textView10) {
+        else if (v.getId() == R.id.textView10) {
             Intent intent = new Intent(bmr_activity.this, basic_activity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
@@ -131,21 +114,21 @@ public class bmr_activity extends AppCompatActivity implements View.OnClickListe
             diet_date.setText(null);
             male.setChecked(false);
             female.setChecked(false);
-        } else if (v.getId() == R.id.bmr_imageView3) {
+        } else if (v.getId() == R.id.imageView3) {
             Intent intent = new Intent(bmr_activity.this, diet_calender_activity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
             startActivity(intent);
 
             //하단 매뉴 그래프 그림 클릭시 이동
-        } else if (v.getId() == R.id.bmr_imageView4) {
+        } else if (v.getId() == R.id.imageView4) {
             Intent intent = new Intent(bmr_activity.this, weight_graph.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
             startActivity(intent);
 
             //하단 매뉴 메인메뉴 클릭시 (현재 액티비티)
-        } else if (v.getId() == R.id.bmr_imageView5) {
+        } else if (v.getId() == R.id.imageView5) {
             Intent intent = new Intent(bmr_activity.this, basic_activity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
