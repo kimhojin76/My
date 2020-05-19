@@ -2,6 +2,7 @@ package com.example.myapplication7;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -42,6 +43,11 @@ public class basic_activity extends AppCompatActivity
         basic_kcal_image.setOnClickListener(this);
         final ImageView basic_forum_image = (ImageView) findViewById(R.id.imageView7);
         basic_forum_image.setOnClickListener(this);
+        final Button youtube_button1 = (Button) findViewById(R.id.youtube_button1);
+        youtube_button1.setOnClickListener(this);
+        final Button youtube_button2 = (Button) findViewById(R.id.youtube_button2);
+        youtube_button2.setOnClickListener(this);
+
 
     }
 
@@ -101,8 +107,14 @@ public class basic_activity extends AppCompatActivity
             Intent intent = new Intent(basic_activity.this, forum_activity.class);
             startActivity(intent);
             finish();
-
-
+        }else if(v.getId() == R.id.youtube_button1) {
+            String url ="https://www.youtube.com/watch?v=By7i6rDTjLg&feature=youtu.be";
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            startActivity(intent);
+        }else if(v.getId() == R.id.youtube_button2) {
+            String url ="https://www.fatsecret.kr/%EC%B9%BC%EB%A1%9C%EB%A6%AC-%EC%98%81%EC%96%91%EC%86%8C/";
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            startActivity(intent);
         }
     }
 
