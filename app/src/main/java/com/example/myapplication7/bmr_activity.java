@@ -161,7 +161,7 @@ public class bmr_activity extends AppCompatActivity implements View.OnClickListe
                 } else {
                     gender_Kcal = -161;
                 }
-                double weightint = (10 * Integer.parseInt(weight.getText().toString())) + (6.25 * Integer.parseInt(stature.getText().toString())) - (5 * Integer.parseInt(age.getText().toString())) + gender_Kcal;
+                double weightint = (10 * Double.parseDouble(weight.getText().toString())) + (6.25 * Integer.parseInt(stature.getText().toString())) - (5 * Integer.parseInt(age.getText().toString())) + gender_Kcal;
                 System.out.println(weightint);
 
                 double now_weight_double = Double.parseDouble(weight.getText().toString());
@@ -192,6 +192,8 @@ public class bmr_activity extends AppCompatActivity implements View.OnClickListe
         TextView diet_date = (TextView) findViewById(R.id.diet_date) ;
         EditText weight = (EditText) findViewById(R.id.now_weight_input);
         SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
+        TextView last_kcal = (TextView) findViewById(R.id.last_kcal);
+        String bmr_lastkcal = pref.getString("PAL","");
         String bmr_weight = pref.getString("weight","");
         String bmr_stature = pref.getString("stature","");
         String bmr_age = pref.getString("age","");
@@ -199,6 +201,7 @@ public class bmr_activity extends AppCompatActivity implements View.OnClickListe
         String bmr_diet_date = pref.getString("diet_date","");
         String bmr_BMR = pref.getString("BMR","");
         String bmr_down_kcal = pref.getString("down_kcal","");
+        last_kcal.setText(bmr_lastkcal);
         weight.setText(bmr_weight);
         stature.setText(bmr_stature);
         age.setText(bmr_age);
