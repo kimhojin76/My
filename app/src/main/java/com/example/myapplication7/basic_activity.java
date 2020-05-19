@@ -16,6 +16,7 @@ public class basic_activity extends AppCompatActivity
         implements View.OnClickListener {
     public final String PREFERENCE = "com.studio572.samplesharepreference";
 
+
     @Override
     protected void onCreate(Bundle bundle){
         Log.v("베이직 엑티비티","create");

@@ -1,16 +1,21 @@
 package com.example.myapplication7;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class active_metabolism extends AppCompatActivity implements View.OnClickListener {
+    public String PREFERENCE = "com.studio572.samplesharepreference";
+
     @Override
     protected void onCreate(Bundle bundle){
         Log.v("활동관리 엑티비티","create");
@@ -162,6 +167,14 @@ public class active_metabolism extends AppCompatActivity implements View.OnClick
     @Override
     protected void onResume() {
         Log.v("활동관리 엑티비티","Resume");
+        SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
+        TextView am_BMR = (TextView) findViewById(R.id.basal_metabolism) ;
+        TextView active_input = (TextView) findViewById(R.id.activity_metabolism) ;
+        String PAL = pref.getString("PAL","");
+        String BMR = pref.getString("BMR","");
+        Log.v("활동관리 엑티비티",PAL);
+        am_BMR.setText(BMR);
+        active_input.setText(PAL);
         super.onResume();
     }
 
@@ -185,6 +198,13 @@ public class active_metabolism extends AppCompatActivity implements View.OnClick
     }
     protected void onPause() {
         Log.v("활동관리 엑티비티","Pause");
+        SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
+        TextView am_PAL = (TextView) findViewById(R.id.activity_metabolism) ;
+        SharedPreferences.Editor editor = pref.edit();
+        Log.v("활동관리 엑티비티",am_PAL.getText().toString());
+
+        editor.putString("PAL",am_PAL.getText().toString());
+        editor.commit();
         super.onPause();
     }
 

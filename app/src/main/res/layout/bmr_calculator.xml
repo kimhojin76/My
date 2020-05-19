@@ -173,7 +173,7 @@
             android:background="@drawable/btn_blue2"
             app:layout_constraintLeft_toLeftOf="@id/bmr_image7"
             app:layout_constraintRight_toRightOf="@id/start_diet"
-            app:layout_constraintTop_toBottomOf="@id/bmr_image7">
+            app:layout_constraintTop_toBottomOf="@id/reset_button">
         </ImageView>
 
 
@@ -302,9 +302,9 @@
             app:layout_constraintLeft_toLeftOf="@id/bmr_image6"
             app:layout_constraintTop_toTopOf="@id/bmr_image6"
             android:textSize="12sp"
-            android:text="기초대사량"/>
-        <TextView
-            android:id="@+id/bmr_input"
+            android:text="감소 칼로리"/>
+        <EditText
+            android:id="@+id/down_kcal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -312,7 +312,7 @@
             app:layout_constraintRight_toRightOf="@id/bmr_image6"
             app:layout_constraintTop_toTopOf="@id/bmr_image6"
             app:layout_constraintBottom_toBottomOf="@id/bmr_image6"
-            android:hint="자동"
+            android:hint="입력"
             android:textSize="30sp"
             android:text=""/>
         <TextView
@@ -366,9 +366,9 @@
             app:layout_constraintLeft_toLeftOf="@id/bmr_image7"
             app:layout_constraintTop_toTopOf="@id/bmr_image7"
             android:textSize="12sp"
-            android:text="활동대사량"/>
+            android:text="기초대사량"/>
         <TextView
-            android:id="@+id/pal_input"
+            android:id="@+id/bmr_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -558,24 +558,36 @@
         <Button
             android:id="@+id/start_diet"
             android:layout_width="100dp"
-            android:layout_height="65dp"
+            android:layout_height="50dp"
             android:text="계산"
-            android:textSize="30sp"
+            android:textSize="20dp"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="@id/bmr_image6"
             app:layout_constraintRight_toRightOf="@id/bmr_image6"
             app:layout_constraintTop_toBottomOf="@id/bmr_image6"></Button>
 
         <Button
-            android:id="@+id/end_diet"
+            android:id="@+id/activity_move"
             android:layout_width="100dp"
-            android:layout_height="65dp"
-            android:text="초기화"
-            android:textSize="20sp"
+            android:layout_height="50dp"
+            android:text="활동대사량"
+            android:textSize="15dp"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="@id/start_diet"
             app:layout_constraintRight_toRightOf="@id/start_diet"
             app:layout_constraintTop_toBottomOf="@id/start_diet"></Button>
+
+        <Button
+            android:id="@+id/reset_button"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:text="초기화"
+            android:textSize="20dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="@id/reset_button"
+            app:layout_constraintRight_toRightOf="@id/reset_button"
+            app:layout_constraintStart_toStartOf="@+id/activity_move"
+            app:layout_constraintTop_toBottomOf="@id/activity_move"></Button>
 
         <TextView
             android:id="@+id/bmr_textView9"

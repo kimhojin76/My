@@ -17,6 +17,7 @@ public class diet_calender_activity extends AppCompatActivity
 
         super.onCreate(bundle);
         setContentView(R.layout.diet_weight_calender);
+
         final TextView basic_food = (TextView) findViewById(R.id.textView8);
         basic_food.setOnClickListener(this);
         final TextView basic_graph = (TextView) findViewById(R.id.textView9);
