@@ -38,7 +38,7 @@ public class signup_activity extends AppCompatActivity
         image_button.setOnClickListener(this);
 
 
-        Button id_test_button = (Button) findViewById(R.id.button9);
+        Button id_test_button = (Button) findViewById(R.id.id_check_button);
         id_test_button.setOnClickListener(this);
         Button signup_activity_button = (Button) findViewById(R.id.button3);
         signup_activity_button.setOnClickListener(this);
@@ -46,7 +46,7 @@ public class signup_activity extends AppCompatActivity
 
     @Override
     public void onClick(View v) {
-        if(v.getId() == R.id.button9){
+        if(v.getId() == R.id.id_check_button){
             Toast.makeText(signup_activity.this, "아이디 중복 확인",Toast.LENGTH_SHORT).show();
         }else if(v.getId() == R.id.button3) {
             Toast.makeText(signup_activity.this, "회원가입 되었습니다.", Toast.LENGTH_SHORT).show();

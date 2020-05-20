@@ -192,5 +192,12 @@ public class active_metabolism extends AppCompatActivity implements View.OnClick
         editor.commit();
         super.onPause();
     }
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(active_metabolism.this, basic_activity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+    }
 
 }

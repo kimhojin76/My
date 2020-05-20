@@ -127,4 +127,10 @@ public class diet_calender_activity extends AppCompatActivity
         Log.v("체중/식단 엑티비티","Pause");
         super.onPause();
     }
+    public void onBackPressed() {
+        Intent intent = new Intent(diet_calender_activity.this, basic_activity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+    }
 }

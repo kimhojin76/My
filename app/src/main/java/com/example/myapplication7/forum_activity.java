@@ -130,4 +130,10 @@ public class forum_activity extends AppCompatActivity
         Log.v("포럼 엑티비티", "Pause");
         super.onPause();
     }
+    public void onBackPressed() {
+        Intent intent = new Intent(forum_activity.this, basic_activity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+    }
 }

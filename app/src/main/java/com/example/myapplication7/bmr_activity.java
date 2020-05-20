@@ -72,6 +72,8 @@ public class bmr_activity extends AppCompatActivity implements View.OnClickListe
         TextView down_kcal = (TextView) findViewById(R.id.down_kcal);
         TextView diet_date = (TextView) findViewById(R.id.diet_date);
         RadioGroup gender = (RadioGroup) findViewById(R.id.gender_group);
+        TextView last_kcal = (TextView) findViewById(R.id.last_kcal);
+
 
 
 
@@ -106,11 +108,12 @@ public class bmr_activity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
             finish();
 
-
+        //활동대사량 버튼 클릭
         }else if (v.getId() == R.id.activity_move) {
             Log.v("BMR 엑티비티","활동대사 버튼 클릭");
             Intent intent = new Intent(bmr_activity.this, active_metabolism.class);
             startActivity(intent);
+        //리셋 버튼 클릭
         } else if (v.getId() == R.id.reset_button) {
             Log.v("BMR 엑티비티","초기화 클릭");
             weight.setText(null);
@@ -122,6 +125,8 @@ public class bmr_activity extends AppCompatActivity implements View.OnClickListe
             diet_date.setText(null);
             male.setChecked(false);
             female.setChecked(false);
+            last_kcal.setText(null);
+
         } else if (v.getId() == R.id.imageView3) {
             Intent intent = new Intent(bmr_activity.this, diet_calender_activity.class);
             startActivity(intent);
@@ -154,14 +159,17 @@ public class bmr_activity extends AppCompatActivity implements View.OnClickListe
                 Log.v("BMR엑티비티", "스타트버튼 클릭, 필수입력값 선택안함.");
                 Toast.makeText(bmr_activity.this, "체중,신장,목표체중,나이,성별, 감량 칼로리를 입력해주세요", Toast.LENGTH_LONG).show();
 
-            } else {
+            } else if(Integer.parseInt(target_weight.getText().toString()) > Integer.parseInt(weight.getText().toString())){
+                Toast.makeText(bmr_activity.this, "목표 체중이 현재 체중보다 낮게 설정되어 있습니다.", Toast.LENGTH_LONG).show();
+            }
+            else {
                 double gender_Kcal;
                 if (male.isChecked() == true) {
                     gender_Kcal = 5;
                 } else {
                     gender_Kcal = -161;
                 }
-                double weightint = (10 * Double.parseDouble(weight.getText().toString())) + (6.25 * Integer.parseInt(stature.getText().toString())) - (5 * Integer.parseInt(age.getText().toString())) + gender_Kcal;
+                double weightint = (10 * Double.parseDouble(weight.getText().toString())) + (6.25 * Double.parseDouble(stature.getText().toString())) - (5 * Double.parseDouble(age.getText().toString())) + gender_Kcal;
                 System.out.println(weightint);
 
                 double now_weight_double = Double.parseDouble(weight.getText().toString());
@@ -269,6 +277,12 @@ public class bmr_activity extends AppCompatActivity implements View.OnClickListe
 
         editor.commit();
         super.onPause();
+    }
+    public void onBackPressed() {
+        Intent intent = new Intent(bmr_activity.this, basic_activity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
     }
 
 

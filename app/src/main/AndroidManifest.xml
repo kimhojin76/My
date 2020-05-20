@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:label="로그인">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -71,7 +72,14 @@
         <activity android:name=".active_metabolism"
             android:launchMode="singleTop"
 
-            android:label="활동대사량">
+            android:label="활동대사량 설정">
+
+
+        </activity>
+        <activity android:name=".profile_activity"
+            android:launchMode="singleTop"
+
+            android:label="회원정보 변경">
 
 
         </activity>

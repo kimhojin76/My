@@ -47,6 +47,10 @@ public class basic_activity extends AppCompatActivity
         youtube_button1.setOnClickListener(this);
         final Button youtube_button2 = (Button) findViewById(R.id.youtube_button2);
         youtube_button2.setOnClickListener(this);
+        final TextView in_profile = (TextView) findViewById(R.id.basic_in_profile);
+        in_profile.setOnClickListener(this);
+        final TextView logout = (TextView) findViewById(R.id.basic_in_logout);
+        logout.setOnClickListener(this);
 
 
     }
@@ -115,6 +119,13 @@ public class basic_activity extends AppCompatActivity
             String url ="https://www.fatsecret.kr/%EC%B9%BC%EB%A1%9C%EB%A6%AC-%EC%98%81%EC%96%91%EC%86%8C/";
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             startActivity(intent);
+        }else if(v.getId() == R.id.basic_in_profile) {
+            Intent intent = new Intent(basic_activity.this, profile_activity.class);
+            startActivity(intent);
+        }else if(v.getId() == R.id.basic_in_logout) {
+            Intent intent = new Intent(basic_activity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
         }
     }
 

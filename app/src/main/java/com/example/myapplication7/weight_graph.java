@@ -127,4 +127,10 @@ public class weight_graph extends AppCompatActivity implements View.OnClickListe
         Log.v("체중그래프 엑티비티","Pause");
         super.onPause();
     }
+    public void onBackPressed() {
+        Intent intent = new Intent(weight_graph.this, basic_activity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+    }
 }
