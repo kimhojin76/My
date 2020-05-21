@@ -239,10 +239,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            app:layout_constraintLeft_toLeftOf="@id/bmr_image6"
-            app:layout_constraintTop_toTopOf="@id/bmr_image6"
+            android:text="감량 칼로리"
             android:textSize="12sp"
-            android:text="매주 감량 칼로리"/>
+            app:layout_constraintLeft_toLeftOf="@id/bmr_image6"
+            app:layout_constraintTop_toTopOf="@id/bmr_image6" />
         <EditText
             android:id="@+id/down_kcal"
             android:layout_width="wrap_content"
