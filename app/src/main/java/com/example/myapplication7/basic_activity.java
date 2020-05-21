@@ -122,7 +122,7 @@ public class basic_activity extends AppCompatActivity
         }else if(v.getId() == R.id.basic_in_profile) {
             Intent intent = new Intent(basic_activity.this, profile_activity.class);
             startActivity(intent);
-        }else if(v.getId() == R.id.basic_in_logout) {
+         }else if(v.getId() == R.id.basic_in_logout) {
             Intent intent = new Intent(basic_activity.this, MainActivity.class);
             startActivity(intent);
             finish();
