@@ -10,6 +10,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+
     <TextView
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
@@ -54,10 +56,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
 
         android:text="저장"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textView11"
 
 
         app:layout_constraintTop_toTopOf="parent" />
@@ -65,13 +66,527 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/custom_kcal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mc_button8"
 
         />
 
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="검색"
+        app:layout_constraintEnd_toStartOf="@+id/mc_button8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/mc_button8" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="@+id/custom_kcal"
+        app:layout_constraintStart_toStartOf="@+id/custom_kcal"
+        app:layout_constraintTop_toBottomOf="@+id/custom_kcal">
+        <ScrollView
+            android:id="@+id/viewContentOne"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:stretchColumns="0,1"
+        android:layout_height="wrap_content">
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="20dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="활동" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
+                    android:textSize="20dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="PAR" />
+
+            </TableRow>
+            <TableRow>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="잠자기" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="0.93" />
+
+            </TableRow>
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="휴식" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="1.09" />
+
+            </TableRow>
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="앉아서 TV 시청" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="1.57" />
+
+            </TableRow>
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="사무업무" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="1.6" />
+
+            </TableRow>
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="대중교통(앉음) or 운전" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="1.72" />
+
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="대중교통(서서)" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="2" />
+
+            </TableRow>
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="일어서서 돌아다니는 업무" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="2.5" />
+
+            </TableRow>
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="천천히 걷기(시속2km)" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="2.92" />
+
+            </TableRow>
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="근력운동(약)" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="3" />
+
+            </TableRow>
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="수영, 스포츠(약한 강도)" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="3.06" />
+
+            </TableRow>
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="집안일(청소,요리 등)" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="3.1" />
+
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="걷기(시속3.3km)" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="3.75" />
+
+            </TableRow>
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="자전거(중간강도)" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="3.75" />
+
+            </TableRow>
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="에어로빅" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="4.14" />
+
+            </TableRow>
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="축구,테니스" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="4.38" />
+
+            </TableRow>
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="근력운동(중)" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="4.5" />
+
+            </TableRow>
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="유산소(약)" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="4.5" />
+
+            </TableRow>
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="등산" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="5.73" />
+
+            </TableRow>
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="싸이클(빠른 속력 유지)" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="5.83" />
+
+            </TableRow>
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="유산소(중)" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="6.0" />
+
+            </TableRow>
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="근력운동(강)" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="6" />
+
+            </TableRow>
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="유산소(강)" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="9.0" />
+
+            </TableRow>
+
+        </TableLayout>
+        </ScrollView>
+
+<ScrollView
+            android:id="@+id/selected_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/custom_kcal_selected"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+</ScrollView>
+
+
+
+
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,6 +8,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
 
 public class diet_calender_activity extends AppCompatActivity
         implements View.OnClickListener {
@@ -17,6 +21,18 @@ public class diet_calender_activity extends AppCompatActivity
 
         super.onCreate(bundle);
         setContentView(R.layout.diet_weight_calender);
+
+        ArrayList<String> list = new ArrayList<>();
+        for (int i=0; i<100; i++) {
+            list.add(String.format("TEXT %d", i));
+        }
+        // 리사이클러뷰에 LinearLayoutManager 객체 지정.
+        RecyclerView recyclerView = findViewById(R.id.morning) ;
+        recyclerView.setLayoutManager(new LinearLayoutManager(this)) ;
+
+        // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
+        SimpleTextAdapter adapter = new SimpleTextAdapter(list) ;
+        recyclerView.setAdapter(adapter) ;
 
         final TextView kcal = (TextView) findViewById(R.id.textView5);
         kcal.setOnClickListener(this);
