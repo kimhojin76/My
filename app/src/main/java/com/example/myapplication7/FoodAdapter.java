@@ -11,14 +11,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 
-public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
+public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> implements OnFoodItemClickListener {
     ArrayList<Food> items = new ArrayList<Food>();
+    OnFoodItemClickListener listener;
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
         View itemView = inflater.inflate(R.layout.recyclerview_item_ex, viewGroup, false);
-        return new ViewHolder(itemView);
+        return new ViewHolder(itemView, this);
     }
 
     @Override
@@ -45,10 +46,20 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
         items.set(position, item);
     }
 
+    public void setOnItemClickListener(OnFoodItemClickListener listener){
+        this.listener = listener;
+    }
+    @Override
+    public void onItemClick(ViewHolder holder, View view, int position) {
+        if(listener != null){
+            listener.onItemClick(holder,view,position);
+        }
+    }
+
     static class ViewHolder extends RecyclerView.ViewHolder{
             TextView textView,textView2,textView3,textView4,textView5;
 
-            public ViewHolder(@NonNull View itemView) {
+            public ViewHolder(@NonNull View itemView, final OnFoodItemClickListener listener) {
                 super(itemView);
 
                 textView = itemView.findViewById(R.id.textView);
@@ -56,6 +67,16 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
                 textView3 = itemView.findViewById(R.id.textView3);
                 textView4 = itemView.findViewById(R.id.textView4);
                 textView5 = itemView.findViewById(R.id.textView5);
+
+                itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int position = getAdapterPosition();
+                        if(listener != null){
+                            listener.onItemClick(ViewHolder.this,v,position);
+                        }
+                    }
+                });
 
             }
             public void setItem(Food item){

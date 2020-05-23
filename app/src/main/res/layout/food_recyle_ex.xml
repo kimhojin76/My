@@ -14,7 +14,7 @@
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="184dp"
+        android:layout_marginRight="5dp"
         android:text="음식 명"
         app:layout_constraintRight_toLeftOf="@+id/textView12"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,6 +24,7 @@
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
         android:text="총 칼로리"
         app:layout_constraintLeft_toRightOf="@id/textView11"
         app:layout_constraintRight_toLeftOf="@+id/textView13"
@@ -33,6 +34,8 @@
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+
         android:text="탄수화물"
         app:layout_constraintLeft_toRightOf="@id/textView12"
         app:layout_constraintRight_toLeftOf="@id/textView14"
@@ -41,6 +44,8 @@
     <TextView
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
+        android:layout_marginLeft="20dp"
+
         android:layout_height="wrap_content"
         android:text="단백질"
         app:layout_constraintRight_toLeftOf="@id/textView15"
@@ -49,6 +54,8 @@
     <TextView
         android:id="@+id/textView15"
         android:layout_width="wrap_content"
+        android:layout_marginLeft="20dp"
+
         android:layout_height="wrap_content"
         android:text="지방"
         app:layout_constraintRight_toLeftOf="@id/textView16"
@@ -67,7 +74,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toRightOf="@id/textView13"
         app:layout_constraintTop_toBottomOf="@+id/add_food" />
 

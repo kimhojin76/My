@@ -115,7 +115,6 @@ public class diet_calender_activity extends AppCompatActivity
         }else if(v.getId() == R.id.morning_button) {
             Intent intent = new Intent(diet_calender_activity.this, morning.class);
             startActivity(intent);
-            finish();
 
 
         }
