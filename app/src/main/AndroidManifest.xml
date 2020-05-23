@@ -22,6 +22,11 @@
             android:label="회원가입">
         </activity>
         <activity
+            android:name=".morning"
+            android:launchMode="singleTop"
+            android:label="아침식단">
+        </activity>
+        <activity
             android:name=".basic_activity"
             android:launchMode="singleTop"
 

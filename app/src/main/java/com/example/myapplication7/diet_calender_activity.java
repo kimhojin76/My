@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,18 +22,6 @@ public class diet_calender_activity extends AppCompatActivity
 
         super.onCreate(bundle);
         setContentView(R.layout.diet_weight_calender);
-
-        ArrayList<String> list = new ArrayList<>();
-        for (int i=0; i<100; i++) {
-            list.add(String.format("TEXT %d", i));
-        }
-        // 리사이클러뷰에 LinearLayoutManager 객체 지정.
-        RecyclerView recyclerView = findViewById(R.id.morning) ;
-        recyclerView.setLayoutManager(new LinearLayoutManager(this)) ;
-
-        // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
-        SimpleTextAdapter adapter = new SimpleTextAdapter(list) ;
-        recyclerView.setAdapter(adapter) ;
 
         final TextView kcal = (TextView) findViewById(R.id.textView5);
         kcal.setOnClickListener(this);
@@ -54,6 +43,15 @@ public class diet_calender_activity extends AppCompatActivity
         basic_kcal_image.setOnClickListener(this);
         final ImageView basic_forum_image = (ImageView) findViewById(R.id.imageView7);
         basic_forum_image.setOnClickListener(this);
+        final Button morning = (Button) findViewById(R.id.morning_button);
+        morning.setOnClickListener(this);
+        final Button lunch = (Button) findViewById(R.id.lunch_button);
+        lunch.setOnClickListener(this);
+        final Button dinner = (Button) findViewById(R.id.dinner_button);
+        dinner.setOnClickListener(this);
+        final Button snack = (Button) findViewById(R.id.snack_button);
+        snack.setOnClickListener(this);
+
 
     }
 
@@ -111,6 +109,11 @@ public class diet_calender_activity extends AppCompatActivity
             finish();
         }else if(v.getId() == R.id.imageView7) {
             Intent intent = new Intent(diet_calender_activity.this, forum_activity.class);
+            startActivity(intent);
+            finish();
+            //아침 버튼 클릭시 모닝 엑티비티로 이동
+        }else if(v.getId() == R.id.morning_button) {
+            Intent intent = new Intent(diet_calender_activity.this, morning.class);
             startActivity(intent);
             finish();
 

@@ -27,7 +27,7 @@ public class metabolism_coustom extends AppCompatActivity {
         getWindow().getAttributes().width=width;
         getWindow().getAttributes().height=height;
 
-        Button save = (Button)findViewById(R.id.mc_button8);
+        Button save = (Button)findViewById(R.id.add_food);
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

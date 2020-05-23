@@ -52,7 +52,7 @@
          />
 
     <Button
-        android:id="@+id/mc_button8"
+        android:id="@+id/add_food"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -69,7 +69,7 @@
         android:layout_height="70dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mc_button8"
+        app:layout_constraintTop_toBottomOf="@+id/add_food"
 
         />
 
@@ -80,9 +80,9 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:hint="검색"
-        app:layout_constraintEnd_toStartOf="@+id/mc_button8"
+        app:layout_constraintEnd_toStartOf="@+id/add_food"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/mc_button8" />
+        app:layout_constraintTop_toTopOf="@+id/add_food" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
