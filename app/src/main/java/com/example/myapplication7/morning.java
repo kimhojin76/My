@@ -16,28 +16,52 @@ public class morning extends AppCompatActivity implements View.OnClickListener {
         Log.v("체중그래프 엑티비티", "create");
 
         super.onCreate(bundle);
+        //모닝 액티비티 레이아웃 연결
         setContentView(R.layout.food_recyle_ex);
+        //음식 리사이클러뷰 연결
         recyclerView = findViewById(R.id.food_recyleview_ex);
+        //아침식단 리사이클러뷰 연결
         morning_recyclerView = findViewById(R.id.morning_food_recyle_selected);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
-        recyclerView.setLayoutManager(layoutManager);
-        adapter = new FoodAdapter();
 
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        LinearLayoutManager morning_layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        //음식 리사이클러뷰에 레이아웃 메니져 설정
+        recyclerView.setLayoutManager(layoutManager);
+        //아침 리사이클러뷰에 레이아웃 메니져 설정
+        morning_recyclerView.setLayoutManager(morning_layoutManager);
+        //어뎁터 선언
+        adapter = new FoodAdapter();
+        morning_adapter = new FoodAdapter();
+        //어뎁터에 수치 입력
         adapter.addItem(new Food("쌀밥","270","61","5","0.7"));
         adapter.addItem(new Food("찐고구마","193","45.8","2.6","0.2"));
         adapter.addItem(new Food("닭가슴살","100","0","23","1.2"));
 
         recyclerView.setAdapter(adapter);
+        morning_recyclerView.setAdapter(morning_adapter);
+
         adapter.setOnItemClickListener(new OnFoodItemClickListener() {
             @Override
             public void onItemClick(FoodAdapter.ViewHolder holder, View view, int position) {
                 Food item = adapter.getItem(position);
                 Toast.makeText(getApplicationContext(),"아이템 선택됨"+item.getName(),Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"아이템 선택됨"+item.getName()+item.getKcal()+item.getCar()+item.getPro()+item.getFat(),Toast.LENGTH_LONG).show();
+                morning_adapter.addItem(new Food(item.getName(),item.getKcal(),item.getCar(),item.getPro(),item.getFat()));
+                morning_recyclerView.setAdapter(morning_adapter);
+
 
 
             }
         });
+        morning_adapter.setOnItemClickListener(new OnFoodItemClickListener() {
+            @Override
+            public void onItemClick(FoodAdapter.ViewHolder holder, View view, int position) {
+                Food item = morning_adapter.getItem(position);
+                Toast.makeText(getApplicationContext(),"아이템 선택됨"+item.getName(),Toast.LENGTH_LONG).show();
 
+
+            }
+        });
     }
     @Override
     public void onClick(View v) {
