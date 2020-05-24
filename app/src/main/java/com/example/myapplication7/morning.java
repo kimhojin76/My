@@ -9,7 +9,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class morning extends AppCompatActivity implements View.OnClickListener {
+
     RecyclerView recyclerView, morning_recyclerView;
     FoodAdapter adapter, morning_adapter;
     protected void onCreate(Bundle bundle) {
@@ -18,12 +22,12 @@ public class morning extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(bundle);
         //모닝 액티비티 레이아웃 food_recyle_ex 연결
         setContentView(R.layout.food_recyle_ex);
-        //음식 리사이클러뷰 연결
+        //레이아웃 xml에 작성해준 리사이클러뷰를 자바로 가져와서 초기화
         recyclerView = findViewById(R.id.food_recyleview_ex);
-        //아침식단 리사이클러뷰 연결
+        //레이아웃 xml에 작성해준 리사이클러뷰를 자바로 가져와서 초기화
         morning_recyclerView = findViewById(R.id.morning_food_recyle_selected);
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        //레이아웃 메너저를 통해 List형식으로 할지 Grid형식으로 할지 결정정
+       LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         LinearLayoutManager morning_layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         //음식 리사이클러뷰에 레이아웃 메니져 설정
         recyclerView.setLayoutManager(layoutManager);
@@ -57,7 +61,22 @@ public class morning extends AppCompatActivity implements View.OnClickListener {
             public void onItemClick(FoodAdapter.ViewHolder holder, View view, int position) {
                 Food item = morning_adapter.getItem(position);
                 Toast.makeText(getApplicationContext(),"아이템 선택됨"+item.getName(),Toast.LENGTH_LONG).show();
-                
+
+                ArrayList<Integer> list = new ArrayList<>();
+                list.add(4);
+                list.add(44);
+                list.add(444);
+                int sum = 0;
+                int max = Collections.max(list);
+                int min = Collections.min(list);
+                for(Integer i : list){
+                    sum += i;
+                }
+                int average = sum / list.size();
+                System.out.println("합계 = "+sum);
+                System.out.println("평균 = "+average);
+                System.out.println("최대값 = "+max);
+                System.out.println("최소값 = "+min);
 
 
             }

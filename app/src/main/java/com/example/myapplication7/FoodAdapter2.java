@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 //어뎁터의 역활은 원하는 date를 리사이클러뷰에 실제로 그려주는 것
-public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> implements OnFoodItemClickListener {
+public class FoodAdapter2 extends RecyclerView.Adapter<FoodAdapter2.ViewHolder> implements OnFoodItemClickListener {
     ArrayList<Food> items = new ArrayList<Food>();
     OnFoodItemClickListener listener;
 
@@ -63,13 +63,16 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> im
     public void setOnItemClickListener(OnFoodItemClickListener listener){
         this.listener = listener;
     }
+
+
     @Override
-    public void onItemClick(ViewHolder holder, View view, int position) {
+    public void onItemClick(FoodAdapter.ViewHolder holder, View view, int position) {
         if(listener != null){
             listener.onItemClick(holder,view,position);
         }
     }
-//콘텍스트 메뉴를 사용하기 위하여 온크리에잇콘텍스트메뉴 리스트너를 임플리먼트 해주었음
+
+    //콘텍스트 메뉴를 사용하기 위하여 온크리에잇콘텍스트메뉴 리스트너를 임플리먼트 해주었음
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener{
         TextView textView,textView2,textView3,textView4,textView5;
         //뷰홀더 생성
@@ -83,15 +86,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> im
             textView5 = itemView.findViewById(R.id.textView5);
             itemView.setOnCreateContextMenuListener(this); // 온크리에잇 리스터 현재 클레스에 구현
             //온클릭부분
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int position = getAdapterPosition();
-                    if(listener != null){
-                        listener.onItemClick(ViewHolder.this,v,position);
-                    }
-                }
-            });
+
 
         }
         public void setItem(Food item){
