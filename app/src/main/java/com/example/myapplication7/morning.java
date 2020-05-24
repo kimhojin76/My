@@ -15,7 +15,8 @@ import java.util.Collections;
 public class morning extends AppCompatActivity implements View.OnClickListener {
 
     RecyclerView recyclerView, morning_recyclerView;
-    FoodAdapter adapter, morning_adapter;
+    FoodAdapter adapter;
+    FoodAdapter2 morning_adapter;
     protected void onCreate(Bundle bundle) {
         Log.v("체중그래프 엑티비티", "create");
 
@@ -35,7 +36,7 @@ public class morning extends AppCompatActivity implements View.OnClickListener {
         morning_recyclerView.setLayoutManager(morning_layoutManager);
         //어뎁터 선언
         adapter = new FoodAdapter();
-        morning_adapter = new FoodAdapter();
+        morning_adapter = new FoodAdapter2();
         //어뎁터에 수치 입력
         adapter.addItem(new Food("쌀밥","270","61","5","0.7"));
         adapter.addItem(new Food("찐고구마","193","45.8","2.6","0.2"));

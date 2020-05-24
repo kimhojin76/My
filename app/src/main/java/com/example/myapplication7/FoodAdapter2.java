@@ -25,7 +25,7 @@ public class FoodAdapter2 extends RecyclerView.Adapter<FoodAdapter2.ViewHolder> 
         //콘텍스트를 뷰그룹에서 가져와서 그걸 기반으로 레이아웃플레터 생성
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
         //생성된 레이아웃 플레터로 item_ex레이아웃을 가져와서 어떻게 뷰를 그릴지 결정
-        View itemView = inflater.inflate(R.layout.recyclerview_item_ex, viewGroup, false);
+        View itemView = inflater.inflate(R.layout.recyclerview_item_fs, viewGroup, false);
         //뷰홀더를 생성하고 생성된 뷰 홀더를 바인드뷰홀더에 넘겨줌
         return new ViewHolder(itemView, this);
     }
