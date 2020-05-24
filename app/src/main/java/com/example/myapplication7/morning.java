@@ -16,7 +16,7 @@ public class morning extends AppCompatActivity implements View.OnClickListener {
         Log.v("체중그래프 엑티비티", "create");
 
         super.onCreate(bundle);
-        //모닝 액티비티 레이아웃 연결
+        //모닝 액티비티 레이아웃 food_recyle_ex 연결
         setContentView(R.layout.food_recyle_ex);
         //음식 리사이클러뷰 연결
         recyclerView = findViewById(R.id.food_recyleview_ex);
@@ -44,7 +44,6 @@ public class morning extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onItemClick(FoodAdapter.ViewHolder holder, View view, int position) {
                 Food item = adapter.getItem(position);
-                Toast.makeText(getApplicationContext(),"아이템 선택됨"+item.getName(),Toast.LENGTH_LONG).show();
                 Toast.makeText(getApplicationContext(),"아이템 선택됨"+item.getName()+item.getKcal()+item.getCar()+item.getPro()+item.getFat(),Toast.LENGTH_LONG).show();
                 morning_adapter.addItem(new Food(item.getName(),item.getKcal(),item.getCar(),item.getPro(),item.getFat()));
                 morning_recyclerView.setAdapter(morning_adapter);
@@ -58,6 +57,7 @@ public class morning extends AppCompatActivity implements View.OnClickListener {
             public void onItemClick(FoodAdapter.ViewHolder holder, View view, int position) {
                 Food item = morning_adapter.getItem(position);
                 Toast.makeText(getApplicationContext(),"아이템 선택됨"+item.getName(),Toast.LENGTH_LONG).show();
+                
 
 
             }
