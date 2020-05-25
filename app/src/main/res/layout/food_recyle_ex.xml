@@ -22,19 +22,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/textView12" />
 
-    <TextView
-        android:id="@+id/textView18"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="5dp"
-        android:text="음식 명"
-        app:layout_constraintRight_toLeftOf="@+id/textView12"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView24" />
 
-    <TextView
-        android:id="@+id/textView24"
+
+    <Spinner
+        android:id="@+id/spiner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -50,11 +41,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="5dp"
+        android:gravity="right"
         android:hint="총 칼로리"
-        app:layout_constraintLeft_toRightOf="@+id/textView24"
+        app:layout_constraintLeft_toRightOf="@+id/spiner"
         app:layout_constraintTop_toBottomOf="@+id/food_linear"
         app:layout_constraintVertical_bias="0.0" />
+    <TextView
+        android:id="@+id/textView27"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="5dp"
+        android:gravity="left"
+android:text="kcal"
+        app:layout_constraintLeft_toRightOf="@+id/textView26"
+        app:layout_constraintTop_toBottomOf="@+id/food_linear"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/kcal_sum_button"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:gravity="left"
+        android:text="칼로리 계산"
+        app:layout_constraintBottom_toBottomOf="@+id/textView27"
+        app:layout_constraintLeft_toRightOf="@+id/textView27"
+        app:layout_constraintTop_toTopOf="@+id/textView27"
+                                                     />
 
     <TextView
         android:id="@+id/textView12"
@@ -65,7 +78,16 @@
         app:layout_constraintLeft_toRightOf="@id/textView11"
         app:layout_constraintRight_toLeftOf="@+id/textView13"
         app:layout_constraintTop_toTopOf="@id/textView13" />
-
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="5dp"
+        android:text="음식 명"
+        app:layout_constraintRight_toLeftOf="@+id/textView12"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spiner" />
     <TextView
         android:id="@+id/textView20"
         android:layout_width="wrap_content"
@@ -220,7 +242,7 @@
     <ScrollView
         android:id="@+id/selected_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         app:layout_constraintTop_toBottomOf="@+id/textView18"
         tools:layout_editor_absoluteX="0dp">
 

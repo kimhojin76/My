@@ -102,6 +102,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> im
             textView5.setText(item.getFat());
         }
 
+
         @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
             MenuItem Delete = menu.add(Menu.NONE, 1002, 2, "삭제");
@@ -119,7 +120,8 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> im
                         items.remove(getAdapterPosition());
                         // 7. 어댑터에서 RecyclerView에 반영하도록 합니다.
                         notifyItemRemoved(getAdapterPosition());
-                        notifyItemRangeChanged(getAdapterPosition(), items.size());                }
+                        notifyItemRangeChanged(getAdapterPosition(), items.size());
+                }
                 return false;
             }
         };
