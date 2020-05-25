@@ -117,7 +117,7 @@
             android:textSize="10dp"
             android:textColor="@android:color/black"/>
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/food_weight_edit"
             android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:text="100"
