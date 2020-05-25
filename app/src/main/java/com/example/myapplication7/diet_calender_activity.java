@@ -9,10 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.ArrayList;
 
 public class diet_calender_activity extends AppCompatActivity
         implements View.OnClickListener {
@@ -113,7 +109,7 @@ public class diet_calender_activity extends AppCompatActivity
             finish();
             //아침 버튼 클릭시 모닝 엑티비티로 이동
         }else if(v.getId() == R.id.morning_button) {
-            Intent intent = new Intent(diet_calender_activity.this, morning.class);
+            Intent intent = new Intent(diet_calender_activity.this, meal.class);
             startActivity(intent);
 
 

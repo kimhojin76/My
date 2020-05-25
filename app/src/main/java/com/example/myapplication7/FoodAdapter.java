@@ -1,5 +1,6 @@
 package com.example.myapplication7;
 
+import android.content.Context;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -12,11 +13,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 //어뎁터의 역활은 원하는 date를 리사이클러뷰에 실제로 그려주는 것
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> implements OnFoodItemClickListener {
     ArrayList<Food> items = new ArrayList<Food>();
+    private ArrayList<Food> select_list;
     OnFoodItemClickListener listener;
+
+//    public FoodAdapter(Context context ,ArrayList<Food> items) {
+//        this.mCtx=context;
+//        this.items = items;
+//        select_list = new ArrayList<Food>();
+//        select_list.addAll(items);
+//    }
 
     @NonNull
     @Override
@@ -102,7 +112,21 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> im
             textView5.setText(item.getFat());
         }
 
-
+//    public void filter(String charText) {
+//        charText = charText.toLowerCase(Locale.getDefault());
+//        items.clear();
+//        if (charText.length() == 0) {
+//            items.addAll(select_list);
+//        } else {
+//            for (Recent recent : select_list) {
+//                String name = recent.getAddress();
+//                if (name.toLowerCase().contains(charText)) {
+//                    items.add(recent);
+//                }
+//            }
+//        }
+//        notifyDataSetChanged();
+//    }
         @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
             MenuItem Delete = menu.add(Menu.NONE, 1002, 2, "삭제");

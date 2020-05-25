@@ -15,10 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
-import java.util.Collections;
-
-public class morning extends AppCompatActivity implements View.OnClickListener {
+public class meal extends AppCompatActivity implements View.OnClickListener {
     RecyclerView recyclerView, morning_recyclerView;
     FoodAdapter adapter;
     String meal = "아침식단";
@@ -229,7 +226,7 @@ public class morning extends AppCompatActivity implements View.OnClickListener {
     }
     @Override
     public void onClick(View v) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(morning.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(com.example.myapplication7.meal.this);
         //칼로리계산기 버튼 클릭
         if (v.getId() == R.id.kcal_sum_button) {
             //반복문을 이용하여 모닝아답터 리스트의 kcal 총합 구하기

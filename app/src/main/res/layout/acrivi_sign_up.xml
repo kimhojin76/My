@@ -22,17 +22,17 @@
         app:layout_constraintVertical_bias="0.134" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/add_fat_input"
         android:layout_width="300dp"
         android:layout_height="44dp"
         android:layout_marginTop="7dp"
         android:ems="10"
         android:hint="비밀번호 확인"
         android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="@+id/editText4"
+        app:layout_constraintEnd_toEndOf="@+id/add_pro_input"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editText4"
-        app:layout_constraintTop_toBottomOf="@+id/editText4" />
+        app:layout_constraintStart_toStartOf="@+id/add_pro_input"
+        app:layout_constraintTop_toBottomOf="@+id/add_pro_input" />
 
     <EditText
         android:id="@+id/editText6"
@@ -44,12 +44,12 @@
         android:ems="10"
         android:hint="이메일"
         android:inputType="textWebEmailAddress"
-        app:layout_constraintEnd_toEndOf="@+id/editText5"
+        app:layout_constraintEnd_toEndOf="@+id/add_fat_input"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editText5"
-        app:layout_constraintTop_toBottomOf="@+id/editText5" />
+        app:layout_constraintStart_toStartOf="@+id/add_fat_input"
+        app:layout_constraintTop_toBottomOf="@+id/add_fat_input" />
     <EditText
-        android:id="@+id/nickname"
+        android:id="@+id/add_car_input"
         android:layout_width="210dp"
         android:layout_height="44dp"
         android:layout_marginTop="7dp"
@@ -60,10 +60,10 @@
         app:layout_constraintEnd_toEndOf="@+id/editText6"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/editText6"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+        app:layout_constraintTop_toBottomOf="@+id/add_kcal_input" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/add_kcal_input"
         android:layout_width="210dp"
         android:layout_height="50dp"
         android:ems="10"
@@ -73,7 +73,7 @@
         app:layout_constraintTop_toBottomOf="@id/image_upload_button" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/add_pro_input"
         android:layout_width="300dp"
         android:layout_marginTop="7dp"
 
@@ -81,10 +81,10 @@
         android:ems="10"
         android:hint="비밀번호"
         android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="@+id/nickname"
+        app:layout_constraintEnd_toEndOf="@+id/add_car_input"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editText3"
-        app:layout_constraintTop_toBottomOf="@+id/nickname" />
+        app:layout_constraintStart_toStartOf="@+id/add_kcal_input"
+        app:layout_constraintTop_toBottomOf="@+id/add_car_input" />
 
     <Button
         android:id="@+id/button3"
@@ -106,9 +106,9 @@
         android:background="@drawable/btn_blue2"
         android:stateListAnimator="@null"
         android:text="중복확인"
-        app:layout_constraintBottom_toBottomOf="@+id/editText3"
-        app:layout_constraintStart_toEndOf="@+id/editText3"
-        app:layout_constraintTop_toTopOf="@+id/editText3" />
+        app:layout_constraintBottom_toBottomOf="@+id/add_kcal_input"
+        app:layout_constraintStart_toEndOf="@+id/add_kcal_input"
+        app:layout_constraintTop_toTopOf="@+id/add_kcal_input" />
 
     <Button
         android:id="@+id/nickname_check_button"
@@ -119,7 +119,7 @@
         android:stateListAnimator="@null"
         android:text="중복확인"
 
-        app:layout_constraintStart_toEndOf="@+id/editText3"
+        app:layout_constraintStart_toEndOf="@+id/add_kcal_input"
         app:layout_constraintTop_toBottomOf="@+id/id_check_button" />
 
     <Button
@@ -130,7 +130,7 @@
         android:stateListAnimator="@null"
         android:textColor="#ffffff"
         android:text="이미지 업로드"
-        app:layout_constraintBottom_toTopOf="@+id/editText3"
+        app:layout_constraintBottom_toTopOf="@+id/add_kcal_input"
         app:layout_constraintEnd_toEndOf="@+id/my_imageView"
         app:layout_constraintStart_toStartOf="@+id/my_imageView"
         app:layout_constraintTop_toBottomOf="@+id/my_imageView"

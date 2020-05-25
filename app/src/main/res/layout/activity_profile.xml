@@ -22,17 +22,17 @@
         app:layout_constraintVertical_bias="0.134" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/add_fat_input"
         android:layout_width="300dp"
         android:layout_height="44dp"
         android:layout_marginTop="7dp"
         android:ems="10"
         android:hint="비밀번호 확인"
         android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="@+id/editText4"
+        app:layout_constraintEnd_toEndOf="@+id/add_pro_input"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editText4"
-        app:layout_constraintTop_toBottomOf="@+id/editText4" />
+        app:layout_constraintStart_toStartOf="@+id/add_pro_input"
+        app:layout_constraintTop_toBottomOf="@+id/add_pro_input" />
 
     <EditText
         android:id="@+id/editText6"
@@ -44,13 +44,13 @@
         android:ems="10"
         android:hint="변경할 이메일"
         android:inputType="textWebEmailAddress"
-        app:layout_constraintEnd_toEndOf="@+id/editText5"
+        app:layout_constraintEnd_toEndOf="@+id/add_fat_input"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editText5"
-        app:layout_constraintTop_toBottomOf="@+id/editText5" />
+        app:layout_constraintStart_toStartOf="@+id/add_fat_input"
+        app:layout_constraintTop_toBottomOf="@+id/add_fat_input" />
 
     <EditText
-        android:id="@+id/nickname"
+        android:id="@+id/add_car_input"
         android:layout_width="210dp"
         android:layout_height="44dp"
 
@@ -62,7 +62,7 @@
         app:layout_constraintTop_toBottomOf="@+id/image_upload_button" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/add_pro_input"
         android:layout_width="300dp"
         android:layout_height="44dp"
 
@@ -70,8 +70,8 @@
         android:ems="10"
         android:hint="변경할 비밀번호"
         android:inputType="textPassword"
-        app:layout_constraintStart_toStartOf="@+id/nickname"
-        app:layout_constraintTop_toBottomOf="@+id/nickname" />
+        app:layout_constraintStart_toStartOf="@+id/add_car_input"
+        app:layout_constraintTop_toBottomOf="@+id/add_car_input" />
 
     <Button
         android:id="@+id/button3"
@@ -94,8 +94,8 @@
         android:stateListAnimator="@null"
         android:text="중복확인"
 
-        app:layout_constraintStart_toEndOf="@+id/nickname"
-        app:layout_constraintTop_toTopOf="@+id/nickname" />
+        app:layout_constraintStart_toEndOf="@+id/add_car_input"
+        app:layout_constraintTop_toTopOf="@+id/add_car_input" />
 
     <Button
         android:id="@+id/image_upload_button"
