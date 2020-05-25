@@ -1,15 +1,19 @@
 package com.example.myapplication7;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class meal extends AppCompatActivity implements View.OnClickListener {
     RecyclerView recyclerView, morning_recyclerView;
     FoodAdapter adapter;
+    String food_name,food_kcal,food_car,food_pro,foodfat;
     String meal = "아침식단";
     double user_kcal = 0;
     FoodAdapter2 morning_adapter,lunch_adapter,dinner_adapter,snack_adapter;
@@ -36,7 +41,7 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
         //레이아웃 메너저를 통해 List형식으로 할지 Grid형식으로 할지 결정정
         LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         LinearLayoutManager morning_layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
-
+        Intent intent = getIntent();
         //음식 리사이클러뷰에 레이아웃 메니져 설정
         recyclerView.setLayoutManager(layoutManager);
         //아침 리사이클러뷰에 레이아웃 메니져 설정
@@ -55,6 +60,8 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
         adapter.addItem(new Food("닭가슴살","100","0","23","1.2"));
 
         //칼로리계산기 버튼 연결 및 클릭이벤트 설정
+        final Button add_foodadapter_button = (Button) findViewById(R.id.add_food);
+        add_foodadapter_button.setOnClickListener(this);
         final Button kcal_sum_button = (Button) findViewById(R.id.kcal_sum_button);
         kcal_sum_button.setOnClickListener(this);
         //스피너에 아이템 연결
@@ -224,6 +231,28 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
 
 
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.v("식단입력 엑티비티", "도착");
+
+        if (requestCode==1001&&resultCode==200)
+        {
+            Log.v("식단입력 엑티비티", "조건문 도착");
+            Intent intent = data;
+            Log.v("식단입력 엑티비티", intent.getStringExtra("음식명").toString());
+            Log.v("식단입력 엑티비티", intent.getStringExtra("칼로리").toString());
+            Log.v("식단입력 엑티비티", intent.getStringExtra("탄수화물").toString());
+            Log.v("식단입력 엑티비티", intent.getStringExtra("단백질").toString());
+            Log.v("식단입력 엑티비티", intent.getStringExtra("지방").toString());
+
+           adapter.addItem(new Food(intent.getStringExtra("음식명").toString(),intent.getStringExtra("칼로리").toString(),intent.getStringExtra("탄수화물").toString(),intent.getStringExtra("단백질").toString(),intent.getStringExtra("지방").toString()));
+            recyclerView.setAdapter(adapter);
+
+        }
+    }
+
     @Override
     public void onClick(View v) {
         AlertDialog.Builder builder = new AlertDialog.Builder(com.example.myapplication7.meal.this);
@@ -268,9 +297,9 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
             }
 
         }else if (v.getId() == R.id.add_food){
-            final AlertDialog dialog = builder.create();
-
-
+            Log.v("식단입력 엑티비티", "음식 추가 버튼 클릭");
+            Intent intent = new Intent(meal.this, Food_custom_add.class);
+            startActivityForResult(intent,1001);
         }
     }
 

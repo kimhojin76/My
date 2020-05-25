@@ -11,10 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity"
             android:label="로그인">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
         <activity
             android:name=".signup_activity"
@@ -31,6 +28,10 @@
             android:launchMode="singleTop"
 
             android:label="기본 화면">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
 
