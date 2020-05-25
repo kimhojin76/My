@@ -41,12 +41,7 @@ public class diet_calender_activity extends AppCompatActivity
         basic_forum_image.setOnClickListener(this);
         final Button morning = (Button) findViewById(R.id.morning_button);
         morning.setOnClickListener(this);
-        final Button lunch = (Button) findViewById(R.id.lunch_button);
-        lunch.setOnClickListener(this);
-        final Button dinner = (Button) findViewById(R.id.dinner_button);
-        dinner.setOnClickListener(this);
-        final Button snack = (Button) findViewById(R.id.snack_button);
-        snack.setOnClickListener(this);
+
 
 
     }

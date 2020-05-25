@@ -19,14 +19,16 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="@id/imageView3"
         app:layout_constraintBottom_toBottomOf="parent" />
+
     <Button
         android:id="@+id/button10"
         android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:layout_marginTop="24dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/btn_blue2"
         android:stateListAnimator="@null"
         android:text="저장"
+        app:layout_constraintBottom_toBottomOf="@+id/morning_button"
         app:layout_constraintEnd_toEndOf="@+id/calendarView"
         app:layout_constraintTop_toBottomOf="@+id/calendarView" />
 
@@ -161,35 +163,12 @@
         app:layout_constraintTop_toTopOf="@+id/textView10" />
 
     <Button
-        android:id="@+id/snack_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="간식"
-        app:layout_constraintEnd_toEndOf="@+id/weight_text"
-        app:layout_constraintTop_toBottomOf="@+id/lunch_button" />
-
-    <Button
-        android:id="@+id/dinner_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="저녘"
-        app:layout_constraintStart_toStartOf="@+id/weight_text"
-        app:layout_constraintTop_toBottomOf="@+id/morning_button" />
-
-    <Button
         android:id="@+id/morning_button"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="아침"
-        app:layout_constraintStart_toStartOf="@+id/weight_text"
-        app:layout_constraintTop_toBottomOf="@+id/weight_text" />
-
-    <Button
-        android:id="@+id/lunch_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="점심"
+        android:text="식단입력"
         app:layout_constraintEnd_toEndOf="@+id/weight_text"
+        app:layout_constraintStart_toStartOf="@+id/weight_text"
         app:layout_constraintTop_toBottomOf="@+id/weight_text" />
 
 
