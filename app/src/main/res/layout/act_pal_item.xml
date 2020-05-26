@@ -4,7 +4,7 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp"
+    android:padding="2dp"
     android:gravity="center_vertical"
     android:layout_marginBottom="8dp">
 
@@ -24,7 +24,7 @@
             android:gravity="left"
             android:layout_marginLeft="10dp"
             android:text="TITLE"
-            android:textSize="16dp"
+            android:textSize="10dp"
             android:layout_weight="10"
             android:textColor="@android:color/black"
             android:textStyle="bold"/>
@@ -35,9 +35,16 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
             android:text="PAL"
-            android:textSize="15dp"
+            android:textSize="10dp"
             android:textColor="@android:color/black"/>
-
+        <EditText
+            android:id="@+id/pal_act_pal_select"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:inputType="numberDecimal"
+            android:text="1"
+            android:textSize="10dp"
+            android:textColor="@android:color/black"/>
 
     </LinearLayout>
 

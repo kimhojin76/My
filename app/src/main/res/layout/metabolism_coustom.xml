@@ -62,21 +62,67 @@
 
 
         app:layout_constraintTop_toTopOf="parent" />
-
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="행동"
+        app:layout_constraintBottom_toTopOf="@+id/custom_kcal_recyle"
+        app:layout_constraintLeft_toLeftOf="@id/custom_kcal_recyle"
+     />
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="행동"
+        app:layout_constraintBottom_toTopOf="@+id/custom_kcal_selected"
+        app:layout_constraintLeft_toLeftOf="@id/custom_kcal_selected"
+        />
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="136dp"
+        android:text="PAR"
+        app:layout_constraintTop_toTopOf="@+id/textView21"
+        app:layout_constraintLeft_toRightOf="@id/textView21"
+        />
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="136dp"
+        android:text="PAR"
+        app:layout_constraintTop_toTopOf="@+id/textView23"
+        app:layout_constraintLeft_toRightOf="@id/textView23"
+        />
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:text="행동시간"
+        app:layout_constraintTop_toTopOf="@+id/textView23"
+        app:layout_constraintLeft_toRightOf="@id/textView24"
+        />
     <androidx.recyclerview.widget.RecyclerView
+        android:background="@drawable/btn_blue2"
         android:id="@+id/custom_kcal_recyle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
+        android:layout_height="200dp"
+        android:layout_margin="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_custom_pal" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:background="@drawable/btn_yellow"
         android:id="@+id/custom_kcal_selected"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
+        android:layout_height="200dp"
+        android:layout_margin="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/custom_kcal_recyle" />

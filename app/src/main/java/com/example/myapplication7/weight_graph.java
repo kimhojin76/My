@@ -101,6 +101,21 @@ public class weight_graph extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     protected void onResume() {
         Log.v("체중그래프 엑티비티","Resume");
         super.onResume();

@@ -1,59 +1,49 @@
 package com.example.myapplication7;
 
 public class member {
+    public member(String nickname, String title, String date, String contents) {
+        this.nickname = nickname;
+        this.title = title;
+        this.date = date;
+        this.contents = contents;
+    }
 
     String nickname;
     String title;
-    String car;
-    String pro;
-    String fat;
+    String date;
+    String contents;
 
-    public member(String name, String kcal, String car, String pro, String fat) {
-        this.nickname = name;
-        this.title = kcal;
-        this.car = car;
-        this.pro = pro;
-        this.fat = fat;
+
+
+
+
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
 
-    public String getName() {
+
+
+
+    public String getNickname() {
         return nickname;
     }
 
-    public String getKcal() {
+    public String getTitle() {
         return title;
     }
 
-    public String getCar() {
-        return car;
-    }
-
-    public String getPro() {
-        return pro;
-    }
-
-    public String getFat() {
-        return fat;
-    }
-
-    public void setName(String name) {
-        this.nickname = name;
-    }
-
-    public void setKcal(String kcal) {
-        this.title = kcal;
-    }
-
-    public void setCar(String car) {
-        this.car = car;
-    }
-
-    public void setPro(String pro) {
-        this.pro = pro;
-    }
-
-    public void setFat(String fat) {
-        this.fat = fat;
+    public String getDate() {
+        return date;
     }
 }
+

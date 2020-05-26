@@ -1,17 +1,6 @@
 package com.example.myapplication7;
 
 public class ACT {
-    String actname;
-    String act_pal;
-    String hour;
-
-
-    public ACT(String actname, String act_pal) {
-        this.actname = actname;
-        this.act_pal = act_pal;
-    }
-
-
     public void setActname(String actname) {
         this.actname = actname;
     }
@@ -20,11 +9,9 @@ public class ACT {
         this.act_pal = act_pal;
     }
 
-    public void setHour(String hour) {
-        this.hour = hour;
+    public void setAct_hour(String act_hour) {
+        this.act_hour = act_hour;
     }
-
-
 
     public String getActname() {
         return actname;
@@ -34,9 +21,22 @@ public class ACT {
         return act_pal;
     }
 
-    public String getHour() {
-        return hour;
+    public String getAct_hour() {
+        return act_hour;
+    }
+
+    String actname;
+    String act_pal;
+    String act_hour;
+
+
+    public ACT(String actname, String act_pal, String act_hour) {
+        this.actname = actname;
+        this.act_pal = act_pal;
+        this.act_hour = act_hour;
     }
 }
+
+
 
 

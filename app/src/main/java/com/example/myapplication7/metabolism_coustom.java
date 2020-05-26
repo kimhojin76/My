@@ -20,7 +20,7 @@ public class metabolism_coustom extends AppCompatActivity implements View.OnClic
     ACTAdapter adapter;
     double user_hour =0;
     ACTAdapter2 selected_adapter;
-
+    TextView act_sum_hour;
 
 
     @Override
@@ -36,7 +36,7 @@ public class metabolism_coustom extends AppCompatActivity implements View.OnClic
         //레이아웃 메너저를 통해 List형식으로 할지 Grid형식으로 할지 결정정
         LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         LinearLayoutManager selected_layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
-
+        Intent intent = getIntent();
         //pal 리사이클러뷰에 레이아웃 메니져 설정
         recyclerView.setLayoutManager(layoutManager);
         seleted_recyclerView.setLayoutManager(selected_layoutManager);
@@ -46,26 +46,59 @@ public class metabolism_coustom extends AppCompatActivity implements View.OnClic
         selected_adapter = new ACTAdapter2();
 
         //어뎁터에 수치 입력
-        adapter.addItem(new ACT("수면","0.93"));
+        adapter.addItem(new ACT("수면","0.9","1"));
+        adapter.addItem(new ACT("휴식,TV시청(앉음)","1.2","1"));
+        adapter.addItem(new ACT("식사","1.4","1"));
+        adapter.addItem(new ACT("사무업무","1.6","1"));
+        adapter.addItem(new ACT("대중교통(앉음)","1.7","1"));
+        adapter.addItem(new ACT("대중교통(서서)","2","1"));
+        adapter.addItem(new ACT("산책","2.5","1"));
+        adapter.addItem(new ACT("근력운동(약)","3","1"));
+        adapter.addItem(new ACT("수영,스포츠(초급반)","3.1","1"));
+        adapter.addItem(new ACT("집안일","3.1","1"));
+        adapter.addItem(new ACT("걷기(시속3km)","3.7","1"));
+        adapter.addItem(new ACT("싸이클","3.75","1"));
+        adapter.addItem(new ACT("에어로빅","4.1","1"));
+        adapter.addItem(new ACT("축구,테니스","4.4","1"));
+        adapter.addItem(new ACT("근력운동(중)","4.5","1"));
+        adapter.addItem(new ACT("유산소(약)","4.5","1"));
+        adapter.addItem(new ACT("등산","5.7","1"));
+        adapter.addItem(new ACT("싸이클(빠른속도)","5.8","1"));
+        adapter.addItem(new ACT("유산소(중)","6","1"));
+        adapter.addItem(new ACT("근력운동(강)","6","1"));
+        adapter.addItem(new ACT("유산소(강)","9","1"));
+
+
+
         recyclerView.setAdapter(adapter);
-        recyclerView.setAdapter(selected_adapter);
+        seleted_recyclerView.setAdapter(selected_adapter);
         adapter.setOnItemClickListener(new OnACTItemClickListener() {
             @Override
             public void onItemClick(ACTAdapter.ViewHolder holder, View view, int position) {
+                ACT item = adapter.getItem(position);
+                selected_adapter.addItem(new ACT(item.getActname(),item.getAct_pal(),"1"));
+                seleted_recyclerView.setAdapter(selected_adapter);
+                user_hour = 0;
+                for (int i = 0; i < selected_adapter.items.size(); i++) {
+                    ACT item1 = selected_adapter.getItem(i);
+                    Log.v("식단입력 엑티비티", item1.getAct_hour());
+                    user_hour = user_hour + Double.parseDouble(item1.getAct_hour());
+                    act_sum_hour.setText(Double.toString(user_hour));
+                }
 
             }
         });
 
-//
-//
-//
-//        Button save = (Button) findViewById(R.id.add_custom_pal);
-//        save.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                finish();
-//            }
-//        });
+
+        act_sum_hour = (TextView) findViewById(R.id.textView12);
+        act_sum_hour.setText(Double.toString(user_hour));
+        Button save = (Button) findViewById(R.id.add_custom_pal);
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
 
 

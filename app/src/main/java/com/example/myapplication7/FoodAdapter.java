@@ -24,6 +24,8 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> im
 //    public FoodAdapter(Context context ,ArrayList<Food> items) {
 //        this.mCtx=context;
 //        this.items = items;
+
+
 //        select_list = new ArrayList<Food>();
 //        select_list.addAll(items);
 //    }
