@@ -120,6 +120,7 @@
             android:id="@+id/food_weight_edit"
             android:layout_width="25dp"
             android:layout_height="wrap_content"
+            android:inputType="number"
             android:gravity="right"
             android:text="100"
             android:textSize="10dp"

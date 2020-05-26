@@ -6,7 +6,7 @@ public class ACT {
     String hour;
 
 
-    public ACT(String actname, String act_pal, String hour) {
+    public ACT(String actname, String act_pal) {
         this.actname = actname;
         this.act_pal = act_pal;
     }

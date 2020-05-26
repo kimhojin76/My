@@ -14,10 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 //어뎁터의 역활은 원하는 date를 리사이클러뷰에 실제로 그려주는 것
-public class ACTAdapter extends RecyclerView.Adapter<ACTAdapter.ViewHolder> implements OnACTItemClickListener {
+public class ACTAdapter2 extends RecyclerView.Adapter<ACTAdapter2.ViewHolder> implements OnACTItemClickListener2 {
     ArrayList<ACT> items = new ArrayList<ACT>();
     private ArrayList<ACT> select_list;
-    OnACTItemClickListener listener;
+    OnACTItemClickListener2 listener;
 
     @NonNull
     @Override
@@ -26,7 +26,7 @@ public class ACTAdapter extends RecyclerView.Adapter<ACTAdapter.ViewHolder> impl
         //콘텍스트를 뷰그룹에서 가져와서 그걸 기반으로 레이아웃플레터 생성
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
         //생성된 레이아웃 플레터로 item_ex레이아웃을 가져와서 어떻게 뷰를 그릴지 결정
-        View itemView = inflater.inflate(R.layout.act_pal_item, viewGroup, false);
+        View itemView = inflater.inflate(R.layout.act_pal_item_select, viewGroup, false);
         //뷰홀더를 생성하고 생성된 뷰 홀더를 바인드뷰홀더에 넘겨줌
         return new ViewHolder(itemView, this);
     }
@@ -61,23 +61,23 @@ public class ACTAdapter extends RecyclerView.Adapter<ACTAdapter.ViewHolder> impl
         items.set(position, item);
     }
 
-    public void setOnItemClickListener(OnACTItemClickListener listener){
+    public void setOnItemClickListener(OnACTItemClickListener2 listener){
         this.listener = listener;
     }
+
     @Override
-    public void onItemClick(ViewHolder holder, View view, int position) {
+    public void onItemClick(ACTAdapter2.ViewHolder holder, View view, int position) {
         if(listener != null){
             listener.onItemClick(holder,view,position);
         }
     }
 
 
-
     //콘텍스트 메뉴를 사용하기 위하여 온크리에잇콘텍스트메뉴 리스트너를 임플리먼트 해주었음
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener{
         TextView textView,textView2;
         //뷰홀더 생성
-        public ViewHolder(@NonNull View itemView, final OnACTItemClickListener listener) {
+        public ViewHolder(@NonNull View itemView, final OnACTItemClickListener2 listener) {
             super(itemView);
             //뷰들을 넘겨받아 뷰홀더를 완성시켜줌
             textView = itemView.findViewById(R.id.pal_act_name);
