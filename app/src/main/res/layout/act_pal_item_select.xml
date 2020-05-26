@@ -1,52 +1,52 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal" android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="8dp"
     android:gravity="center_vertical"
-    android:layout_marginBottom="8dp"
-    android:background="@android:color/white">
+    android:layout_marginBottom="8dp">
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:orientation="vertical"
+        android:orientation="horizontal"
+        android:weightSum="20"
         android:gravity="center_vertical">
 
         <TextView
-            android:id="@+id/forum_nickname"
-            android:layout_width="wrap_content"
+            android:id="@+id/pal_act_name"
+            android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
-            android:hint="nickname"
-            android:textSize="10dp"
+            android:gravity="left"
+            android:layout_marginLeft="10dp"
+            android:text="TITLE"
+            android:textSize="16dp"
+            android:layout_weight="10"
             android:textColor="@android:color/black"
             android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/forum_title"
+            android:id="@+id/pal_act_pal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:includeFontPadding="false"
-            android:text="TITLE"
+            android:layout_marginRight="10dp"
+            android:text="PAL"
             android:textSize="15dp"
+            android:layout_weight="4"
+
             android:textColor="@android:color/black"/>
-        <TextView
-            android:id="@+id/forum_date"
+        <EditText
+            android:id="@+id/pal_act_pal_select"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:includeFontPadding="false"
-            android:hint="작성날짜"
-            android:textSize="13sp"
+            android:text="HOUR"
+            android:textSize="15dp"
             android:textColor="@android:color/black"/>
 
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/forum_image"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        />
 </LinearLayout>

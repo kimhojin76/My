@@ -240,6 +240,7 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
         if (requestCode==1001&&resultCode==200)
         {
             Log.v("식단입력 엑티비티", "조건문 도착");
+
             Intent intent = data;
             Log.v("식단입력 엑티비티", intent.getStringExtra("음식명").toString());
             Log.v("식단입력 엑티비티", intent.getStringExtra("칼로리").toString());

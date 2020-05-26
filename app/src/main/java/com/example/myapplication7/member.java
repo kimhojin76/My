@@ -3,14 +3,14 @@ package com.example.myapplication7;
 public class member {
 
     String nickname;
-    String Kcal;
+    String title;
     String car;
     String pro;
     String fat;
 
     public member(String name, String kcal, String car, String pro, String fat) {
         this.nickname = name;
-        this.Kcal = kcal;
+        this.title = kcal;
         this.car = car;
         this.pro = pro;
         this.fat = fat;
@@ -22,7 +22,7 @@ public class member {
     }
 
     public String getKcal() {
-        return Kcal;
+        return title;
     }
 
     public String getCar() {
@@ -42,7 +42,7 @@ public class member {
     }
 
     public void setKcal(String kcal) {
-        this.Kcal = kcal;
+        this.title = kcal;
     }
 
     public void setCar(String car) {

@@ -37,10 +37,8 @@ public class metabolism_coustom extends AppCompatActivity implements View.OnClic
             }
         });
 
-        final TextView sleep = (TextView) findViewById(R.id.sleep_pal);
-        sleep.setOnClickListener(this);
-        final TextView sleep2 = (TextView) findViewById(R.id.sleep_pal2);
-        sleep2.setOnClickListener(this);
+
+
 
 
     }
@@ -77,10 +75,8 @@ public class metabolism_coustom extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.sleep_pal) {
-            Log.v("활동관리커스텀 엑티비티", "슬립 클릭 확인");
-        } else if (v.getId() == R.id.sleep_pal2) {
-            Log.v("활동관리커스텀 엑티비티", "슬립 클릭 확인");
-        }
+
+
+
     }
 }

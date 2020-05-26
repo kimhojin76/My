@@ -109,8 +109,9 @@
             android:textColor="@android:color/black"/>
         <EditText
             android:id="@+id/food_weight_edit"
-            android:layout_width="35dp"
+            android:layout_width="28dp"
             android:layout_height="wrap_content"
+            android:gravity="right"
             android:text="100"
             android:textSize="10dp"
             android:textColor="@android:color/black"/>
