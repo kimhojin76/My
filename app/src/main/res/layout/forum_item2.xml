@@ -46,6 +46,11 @@
                 android:padding="5dp"
                 android:text="메세지 내용"
                 android:textSize="15dp" />
+            <TextView
+                android:id="@+id/forum_contents"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:textSize="15dp" />
 
             <TextView
                 android:id="@+id/forum_date"
@@ -56,12 +61,12 @@
 
 
     </LinearLayout>
-    <ImageView
-        android:id="@+id/forum_profile"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:src="@drawable/btn_yellow"
-        android:layout_gravity="center"
-        />
+<!--    <ImageView-->
+<!--        android:id="@+id/forum_profile"-->
+<!--        android:layout_width="45dp"-->
+<!--        android:layout_height="45dp"-->
+<!--        android:src="@drawable/btn_yellow"-->
+<!--        android:layout_gravity="center"-->
+<!--        />-->
 
 </LinearLayout>

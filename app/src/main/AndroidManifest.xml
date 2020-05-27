@@ -19,6 +19,11 @@
             android:label="회원가입">
         </activity>
         <activity
+            android:name=".forum_write"
+            android:launchMode="singleTop"
+            android:label="포럼 글쓰기">
+        </activity>
+        <activity
             android:name=".meal"
             android:launchMode="singleTop"
             android:label="아침식단">
@@ -39,6 +44,12 @@
             android:launchMode="singleTop"
 
             android:label="기초대사량 계산기">
+
+        </activity>
+        <activity android:name=".forum_detail"
+            android:launchMode="singleTop"
+
+            android:label="포럼 글 작성화면">
 
         </activity>
         <activity android:name=".diet_calender_activity"

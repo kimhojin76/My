@@ -60,7 +60,8 @@ public class active_metabolism extends AppCompatActivity implements View.OnClick
         basic_kcal_image.setOnClickListener(this);
         final ImageView basic_forum_image = (ImageView) findViewById(R.id.imageView7);
         basic_forum_image.setOnClickListener(this);
-
+        final ImageView custom_act_add = (ImageView) findViewById(R.id.imageView8);
+        custom_act_add.setOnClickListener(this);
         TextView BMR_input = (TextView) findViewById(R.id.basal_metabolism) ;
         Intent intent = getIntent();
         String BMR = intent.getStringExtra("BMR");

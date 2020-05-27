@@ -156,7 +156,6 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
             public void onItemClick(FoodAdapter.ViewHolder holder, View view, int position) {
                 TextView userkcal = (TextView) findViewById(R.id.textView26);
                 Food item = adapter.getItem(position);
-                Toast.makeText(getApplicationContext(),"아이템 선택됨"+item.getName()+item.getKcal()+item.getCar()+item.getPro()+item.getFat(),Toast.LENGTH_LONG).show();
 
                 if(meal=="아침식단"){
                     morning_adapter.addItem(new Food(item.getName(),item.getKcal(),item.getCar(),item.getPro(),item.getFat()));
@@ -223,7 +222,6 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onItemClick(FoodAdapter.ViewHolder holder, View view, int position) {
                 Food item = morning_adapter.getItem(position);
-                Toast.makeText(getApplicationContext(),"아이템 선택됨"+item.getName(),Toast.LENGTH_LONG).show();
             }
         });
 

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,30 +24,6 @@ public class forum_activity extends AppCompatActivity
 
         super.onCreate(bundle);
         setContentView(R.layout.forum);
-
-        //레이아웃 xml에 작성해준 리사이클러뷰를 자바로 가져와서 초기화
-        recyclerView = findViewById(R.id.forum_board);
-        //레이아웃 메너저를 통해 List형식으로 할지 Grid형식으로 할지 결정정
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
-        //pal 리사이클러뷰에 레이아웃 메니져 설정
-        recyclerView.setLayoutManager(layoutManager);
-        //어뎁터 선언
-        adapter = new memberAdapter();
-        adapter.addItem(new member("다이어터","다이어트 방법 공유좀해주세요","2020-05-26","다이어트 방법 공유좀요"));
-        adapter.addItem(new member("동면중","다이어트 식단 이렇게 짜세요","2020-05-26","잘짜세요"));
-        adapter.addItem(new member("피톨로지","살이 찌는 이유는 무엇일까?","2020-05-26","많이 먹어서"));
-        adapter.addItem(new member("살덩이","매일 배가 고파요","2020-05-26","먹어도 먹어도 배가 고픔"));
-        //리사이클러뷰에 어댑터 설정
-        recyclerView.setAdapter(adapter);
-        adapter.setOnItemClickListener(new OnmemberItemClickListener() {
-            @Override
-            public void onItemClick(memberAdapter.ViewHolder holder, View view, int position) {
-
-            }
-        }); {
-
-
-
         final TextView kcal = (TextView) findViewById(R.id.textView5);
         kcal.setOnClickListener(this);
         final TextView basic_food = (TextView) findViewById(R.id.textView8);
@@ -67,9 +44,60 @@ public class forum_activity extends AppCompatActivity
         basic_kcal_image.setOnClickListener(this);
         final ImageView basic_forum_image = (ImageView) findViewById(R.id.imageView7);
         basic_forum_image.setOnClickListener(this);
+        final ImageView forum_add = (ImageView) findViewById(R.id.forum_add);
+        forum_add.setOnClickListener(this);
+        //레이아웃 xml에 작성해준 리사이클러뷰를 자바로 가져와서 초기화
+        recyclerView = findViewById(R.id.forum_board);
+        //레이아웃 메너저를 통해 List형식으로 할지 Grid형식으로 할지 결정정
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        //pal 리사이클러뷰에 레이아웃 메니져 설정
+        recyclerView.setLayoutManager(layoutManager);
+        //어뎁터 선언
+        adapter = new memberAdapter();
+        adapter.addItem(new member("다이어터", "다이어트 방법 공유좀해주세요", "2020-05-26", "다이어트 방법 공유좀요",""));
+        adapter.addItem(new member("동면중", "다이어트 식단 이렇게 짜세요", "2020-05-26", "잘짜세요",""));
+        adapter.addItem(new member("피톨로지", "살이 찌는 이유는 무엇일까?", "2020-05-26", "많이 먹어서",""));
+        adapter.addItem(new member("살덩이", "매일 배가 고파요", "2020-05-26", "먹어도 먹어도 배가 고픔",""));
+        //리사이클러뷰에 어댑터 설정
+        recyclerView.setAdapter(adapter);
+        adapter.setOnItemClickListener(new OnmemberItemClickListener() {
+            @Override
+            public void onItemClick(memberAdapter.ViewHolder holder, View view, int position) {
+                member item = adapter.getitem(position);
+                Intent data = new Intent(forum_activity.this, forum_detail.class);
+                data.putExtra("닉네임",item.getNickname().toString());
+                data.putExtra("제목",item.getTitle().toString());
+                data.putExtra("날짜",item.getDate().toString());
+                data.putExtra("내용",item.getContents().toString());
+                startActivityForResult(data,1011);
+            }
+        });
+
+
+
+
+
 
     }
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.v("포럼 엑티비티", "도착");
 
+        if (requestCode==1010&&resultCode==200)
+        {
+            Log.v("포럼 엑티비티", "조건문 도착");
+
+            Intent intent = data;
+            Log.v("포럼 엑티비티", intent.getStringExtra("제목").toString());
+            Log.v("포럼 엑티비티", intent.getStringExtra("닉네임").toString());
+            Log.v("포럼 엑티비티", intent.getStringExtra("날짜").toString());
+            Log.v("포럼 엑티비티", intent.getStringExtra("내용").toString());
+
+            adapter.addItem(new member(intent.getStringExtra("닉네임").toString(),intent.getStringExtra("제목").toString(),intent.getStringExtra("날짜").toString(),intent.getStringExtra("내용").toString(),""));
+            recyclerView.setAdapter(adapter);
+
+        }
+    }
     @Override
     //인터페이스 활용하여 클릭시 이곳으로 오게 하였음
     public void onClick(View v) {
@@ -123,8 +151,9 @@ public class forum_activity extends AppCompatActivity
             Intent intent = new Intent(forum_activity.this, bmr_activity.class);
             startActivity(intent);
             finish();
-        } else if (v.getId() == R.id.imageView7) {
-
+        } else if (v.getId() == R.id.forum_add) {
+            Intent intent = new Intent(forum_activity.this, forum_write.class);
+            startActivityForResult(intent,1010);
 
 
         }

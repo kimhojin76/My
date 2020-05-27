@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".MainActivity">
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <View
+            android:id="@+id/line4"
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:layout_marginTop="15dp"
+            android:background="#00ff00"
+            app:layout_constraintTop_toBottomOf="@+id/forum_write_title">
+
+            ></View>
+
+        <TextView
+            android:id="@+id/forum_write_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:hint="nickname"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent">
+        </TextView>
+        <TextView
+            android:id="@+id/forum_write_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:hint="date"
+            app:layout_constraintLeft_toRightOf="@id/forum_write_nickname"
+            app:layout_constraintTop_toTopOf="@+id/forum_write_nickname">
+        </TextView>
+        <EditText
+            android:id="@+id/forum_write_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="25dp"
+            android:hint="title"
+            app:layout_constraintLeft_toLeftOf="@id/forum_write_nickname"
+            app:layout_constraintTop_toBottomOf="@+id/forum_write_nickname">
+        </EditText>
+        <ImageView
+            android:id="@+id/forum_write_contents_image"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:hint="image"
+            app:layout_constraintLeft_toLeftOf="@id/forum_write_title"
+            app:layout_constraintTop_toBottomOf="@id/forum_write_title">
+        </ImageView>
+
+        <EditText
+            android:id="@+id/forum_write_contents"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxHeight="200dp"
+
+            android:layout_marginTop="15dp"
+            android:hint="contents"
+            app:layout_constraintLeft_toLeftOf="@id/forum_write_contents_image"
+            app:layout_constraintTop_toBottomOf="@+id/line4"></EditText>
+        <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_marginTop="15dp"
+        android:layout_height="2px"
+        android:background="#00ff00"
+        app:layout_constraintTop_toBottomOf="@id/forum_write_contents">
+        </View>
+
+<!--        <ImageView-->
+<!--            android:id="@+id/imageView"-->
+<!--            android:layout_width="150dp"-->
+<!--            android:layout_height="100dp"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            android:layout_marginLeft="15dp"-->
+<!--            android:background="@drawable/btn_bg"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/line">-->
+<!--        </ImageView>-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/write_image"-->
+<!--            android:layout_width="100dp"-->
+<!--            android:layout_height="100dp"-->
+<!--            android:background="@drawable/btn_bg"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/imageView"-->
+<!--            app:layout_constraintEnd_toEndOf="@+id/imageView"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/imageView"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/imageView">-->
+
+<!--        </ImageView>-->
+<!--        <Button-->
+<!--            android:id="@+id/write_image_upload"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="15dp"-->
+<!--            android:text="사진 업로드"-->
+
+<!--            app:layout_constraintLeft_toRightOf="@id/imageView"-->
+<!--            app:layout_constraintTop_toTopOf="@id/write_image"-->
+<!--            >-->
+
+<!--        </Button>-->
+
+        <Button
+            android:id="@+id/write_register"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:text="등록하기"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toBottomOf="@+id/line">
+
+        </Button>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
