@@ -19,6 +19,12 @@
             android:label="회원가입">
         </activity>
         <activity
+            android:name=".Food_custom_weight"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.AppCompat.Dialog"
+            android:label="중량">
+        </activity>
+        <activity
             android:name=".forum_write"
             android:launchMode="singleTop"
             android:label="포럼 글쓰기">

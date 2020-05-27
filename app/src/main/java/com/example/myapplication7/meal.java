@@ -41,7 +41,7 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
         //레이아웃 메너저를 통해 List형식으로 할지 Grid형식으로 할지 결정정
         LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         LinearLayoutManager morning_layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         //음식 리사이클러뷰에 레이아웃 메니져 설정
         recyclerView.setLayoutManager(layoutManager);
         //아침 리사이클러뷰에 레이아웃 메니져 설정
@@ -156,62 +156,14 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
             public void onItemClick(FoodAdapter.ViewHolder holder, View view, int position) {
                 TextView userkcal = (TextView) findViewById(R.id.textView26);
                 Food item = adapter.getItem(position);
+                Intent fooddata = new Intent(meal.this, Food_custom_weight.class);
+                fooddata.putExtra("음식명",item.getName().toString());
+                fooddata.putExtra("칼로리",item.getKcal().toString());
+                fooddata.putExtra("탄수화물",item.getCar().toString());
+                fooddata.putExtra("단백질",item.getPro().toString());
+                fooddata.putExtra("지방",item.getFat().toString());
+                startActivityForResult(fooddata,1020);
 
-                if(meal=="아침식단"){
-                    morning_adapter.addItem(new Food(item.getName(),item.getKcal(),item.getCar(),item.getPro(),item.getFat()));
-                    morning_recyclerView.setAdapter(morning_adapter);
-
-                }else if(meal=="점심식단"){
-                    lunch_adapter.addItem(new Food(item.getName(),item.getKcal(),item.getCar(),item.getPro(),item.getFat()));
-                    morning_recyclerView.setAdapter(lunch_adapter);
-
-                }else if(meal=="저녘식단"){
-                    dinner_adapter.addItem(new Food(item.getName(),item.getKcal(),item.getCar(),item.getPro(),item.getFat()));
-                    morning_recyclerView.setAdapter(dinner_adapter);
-
-                }else if(meal=="간식"){
-                    snack_adapter.addItem(new Food(item.getName(),item.getKcal(),item.getCar(),item.getPro(),item.getFat()));
-                    morning_recyclerView.setAdapter(snack_adapter);
-
-                }else{
-
-                }
-
-                if(meal == "아침식단") {
-
-                    user_kcal = 0;
-                    for (int i = 0; i < morning_adapter.items.size(); i++) {
-                        Food item1 = morning_adapter.getItem(i);
-                        Log.v("식단입력 엑티비티", item1.getName());
-                        user_kcal = user_kcal + Double.parseDouble(item1.getKcal());
-                        userkcal.setText(Double.toString(user_kcal));
-                    }
-                    Log.v("식단입력 엑티비티", Double.toString(user_kcal));
-                }else if(meal == "점심식단"){
-                    user_kcal = 0;
-                    for (int i = 0; i < lunch_adapter.items.size(); i++) {
-                        Food item1 = lunch_adapter.getItem(i);
-                        Log.v("식단입력 엑티비티", item1.getName());
-                        user_kcal = user_kcal + Double.parseDouble(item1.getKcal());
-                        userkcal.setText(Double.toString(user_kcal));
-                    }
-                }else if(meal == "저녘식단"){
-                    user_kcal = 0;
-                    for (int i = 0; i < dinner_adapter.items.size(); i++) {
-                        Food item1 = dinner_adapter.getItem(i);
-                        Log.v("식단입력 엑티비티", item1.getName());
-                        user_kcal = user_kcal + Double.parseDouble(item1.getKcal());
-                        userkcal.setText(Double.toString(user_kcal));
-                    }
-                }else if(meal == "간식"){
-                    user_kcal = 0;
-                    for (int i = 0; i < snack_adapter.items.size(); i++) {
-                        Food item1 = snack_adapter.getItem(i);
-                        Log.v("식단입력 엑티비티", item1.getName());
-                        user_kcal = user_kcal + Double.parseDouble(item1.getKcal());
-                        userkcal.setText(Double.toString(user_kcal));
-                    }
-                }
 
 
 
@@ -249,7 +201,82 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
            adapter.addItem(new Food(intent.getStringExtra("음식명").toString(),intent.getStringExtra("칼로리").toString(),intent.getStringExtra("탄수화물").toString(),intent.getStringExtra("단백질").toString(),intent.getStringExtra("지방").toString()));
             recyclerView.setAdapter(adapter);
 
-        }
+
+
+
+
+
+
+
+
+
+        }else if(requestCode==1020&&resultCode==220){
+            TextView userkcal = (TextView) findViewById(R.id.textView26);
+
+            Log.v("식단입력 엑티비티", "조건문 도착");
+            Intent intent = data;
+            Log.v("식단입력 엑티비티", intent.getStringExtra("음식명").toString());
+
+            Log.v("식단입력 엑티비티", intent.getStringExtra("칼로리").toString());
+            Log.v("식단입력 엑티비티", intent.getStringExtra("탄수화물").toString());
+
+            if(meal=="아침식단"){
+                morning_adapter.addItem(new Food(intent.getStringExtra("음식명"),intent.getStringExtra("칼로리"),intent.getStringExtra("탄수화물"),intent.getStringExtra("단백질"),intent.getStringExtra("지방")));
+                morning_recyclerView.setAdapter(morning_adapter);
+
+            }else if(meal=="점심식단"){
+                lunch_adapter.addItem(new Food(intent.getStringExtra("음식명"),intent.getStringExtra("칼로리"),intent.getStringExtra("탄수화물"),intent.getStringExtra("단백질"),intent.getStringExtra("지방")));
+                morning_recyclerView.setAdapter(lunch_adapter);
+
+            }else if(meal=="저녘식단"){
+                dinner_adapter.addItem(new Food(intent.getStringExtra("음식명"),intent.getStringExtra("칼로리"),intent.getStringExtra("탄수화물"),intent.getStringExtra("단백질"),intent.getStringExtra("지방")));
+                morning_recyclerView.setAdapter(dinner_adapter);
+
+            }else if(meal=="간식"){
+                snack_adapter.addItem(new Food(intent.getStringExtra("음식명"),intent.getStringExtra("칼로리"),intent.getStringExtra("탄수화물"),intent.getStringExtra("단백질"),intent.getStringExtra("지방")));
+                morning_recyclerView.setAdapter(snack_adapter);
+
+            }else{
+
+            }
+
+            if(meal == "아침식단") {
+
+                user_kcal = 0;
+                for (int i = 0; i < morning_adapter.items.size(); i++) {
+                    Food item1 = morning_adapter.getItem(i);
+                    Log.v("식단입력 엑티비티", item1.getName());
+                    user_kcal = user_kcal + Double.parseDouble(item1.getKcal());
+                    userkcal.setText(Double.toString(user_kcal));
+                }
+                Log.v("식단입력 엑티비티", Double.toString(user_kcal));
+            }else if(meal == "점심식단"){
+                user_kcal = 0;
+                for (int i = 0; i < lunch_adapter.items.size(); i++) {
+                    Food item1 = lunch_adapter.getItem(i);
+                    Log.v("식단입력 엑티비티", item1.getName());
+                    user_kcal = user_kcal + Double.parseDouble(item1.getKcal());
+                    userkcal.setText(Double.toString(user_kcal));
+                }
+            }else if(meal == "저녘식단"){
+                user_kcal = 0;
+                for (int i = 0; i < dinner_adapter.items.size(); i++) {
+                    Food item1 = dinner_adapter.getItem(i);
+                    Log.v("식단입력 엑티비티", item1.getName());
+                    user_kcal = user_kcal + Double.parseDouble(item1.getKcal());
+                    userkcal.setText(Double.toString(user_kcal));
+                }
+            }else if(meal == "간식"){
+                user_kcal = 0;
+                for (int i = 0; i < snack_adapter.items.size(); i++) {
+                    Food item1 = snack_adapter.getItem(i);
+                    Log.v("식단입력 엑티비티", item1.getName());
+                    user_kcal = user_kcal + Double.parseDouble(item1.getKcal());
+                    userkcal.setText(Double.toString(user_kcal));
+                }
+            }
+
+       }
     }
 
     @Override
