@@ -18,12 +18,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class bmr_activity extends AppCompatActivity implements View.OnClickListener {
     public String PREFERENCE = "com.studio572.samplesharepreference";
-
+    private String ID;
 
     @Override
     protected void onCreate(Bundle bundle){
         Log.v("BMR 엑티비티","create");
         super.onCreate(bundle);
+        SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        ID = pref.getString("ID","");
         setContentView(R.layout.bmr_calculator);
         RadioButton male = (RadioButton) findViewById(R.id.gender_input_male);
         RadioButton female = (RadioButton) findViewById(R.id.gender_input2_female);
@@ -201,14 +204,14 @@ public class bmr_activity extends AppCompatActivity implements View.OnClickListe
         EditText weight = (EditText) findViewById(R.id.now_weight_input);
         SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
         TextView last_kcal = (TextView) findViewById(R.id.last_kcal);
-        String bmr_lastkcal = pref.getString("PAL","");
-        String bmr_weight = pref.getString("weight","");
-        String bmr_stature = pref.getString("stature","");
-        String bmr_age = pref.getString("age","");
-        String bmr_target_weight = pref.getString("target_weight","");
-        String bmr_diet_date = pref.getString("diet_date","");
-        String bmr_BMR = pref.getString("BMR","");
-        String bmr_down_kcal = pref.getString("down_kcal","");
+        String bmr_lastkcal = pref.getString(ID+"PAL","");
+        String bmr_weight = pref.getString(ID+"weight","");
+        String bmr_stature = pref.getString(ID+"stature","");
+        String bmr_age = pref.getString(ID+"age","");
+        String bmr_target_weight = pref.getString(ID+"target_weight","");
+        String bmr_diet_date = pref.getString(ID+"diet_date","");
+        String bmr_BMR = pref.getString(ID+"BMR","");
+        String bmr_down_kcal = pref.getString(ID+"down_kcal","");
         last_kcal.setText(bmr_lastkcal);
         weight.setText(bmr_weight);
         stature.setText(bmr_stature);
@@ -246,6 +249,8 @@ public class bmr_activity extends AppCompatActivity implements View.OnClickListe
     protected void onPause() {
         Log.v("BMR 엑티비티","Pause");
         SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+
         EditText age = (EditText) findViewById(R.id.now_age_input);
         EditText target_weight = (EditText) findViewById(R.id.taget_weight_input);
         RadioButton male = (RadioButton) findViewById(R.id.gender_input_male);
@@ -258,14 +263,13 @@ public class bmr_activity extends AppCompatActivity implements View.OnClickListe
         EditText down_kcal = (EditText) findViewById((R.id.down_kcal));
 
 
-        SharedPreferences.Editor editor = pref.edit();
-        editor.putString("weight",weight.getText().toString());
-        editor.putString("stature",stature.getText().toString());
-        editor.putString("age",age.getText().toString());
-        editor.putString("target_weight",target_weight.getText().toString());
-        editor.putString("diet_date",diet_date.getText().toString());
-        editor.putString("BMR",BMR.getText().toString());
-        editor.putString("down_kcal",down_kcal.getText().toString());
+        editor.putString(ID+"weight",weight.getText().toString());
+        editor.putString(ID+"stature",stature.getText().toString());
+        editor.putString(ID+"age",age.getText().toString());
+        editor.putString(ID+"target_weight",target_weight.getText().toString());
+        editor.putString(ID+"diet_date",diet_date.getText().toString());
+        editor.putString(ID+"BMR",BMR.getText().toString());
+        editor.putString(ID+"down_kcal",down_kcal.getText().toString());
         if(male.isChecked()==true){
             editor.putBoolean("male",true);
             editor.putBoolean("female",false);

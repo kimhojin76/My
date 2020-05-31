@@ -23,8 +23,12 @@ public class forum_activity extends AppCompatActivity
         implements View.OnClickListener {
     RecyclerView recyclerView;
     memberAdapter adapter= new memberAdapter();
-
+    private String ID;
     public String PREFERENCE = "com.studio572.samplesharepreference";
+
+
+
+
 
 
     @Override
@@ -33,6 +37,17 @@ public class forum_activity extends AppCompatActivity
 
         super.onCreate(bundle);
         setContentView(R.layout.forum);
+
+        //쉐어드프리퍼런스 pref에 쉐어드 주소,타입 지정해서 매칭
+        SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
+        //에디터 선언
+        SharedPreferences.Editor editor = pref.edit();
+
+        ID = pref.getString("ID","");
+
+
+
+
         final TextView kcal = (TextView) findViewById(R.id.textView5);
         kcal.setOnClickListener(this);
         final TextView basic_food = (TextView) findViewById(R.id.textView8);
@@ -62,10 +77,8 @@ public class forum_activity extends AppCompatActivity
         //pal 리사이클러뷰에 레이아웃 메니져 설정
         recyclerView.setLayoutManager(layoutManager);
         //어뎁터 선언
-        adapter.addItem(new member("다이어터", "다이어트 방법 공유좀해주세요", "2020-05-26", "다이어트 방법 공유좀요",""));
-//        adapter.addItem(new member("동면중", "다이어트 식단 이렇게 짜세요", "2020-05-26", "잘짜세요",""));
-//        adapter.addItem(new member("피톨로지", "살이 찌는 이유는 무엇일까?", "2020-05-26", "많이 먹어서",""));
-//        adapter.addItem(new member("살덩이", "매일 배가 고파요", "2020-05-26", "먹어도 먹어도 배가 고픔",""));
+
+
         //리사이클러뷰에 어댑터 설정
         recyclerView.setAdapter(adapter);
         adapter.setOnItemClickListener(new OnmemberItemClickListener() {
@@ -96,14 +109,18 @@ public class forum_activity extends AppCompatActivity
             Log.v("포럼 엑티비티", "조건문 도착");
 
             Intent intent = data;
-            Log.v("포럼 엑티비티", intent.getStringExtra("제목").toString());
-            Log.v("포럼 엑티비티", intent.getStringExtra("닉네임").toString());
-            Log.v("포럼 엑티비티", intent.getStringExtra("날짜").toString());
-            Log.v("포럼 엑티비티", intent.getStringExtra("내용").toString());
-
             adapter.addItem(new member(intent.getStringExtra("닉네임").toString(),intent.getStringExtra("제목").toString(),intent.getStringExtra("날짜").toString(),intent.getStringExtra("내용").toString(),""));
             recyclerView.setAdapter(adapter);
-
+            Gson gson = new Gson();
+            //쉐어드프리퍼런스 pref에 쉐어드 주소,타입 지정해서 매칭
+            SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
+            //에디터 선언
+            SharedPreferences.Editor editor = pref.edit();
+            String gson_member_adapter = gson.toJson(adapter.items);
+            //에디터에 json형식으로 변환된 객체값 집어넣기
+            editor.putString("gson_member_adapter",gson_member_adapter);
+            //쉐어드에 저장하기
+            editor.commit();
         }
     }
     @Override
@@ -173,44 +190,30 @@ public class forum_activity extends AppCompatActivity
         Log.v("포럼 엑티비티", "Resume");
         super.onResume();
         //Gson 인스턴스 생성
-        Log.v("포럼 엑티비티 gson", adapter.items.toString());
-
         Gson gson = new Gson();
-        //gson을 이용해 Json형식으로 변환하여 어뎁터데이터를 저장
-        String gson_member_adapter = gson.toJson(adapter);
-//        String gson_member_adapter2 = gson.toJson(adapter.items,ArrayList<member>);
-
-        //쉐어드프리퍼런스 pref에 쉐어드 주소,타입 지정해서 매칭
-        Log.v("포럼 엑티비티 gson", gson_member_adapter);
-
-        ArrayList<member> items = new ArrayList<member>();
-
-
-
-
-
+//        //쉐어드프리퍼런스 pref에 쉐어드 주소,타입 지정해서 매칭
         SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
-        //에디터 선언
+//        //에디터 선언
         SharedPreferences.Editor editor = pref.edit();
-        //에디터에 json형식으로 변환된 객체값 집어넣기
-        editor.putString("gson_member_adapter",gson_member_adapter);
-        //에디터에 저장
-        editor.commit();
-
+//        String gson_member_adapter = gson.toJson(adapter.items);
+//        //에디터에 json형식으로 변환된 객체값 집어넣기
+//        editor.putString("gson_member_adapter",gson_member_adapter);
+//        //쉐어드에 저장하기
+//        editor.commit();
         //쉐어드에서 가져오기(json형식)
         String get_gson_member_adapter = pref.getString("gson_member_adapter","");
-//        //이를 변환
+        //이를 변환
         Log.v("포럼 엑티비티 gson", get_gson_member_adapter.toString());
-//        memberAdapter get_adapter = gson.fromJson(get_gson_member_adapter,new TypeToken<ArrayList<member>>(){}.getType());
+        ArrayList<member> list = gson.fromJson(get_gson_member_adapter,new TypeToken<ArrayList<member>>(){}.getType());
+        adapter.items = list;
 
-//
-//        recyclerView = findViewById(R.id.forum_board);
-//        //레이아웃 메너저를 통해 List형식으로 할지 Grid형식으로 할지 결정정
-//        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-//        //pal 리사이클러뷰에 레이아웃 메니져 설정
-//        recyclerView.setLayoutManager(layoutManager);
-//        //어뎁터 선언
-//        recyclerView.setAdapter(get_adapter);
+        recyclerView = findViewById(R.id.forum_board);
+        //레이아웃 메너저를 통해 List형식으로 할지 Grid형식으로 할지 결정정
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        //pal 리사이클러뷰에 레이아웃 메니져 설정
+        recyclerView.setLayoutManager(layoutManager);
+        //어뎁터 선언
+        recyclerView.setAdapter(adapter);
 
 
     }
@@ -236,6 +239,20 @@ public class forum_activity extends AppCompatActivity
     protected void onPause() {
         Log.v("포럼 엑티비티", "Pause");
         super.onPause();
+        Gson gson = new Gson();
+        //gson을 이용해 Json형식으로 변환하여 어뎁터데이터를 저장
+        String gson_member_adapter = gson.toJson(adapter.items);
+        //쉐어드프리퍼런스 pref에 쉐어드 주소,타입 지정해서 매칭
+        SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
+        //에디터 선언
+        SharedPreferences.Editor editor = pref.edit();
+        //에디터에 json형식으로 변환된 객체값 집어넣기
+        editor.putString("gson_member_adapter",gson_member_adapter);
+        String get_gson_member_adapter = pref.getString("gson_member_adapter","");
+        Log.v("포럼 엑티비티 pause gson road", get_gson_member_adapter.toString());
+
+        //에디터에 저장
+        editor.commit();
     }
     public void onBackPressed() {
         Intent intent = new Intent(forum_activity.this, basic_activity.class);

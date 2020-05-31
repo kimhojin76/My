@@ -15,13 +15,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class active_metabolism extends AppCompatActivity implements View.OnClickListener {
     public String PREFERENCE = "com.studio572.samplesharepreference";
-
+    private String ID;
     @Override
     protected void onCreate(Bundle bundle){
         Log.v("활동관리 엑티비티","create");
 
         super.onCreate(bundle);
-
+        SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        ID = pref.getString("ID","");
 
         //BMR d
 
@@ -181,8 +183,8 @@ public class active_metabolism extends AppCompatActivity implements View.OnClick
         SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
         TextView am_BMR = (TextView) findViewById(R.id.basal_metabolism) ;
         TextView active_input = (TextView) findViewById(R.id.activity_metabolism) ;
-        String PAL = pref.getString("PAL","");
-        String BMR = pref.getString("BMR","");
+        String PAL = pref.getString(ID+"PAL","");
+        String BMR = pref.getString(ID+"BMR","");
         Log.v("활동관리 엑티비티",PAL);
         am_BMR.setText(BMR);
         active_input.setText(PAL);
@@ -210,11 +212,12 @@ public class active_metabolism extends AppCompatActivity implements View.OnClick
     protected void onPause() {
         Log.v("활동관리 엑티비티","Pause");
         SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
-        TextView am_PAL = (TextView) findViewById(R.id.activity_metabolism) ;
         SharedPreferences.Editor editor = pref.edit();
+
+        TextView am_PAL = (TextView) findViewById(R.id.activity_metabolism) ;
         Log.v("활동관리 엑티비티",am_PAL.getText().toString());
 
-        editor.putString("PAL",am_PAL.getText().toString());
+        editor.putString(ID+"PAL",am_PAL.getText().toString());
         editor.commit();
         super.onPause();
     }

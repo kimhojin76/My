@@ -21,15 +21,17 @@ public class basic_activity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle bundle){
-
-
-
-
-
-
-
         super.onCreate(bundle);
         setContentView(R.layout.basic);
+
+        SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
+        SharedPreferences.Editor edit = pref.edit();
+        String ID = "admin";
+        edit.putString("ID",ID);
+        edit.commit();
+
+
+
 
         final TextView kcal = (TextView) findViewById(R.id.textView5);
         kcal.setOnClickListener(this);
@@ -146,18 +148,15 @@ public class basic_activity extends AppCompatActivity
         Log.v("베이직 엑티비티","create");
         SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
         SharedPreferences.Editor edit = pref.edit();
-        String ID = "admin";
-        edit.putString("admin_user_act_kcal","3030.5");
-        edit.putString(ID+"_id",ID);
-        edit.commit();
-        pref.getString(ID+"_user_act_kcal","");
+        String ID = pref.getString("ID","");
+
+        edit.putString(ID+"user_act_kcal","");
+        pref.getString(ID+"user_act_kcal","");
         Log.v("베이직 엑티비티",pref.getString(ID+"_user_act_kcal",""));
 
-
-        String user_id = pref.getString(ID+"_id","");
-        String user_act_kcal = pref.getString(ID+"_user_act_kcal","");
+        String user_act_kcal = pref.getString(ID+"user_act_kcal","");
         int user_d_day = pref.getInt(ID+"user_d_day",0);
-        Float user_meal_kcal = pref.getFloat(ID+"user_meal_kcal",1);
+        Float user_meal_kcal = pref.getFloat(ID+"user_meal_kcal",0);
         double user_meal_car = pref.getFloat(ID+"user_meal_car",0);
         double user_meal_pro = pref.getFloat(ID+"user_meal_pro",0);
         double user_meal_fat = pref.getFloat(ID+"user_meal_fat",0);
@@ -181,8 +180,9 @@ public class basic_activity extends AppCompatActivity
 
 
 
+
         basic_intext2.setText(user_act_kcal);
-        Log.v("베이직 엑티비티",user_id+"입력확인");
+        Log.v("베이직 엑티비티",ID+"입력확인");
     }
 
     @Override

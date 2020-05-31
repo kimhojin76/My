@@ -30,13 +30,8 @@ public class forum_write extends AppCompatActivity implements View.OnClickListen
         super.onCreate(bundle);
         setContentView(R.layout.forum_write);
 
-        long now = System.currentTimeMillis();
-        Date mDate = new Date(now);
-        SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        String getTime = simpleDate.format(mDate);
 
-        date = (TextView) findViewById(R.id.forum_write_date);
-        date.setText(getTime);
+
         title = (EditText) findViewById(R.id.forum_write_title);
         contents = (EditText) findViewById(R.id.forum_write_contents);
 //        imageView = (ImageView) findViewById(R.id.write_image);
@@ -106,11 +101,15 @@ public class forum_write extends AppCompatActivity implements View.OnClickListen
 //            startActivityForResult(intent,1000);
         if (v.getId() == R.id.write_register) {
             Log.v("포럼 글쓰기 엑티비티", "클릭");
+            long now = System.currentTimeMillis();
+            Date mDate = new Date(now);
+            SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            String getTime = simpleDate.format(mDate);
 
             Intent data = new Intent(forum_write.this, forum_activity.class);
             data.putExtra("제목",title.getText().toString());
             data.putExtra("닉네임",nickcame.getText().toString());
-            data.putExtra("날짜",date.getText().toString());
+            data.putExtra("날짜",getTime.toString());
             data.putExtra("내용",contents.getText().toString());
 //            data.putExtra("이미지",imageUri.toString());
             setResult(200,data);

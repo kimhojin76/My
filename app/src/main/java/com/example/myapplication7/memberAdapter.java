@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class memberAdapter extends RecyclerView.Adapter<memberAdapter.ViewHolder> implements OnmemberItemClickListener {
 
-    public static ArrayList<member> items = new ArrayList<member>();
+    public ArrayList<member> items = new ArrayList<member>();
     OnmemberItemClickListener listener;
 
 
