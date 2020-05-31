@@ -27,6 +27,7 @@ public class basic_activity extends AppCompatActivity
         SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
         SharedPreferences.Editor edit = pref.edit();
         String ID = "admin";
+        edit.putInt("first",1);
         edit.putString("ID",ID);
         edit.commit();
 

@@ -1,12 +1,20 @@
 package com.example.myapplication7;
 
 public class Food {
+    public void setWeight(String weight) {
+        this.weight = weight;
+    }
+
+    public String getWeight() {
+        return weight;
+    }
 
     String name;
     String Kcal;
     String car;
     String pro;
     String fat;
+    String weight;
 
     public Food(String name, String kcal, String car, String pro, String fat) {
         this.name = name;

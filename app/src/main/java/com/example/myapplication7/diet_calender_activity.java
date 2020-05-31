@@ -1,6 +1,7 @@
 package com.example.myapplication7;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,22 +13,60 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class diet_calender_activity extends AppCompatActivity
         implements View.OnClickListener {
+    public String PREFERENCE = "com.studio572.samplesharepreference";
+    String ID;
     @Override
     protected void onCreate(Bundle bundle){
         Log.v("식단/체중 엑티비티","create");
 
         super.onCreate(bundle);
         setContentView(R.layout.diet_weight_calender);
+        //선택 안했을시 자동으로 현재날짜를 date값에 입력하게끔 구현
+        SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
+        SharedPreferences.Editor edit = pref.edit();
+        ID = pref.getString("ID","");
+
+
+
+
+
+
         final CalendarView calendarView = (CalendarView) findViewById(R.id.calendarView);
+
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                Log.v("체중/식단 엑티비티",Integer.toString(year)+Integer.toString(month+1)+Integer.toString(dayOfMonth));
+                SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
+                SharedPreferences.Editor edit = pref.edit();
+                String finaledate = Integer.toString(year)+Integer.toString(month+1)+Integer.toString(dayOfMonth);
+                Log.v("체중/식단 엑티비티",finaledate);
+                edit.putString(ID+"date",finaledate);
+                edit.commit();
+
 
             }
         });
+        long date = calendarView.getDate();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(date);
+        int Year = calendar.get(Calendar.YEAR);
+        int Month = calendar.get(Calendar.MONTH);
+        int Day = calendar.get(Calendar.DAY_OF_MONTH);
+//customize According to Your requirement
+        String finalDate=""+Year+(Month+1)+Day;
+        edit.putString(ID+"date",finalDate);
+        edit.commit();
+        Log.v("체중/식단 엑티비티",finalDate);
+
+
+
+
         final TextView kcal = (TextView) findViewById(R.id.textView5);
         kcal.setOnClickListener(this);
         final TextView basic_food = (TextView) findViewById(R.id.textView8);

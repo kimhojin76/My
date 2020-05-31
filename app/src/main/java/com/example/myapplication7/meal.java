@@ -1,6 +1,7 @@
 package com.example.myapplication7;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,9 +20,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.util.ArrayList;
+
 public class meal extends AppCompatActivity implements View.OnClickListener {
     RecyclerView recyclerView, morning_recyclerView;
     FoodAdapter adapter;
+    public String PREFERENCE = "com.studio572.samplesharepreference";
+    String ID,DATE;
     String food_name,food_kcal,food_car,food_pro,foodfat;
     String meal = "아침식단";
     double user_kcal = 0;
@@ -29,6 +37,14 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
     String[] spinner_item = {"아침식단","점심식단","저녘식단","간식"};
 
     protected void onCreate(Bundle bundle) {
+        SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
+        SharedPreferences.Editor edit = pref.edit();
+        ID = pref.getString("ID","");
+        DATE = pref.getString(ID+"date","");
+        Log.v("체중그래프 엑티비티", ID+DATE);
+        //타이틀 바 날자+식단으로 변경
+        setTitle(DATE+"식단");
+
 
         Log.v("체중그래프 엑티비티", "create");
         super.onCreate(bundle);
@@ -223,6 +239,10 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
             if(meal=="아침식단"){
                 morning_adapter.addItem(new Food(intent.getStringExtra("음식명"),intent.getStringExtra("칼로리"),intent.getStringExtra("탄수화물"),intent.getStringExtra("단백질"),intent.getStringExtra("지방")));
                 morning_recyclerView.setAdapter(morning_adapter);
+                Gson g =new Gson();
+                g.toJson(morning_adapter.items);
+                Log.v("식단입력 모닝 엑티비티", g.toJson(morning_adapter.items));
+
 
             }else if(meal=="점심식단"){
                 lunch_adapter.addItem(new Food(intent.getStringExtra("음식명"),intent.getStringExtra("칼로리"),intent.getStringExtra("탄수화물"),intent.getStringExtra("단백질"),intent.getStringExtra("지방")));
@@ -355,5 +375,28 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
     protected void onPause() {
         Log.v("식단입력 엑티비티","Pause");
         super.onPause();
+        Gson gson = new Gson();
+        //gson을 이용해 Json형식으로 변환하여 어뎁터데이터를 저장
+        String gson_morning_adapter = gson.toJson(morning_adapter.items);
+        String gson_lunch_adapter = gson.toJson(lunch_adapter.items);
+        String gson_dinner_adapter = gson.toJson(dinner_adapter.items);
+        String gson_snack_adapter = gson.toJson(snack_adapter.items);
+        String gson_food_adapter = gson.toJson(adapter.items);
+
+        //쉐어드프리퍼런스 pref에 쉐어드 주소,타입 지정해서 매칭
+        SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
+        //에디터 선언
+        SharedPreferences.Editor editor = pref.edit();
+        //에디터에 json형식으로 변환된 객체값 집어넣기
+        editor.putString(ID+DATE+"gson_food_adapter",gson_food_adapter);
+        editor.putString(ID+DATE+"gson_morning_adapter",gson_morning_adapter);
+        editor.putString(ID+DATE+"gson_lunch_adapter",gson_lunch_adapter);
+        editor.putString(ID+DATE+"gson_dinner_adapter",gson_dinner_adapter);
+        editor.putString(ID+DATE+"gson_snack_adapter",gson_snack_adapter);
+
+        Log.v("포럼 엑티비티 pause gson road", pref.getString(ID+DATE+"gson_morning_adapter",""));
+
+        //에디터에 저장
+        editor.commit();
     }
 }
