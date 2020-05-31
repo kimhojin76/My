@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class diet_calender_activity extends AppCompatActivity
@@ -18,7 +20,14 @@ public class diet_calender_activity extends AppCompatActivity
 
         super.onCreate(bundle);
         setContentView(R.layout.diet_weight_calender);
+        final CalendarView calendarView = (CalendarView) findViewById(R.id.calendarView);
+        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                Log.v("체중/식단 엑티비티",Integer.toString(year)+Integer.toString(month+1)+Integer.toString(dayOfMonth));
 
+            }
+        });
         final TextView kcal = (TextView) findViewById(R.id.textView5);
         kcal.setOnClickListener(this);
         final TextView basic_food = (TextView) findViewById(R.id.textView8);

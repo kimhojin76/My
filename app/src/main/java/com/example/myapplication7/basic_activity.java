@@ -1,5 +1,6 @@
 package com.example.myapplication7;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -15,11 +16,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class basic_activity extends AppCompatActivity
         implements View.OnClickListener {
-    public final String PREFERENCE = "com.studio572.samplesharepreference";
+    public String PREFERENCE = "com.studio572.samplesharepreference";
+
 
     @Override
     protected void onCreate(Bundle bundle){
-        Log.v("베이직 엑티비티","create");
+
+
+
+
+
+
+
         super.onCreate(bundle);
         setContentView(R.layout.basic);
 
@@ -135,6 +143,46 @@ public class basic_activity extends AppCompatActivity
     protected void onResume() {
         Log.v("베이직 엑티비티","Resume");
         super.onResume();
+        Log.v("베이직 엑티비티","create");
+        SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
+        SharedPreferences.Editor edit = pref.edit();
+        String ID = "admin";
+        edit.putString("admin_user_act_kcal","3030.5");
+        edit.putString(ID+"_id",ID);
+        edit.commit();
+        pref.getString(ID+"_user_act_kcal","");
+        Log.v("베이직 엑티비티",pref.getString(ID+"_user_act_kcal",""));
+
+
+        String user_id = pref.getString(ID+"_id","");
+        String user_act_kcal = pref.getString(ID+"_user_act_kcal","");
+        int user_d_day = pref.getInt(ID+"user_d_day",0);
+        Float user_meal_kcal = pref.getFloat(ID+"user_meal_kcal",1);
+        double user_meal_car = pref.getFloat(ID+"user_meal_car",0);
+        double user_meal_pro = pref.getFloat(ID+"user_meal_pro",0);
+        double user_meal_fat = pref.getFloat(ID+"user_meal_fat",0);
+
+        //유저 식단 총합 칼로리
+        TextView basic_intext1 = (TextView) findViewById(R.id.basic_intext1);
+        //유저 잔여 칼로리(행동칼로리-식단칼로리)
+        TextView basic_intext2 = (TextView) findViewById(R.id.basic_intext2);
+        //유저 다이어트 d-day 알림
+        TextView basic_intext3 = (TextView) findViewById(R.id.basic_intext3);
+        //유저 섭취 탄수화물/유저 설정상 최대 탄수화물
+        TextView basic_intext10 = (TextView) findViewById(R.id.basic_intext10);
+        TextView basic_intext12 = (TextView) findViewById(R.id.basic_intext12);
+        //유저 섭취 단백질/유저 설정상 최대 단백질
+        TextView basic_intext13 = (TextView) findViewById(R.id.basic_intext13);
+        TextView basic_intext15 = (TextView) findViewById(R.id.basic_intext15);
+        //유저 섭취 지방/유저 설정상 최대 지방
+        TextView basic_intext16 = (TextView) findViewById(R.id.basic_intext16);
+        TextView basic_intext18 = (TextView) findViewById(R.id.basic_intext18);
+        basic_intext1.setText(Double.toString(user_meal_kcal));
+
+
+
+        basic_intext2.setText(user_act_kcal);
+        Log.v("베이직 엑티비티",user_id+"입력확인");
     }
 
     @Override

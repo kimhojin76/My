@@ -1,5 +1,6 @@
 package com.example.myapplication7;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -16,7 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class memberAdapter extends RecyclerView.Adapter<memberAdapter.ViewHolder> implements OnmemberItemClickListener {
-    ArrayList<member> items = new ArrayList<member>();
+
+    public static ArrayList<member> items = new ArrayList<member>();
     OnmemberItemClickListener listener;
 
 
