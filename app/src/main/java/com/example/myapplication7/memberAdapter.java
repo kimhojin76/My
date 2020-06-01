@@ -1,6 +1,7 @@
 package com.example.myapplication7;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -8,16 +9,20 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Dictionary;
 
 public class memberAdapter extends RecyclerView.Adapter<memberAdapter.ViewHolder> implements OnmemberItemClickListener {
-
+    private Context mContext;
     public ArrayList<member> items = new ArrayList<member>();
     OnmemberItemClickListener listener;
 
@@ -125,8 +130,48 @@ public class memberAdapter extends RecyclerView.Adapter<memberAdapter.ViewHolder
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case 1001: //편집 클릭시
+                        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
 
+                        // 다이얼로그를 보여주기 위해 edit_box.xml 파일을 사용합니다.
 
+                        View view = LayoutInflater.from(mContext)
+                                .inflate(R.layout.forum_edit, null, false);
+                        builder.setView(view);
+                        final Button ButtonSubmit = (Button) view.findViewById(R.id.forum_edit_register);
+                        final EditText editTexttitle = (EditText) view.findViewById(R.id.forum_edit_title);
+                        final EditText editTextcontents = (EditText) view.findViewById(R.id.forum_edit_contents);
+                        final TextView editTextdate = (TextView) view.findViewById(R.id.forum_edit_date);
+                        final TextView editTextnickname = (TextView) view.findViewById(R.id.forum_edit_nickname);
+//                        editTextID.setText(mList.get(getAdapterPosition()).getId());
+//                        editTextEnglish.setText(mList.get(getAdapterPosition()).getEnglish());
+//                        editTextKorean.setText(mList.get(getAdapterPosition()).getKorean());
+//                        final AlertDialog dialog = builder.create();
+//                        ButtonSubmit.setOnClickListener(new View.OnClickListener() {
+//
+//
+//                            @Override
+//                            public void onClick(View v) {
+//                                String strID = editTextID.getText().toString();
+//                                String strEnglish = editTextEnglish.getText().toString();
+//                                String strKorean = editTextKorean.getText().toString();
+//
+//                                Dictionary dict = new Dictionary(strID, strEnglish, strKorean );
+//
+//
+//                                // 8. ListArray에 있는 데이터를 변경하고
+//                                mList.set(getAdapterPosition(), dict);
+//
+//
+//                                // 9. 어댑터에서 RecyclerView에 반영하도록 합니다.
+//
+//                                notifyItemChanged(getAdapterPosition());
+//
+//                                dialog.dismiss();
+//                            }
+//                        });
+//                        dialog.show();
+
+                        break;
                     case 1002:
                         items.remove(getAdapterPosition());
                         // 7. 어댑터에서 RecyclerView에 반영하도록 합니다.

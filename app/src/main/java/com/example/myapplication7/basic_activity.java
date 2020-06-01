@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
@@ -152,7 +153,16 @@ public class basic_activity extends AppCompatActivity
         String ID = pref.getString("ID","");
 
         edit.putString(ID+"user_act_kcal","");
-        pref.getString(ID+"user_act_kcal","");
+        String  max_car = pref.getString(ID+"max_car","");
+        String  max_pro = pref.getString(ID+"max_pro","");
+        String  max_fat = pref.getString(ID+"max_fat","");
+        String  max_kcal = pref.getString(ID+"max_kcal","");
+        String  diet_date = pref.getString(ID+"다이어트시작일","");
+        String  diet_maxdate = pref.getString(ID+"다이어트기간","");
+        Log.v("베이직 엑티비티",diet_date+diet_maxdate);
+
+
+
         Log.v("베이직 엑티비티",pref.getString(ID+"_user_act_kcal",""));
 
         String user_act_kcal = pref.getString(ID+"user_act_kcal","");
@@ -161,13 +171,23 @@ public class basic_activity extends AppCompatActivity
         double user_meal_car = pref.getFloat(ID+"user_meal_car",0);
         double user_meal_pro = pref.getFloat(ID+"user_meal_pro",0);
         double user_meal_fat = pref.getFloat(ID+"user_meal_fat",0);
+        ProgressBar basic_in_seekBar1 = (ProgressBar) findViewById(R.id.basic_in_seekBar1);
+        ProgressBar basic_in_seekBar2 = (ProgressBar) findViewById(R.id.basic_in_seekBar2);
+        ProgressBar basic_in_seekBar3 = (ProgressBar) findViewById(R.id.basic_in_seekBar3);
+        basic_in_seekBar3.setMax(Integer.parseInt(diet_maxdate));
+
+        ProgressBar basic_in_seekBar4 = (ProgressBar) findViewById(R.id.basic_in_seekBar4);
+        ProgressBar basic_in_seekBar5 = (ProgressBar) findViewById(R.id.basic_in_seekBar5);
+        ProgressBar basic_in_seekBar6 = (ProgressBar) findViewById(R.id.basic_in_seekBar6);
 
         //유저 식단 총합 칼로리
         TextView basic_intext1 = (TextView) findViewById(R.id.basic_intext1);
         //유저 잔여 칼로리(행동칼로리-식단칼로리)
         TextView basic_intext2 = (TextView) findViewById(R.id.basic_intext2);
+
         //유저 다이어트 d-day 알림
         TextView basic_intext3 = (TextView) findViewById(R.id.basic_intext3);
+        basic_intext3.setText("");
         //유저 섭취 탄수화물/유저 설정상 최대 탄수화물
         TextView basic_intext10 = (TextView) findViewById(R.id.basic_intext10);
         TextView basic_intext12 = (TextView) findViewById(R.id.basic_intext12);
@@ -177,12 +197,19 @@ public class basic_activity extends AppCompatActivity
         //유저 섭취 지방/유저 설정상 최대 지방
         TextView basic_intext16 = (TextView) findViewById(R.id.basic_intext16);
         TextView basic_intext18 = (TextView) findViewById(R.id.basic_intext18);
+
+
         basic_intext1.setText(Double.toString(user_meal_kcal));
+        basic_intext12.setText(max_car);
+        basic_intext15.setText(max_pro);
+        basic_intext18.setText(max_fat);
+        basic_intext2.setText(max_kcal);
 
+        basic_in_seekBar2.setMax(Integer.parseInt(max_kcal));
+        basic_in_seekBar4.setMax(Integer.parseInt(max_car));
+        basic_in_seekBar5.setMax(Integer.parseInt(max_pro));
+        basic_in_seekBar6.setMax(Integer.parseInt(max_fat));
 
-
-
-        basic_intext2.setText(user_act_kcal);
         Log.v("베이직 엑티비티",ID+"입력확인");
     }
 

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <EditText
+        android:id="@+id/edit_fat_input"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="7dp"
+        android:ems="10"
+        android:hint="지방g(100g기준 숫자만 입력)"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@+id/edit_pro_input"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edit_pro_input"
+        app:layout_constraintTop_toBottomOf="@+id/edit_pro_input" />
+
+    <EditText
+        android:id="@+id/edit_car_input"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="7dp"
+
+        android:ems="10"
+        android:hint="탄수화물g(100g기준 숫자만 입력)"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@+id/edit_kcal_input"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edit_kcal_input"
+        app:layout_constraintTop_toBottomOf="@+id/edit_kcal_input" />
+    <EditText
+        android:id="@+id/edit_foodname_input"
+        android:layout_width="270dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="음식명"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edit_kcal_input"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="7dp"
+
+        android:ems="10"
+        android:hint="칼로리(100g기준 숫자만 입력)"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@+id/edit_foodname_input"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/edit_foodname_input"
+        app:layout_constraintTop_toBottomOf="@+id/edit_foodname_input" />
+
+    <EditText
+        android:id="@+id/edit_pro_input"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+
+        android:layout_marginTop="7dp"
+        android:ems="10"
+        android:hint="단백질g(100g기준 숫자만 입력)"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@+id/edit_car_input"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/edit_kcal_input"
+        app:layout_constraintTop_toBottomOf="@+id/edit_car_input" />
+
+    <Button
+        android:id="@+id/food_edit_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_blue"
+        android:layout_marginTop="12dp"
+
+        android:stateListAnimator="@null"
+        android:text="추가"
+        app:layout_constraintEnd_toEndOf="@+id/edit_fat_input"
+        app:layout_constraintStart_toStartOf="@+id/edit_fat_input"
+        app:layout_constraintTop_toBottomOf="@+id/edit_fat_input" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

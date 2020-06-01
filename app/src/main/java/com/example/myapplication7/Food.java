@@ -1,6 +1,15 @@
 package com.example.myapplication7;
 
 public class Food {
+    public Food(String name, String kcal, String car, String pro, String fat, String weight) {
+        this.name = name;
+        Kcal = kcal;
+        this.car = car;
+        this.pro = pro;
+        this.fat = fat;
+        this.weight = weight;
+    }
+
     public void setWeight(String weight) {
         this.weight = weight;
     }
@@ -16,13 +25,7 @@ public class Food {
     String fat;
     String weight;
 
-    public Food(String name, String kcal, String car, String pro, String fat) {
-        this.name = name;
-        this.Kcal = kcal;
-        this.car = car;
-        this.pro = pro;
-        this.fat = fat;
-    }
+
 
 
     public String getName() {

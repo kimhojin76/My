@@ -71,9 +71,9 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
         snack_adapter = new FoodAdapter2();
 
         //어뎁터에 수치 입력
-        adapter.addItem(new Food("쌀밥","270","61","5","0.7"));
-        adapter.addItem(new Food("찐고구마","193","45.8","2.6","0.2"));
-        adapter.addItem(new Food("닭가슴살","100","0","23","1.2"));
+        adapter.addItem(new Food("쌀밥","270","61","5","0.7","100"));
+        adapter.addItem(new Food("찐고구마","193","45.8","2.6","0.2","100"));
+        adapter.addItem(new Food("닭가슴살","100","0","23","1.2","100"));
 
         //칼로리계산기 버튼 연결 및 클릭이벤트 설정
         final Button add_foodadapter_button = (Button) findViewById(R.id.add_food);
@@ -178,6 +178,7 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
                 fooddata.putExtra("탄수화물",item.getCar().toString());
                 fooddata.putExtra("단백질",item.getPro().toString());
                 fooddata.putExtra("지방",item.getFat().toString());
+
                 startActivityForResult(fooddata,1020);
 
 
@@ -214,7 +215,7 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
             Log.v("식단입력 엑티비티", intent.getStringExtra("단백질").toString());
             Log.v("식단입력 엑티비티", intent.getStringExtra("지방").toString());
 
-           adapter.addItem(new Food(intent.getStringExtra("음식명").toString(),intent.getStringExtra("칼로리").toString(),intent.getStringExtra("탄수화물").toString(),intent.getStringExtra("단백질").toString(),intent.getStringExtra("지방").toString()));
+           adapter.addItem(new Food(intent.getStringExtra("음식명").toString(),intent.getStringExtra("칼로리").toString(),intent.getStringExtra("탄수화물").toString(),intent.getStringExtra("단백질").toString(),intent.getStringExtra("지방").toString(),intent.getStringExtra("중량").toString()));
             recyclerView.setAdapter(adapter);
 
 
@@ -232,12 +233,11 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
             Log.v("식단입력 엑티비티", "조건문 도착");
             Intent intent = data;
             Log.v("식단입력 엑티비티", intent.getStringExtra("음식명").toString());
-
             Log.v("식단입력 엑티비티", intent.getStringExtra("칼로리").toString());
             Log.v("식단입력 엑티비티", intent.getStringExtra("탄수화물").toString());
 
             if(meal=="아침식단"){
-                morning_adapter.addItem(new Food(intent.getStringExtra("음식명"),intent.getStringExtra("칼로리"),intent.getStringExtra("탄수화물"),intent.getStringExtra("단백질"),intent.getStringExtra("지방")));
+                morning_adapter.addItem(new Food(intent.getStringExtra("음식명"),intent.getStringExtra("칼로리"),intent.getStringExtra("탄수화물"),intent.getStringExtra("단백질"),intent.getStringExtra("지방"),intent.getStringExtra("중량")));
                 morning_recyclerView.setAdapter(morning_adapter);
                 Gson g =new Gson();
                 g.toJson(morning_adapter.items);
@@ -245,15 +245,15 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
 
 
             }else if(meal=="점심식단"){
-                lunch_adapter.addItem(new Food(intent.getStringExtra("음식명"),intent.getStringExtra("칼로리"),intent.getStringExtra("탄수화물"),intent.getStringExtra("단백질"),intent.getStringExtra("지방")));
+                lunch_adapter.addItem(new Food(intent.getStringExtra("음식명"),intent.getStringExtra("칼로리"),intent.getStringExtra("탄수화물"),intent.getStringExtra("단백질"),intent.getStringExtra("지방"),intent.getStringExtra("중량")));
                 morning_recyclerView.setAdapter(lunch_adapter);
 
             }else if(meal=="저녘식단"){
-                dinner_adapter.addItem(new Food(intent.getStringExtra("음식명"),intent.getStringExtra("칼로리"),intent.getStringExtra("탄수화물"),intent.getStringExtra("단백질"),intent.getStringExtra("지방")));
+                dinner_adapter.addItem(new Food(intent.getStringExtra("음식명"),intent.getStringExtra("칼로리"),intent.getStringExtra("탄수화물"),intent.getStringExtra("단백질"),intent.getStringExtra("지방"),intent.getStringExtra("중량")));
                 morning_recyclerView.setAdapter(dinner_adapter);
 
             }else if(meal=="간식"){
-                snack_adapter.addItem(new Food(intent.getStringExtra("음식명"),intent.getStringExtra("칼로리"),intent.getStringExtra("탄수화물"),intent.getStringExtra("단백질"),intent.getStringExtra("지방")));
+                snack_adapter.addItem(new Food(intent.getStringExtra("음식명"),intent.getStringExtra("칼로리"),intent.getStringExtra("탄수화물"),intent.getStringExtra("단백질"),intent.getStringExtra("지방"),intent.getStringExtra("중량")));
                 morning_recyclerView.setAdapter(snack_adapter);
 
             }else{

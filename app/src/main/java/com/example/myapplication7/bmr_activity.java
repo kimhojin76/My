@@ -9,12 +9,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class bmr_activity extends AppCompatActivity implements View.OnClickListener {
     public String PREFERENCE = "com.studio572.samplesharepreference";
@@ -179,8 +183,11 @@ public class bmr_activity extends AppCompatActivity implements View.OnClickListe
                 double target_weight_double = Double.parseDouble(target_weight.getText().toString());
                 double diet_date_double = ((now_weight_double - target_weight_double) * 7000) / Double.parseDouble(down_kcal.getText().toString());
                 System.out.println(Math.round(diet_date_double));
-                diet_date.setText(Double.toString(Math.round(diet_date_double)));
-                BMR.setText(Double.toString(Math.round(weightint)));
+
+                diet_date.setText( String.format("%.0f", diet_date_double));
+                BMR.setText(String.format("%.0f", weightint));
+
+
 
             }
 
@@ -203,13 +210,20 @@ public class bmr_activity extends AppCompatActivity implements View.OnClickListe
         TextView diet_date = (TextView) findViewById(R.id.diet_date) ;
         EditText weight = (EditText) findViewById(R.id.now_weight_input);
         SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
+        TextView lastkcal_car_text = (TextView) findViewById(R.id.lastkcal_car_text);
         TextView last_kcal = (TextView) findViewById(R.id.last_kcal);
+        TextView lastkcal_pro_text = (TextView) findViewById(R.id.lastkcal_pro_text);
+        TextView lastkcal_fat_text = (TextView) findViewById(R.id.lastkcal_fat_text);
+        ProgressBar last_kcal_seekbar_car = (ProgressBar) findViewById(R.id.last_kcal_seekbar_car);
+        ProgressBar last_kcal_seekbar_pro = (ProgressBar) findViewById(R.id.last_kcal_seekbar_pro);
+        ProgressBar last_kcal_seekbar_fat = (ProgressBar) findViewById(R.id.last_kcal_seekbar_fat);
+
         String bmr_lastkcal = pref.getString(ID+"PAL","");
         String bmr_weight = pref.getString(ID+"weight","");
         String bmr_stature = pref.getString(ID+"stature","");
         String bmr_age = pref.getString(ID+"age","");
         String bmr_target_weight = pref.getString(ID+"target_weight","");
-        String bmr_diet_date = pref.getString(ID+"diet_date","");
+        String bmr_diet_date = pref.getString(ID+"다이어트기간","");
         String bmr_BMR = pref.getString(ID+"BMR","");
         String bmr_down_kcal = pref.getString(ID+"down_kcal","");
         last_kcal.setText(bmr_lastkcal);
@@ -220,9 +234,27 @@ public class bmr_activity extends AppCompatActivity implements View.OnClickListe
         diet_date.setText(bmr_diet_date);
         BMR.setText(bmr_BMR);
         down_kcal.setText(bmr_down_kcal);
+        if (bmr_lastkcal != "") {
+            double max_kcal = Double.parseDouble(bmr_lastkcal)-Double.parseDouble(bmr_down_kcal);
+            double max_car = ((max_kcal / 100)*50) / 4;
+            double max_pro = ((max_kcal / 100)*30) / 4;
+            double max_fat = ((max_kcal / 100)*20) / 9;
+            last_kcal.setText(String.format("%.0f", max_kcal)+"Kcal");
+            String last_Kcal = String.format("%.0f", max_kcal);
+            String last_car = String.format("%.0f", max_car);
+            String last_pro = String.format("%.0f", max_pro);
+            String last_fat = String.format("%.0f", max_fat);
+
+            lastkcal_car_text.setText("탄수"+"00" + "/"+last_car+"g");
+            lastkcal_pro_text.setText("단백질"+"00" + "/" + last_pro+"g");
+            lastkcal_fat_text.setText("지방"+"00" + "/" + last_fat+"g");
+            last_kcal_seekbar_car.setMax(Integer.parseInt(last_car));
+            last_kcal_seekbar_pro.setMax(Integer.parseInt(last_pro));
+            last_kcal_seekbar_fat.setMax(Integer.parseInt(last_fat));
+            SharedPreferences.Editor editor = pref.edit();
 
 
-
+        }
 
 
 
@@ -267,9 +299,38 @@ public class bmr_activity extends AppCompatActivity implements View.OnClickListe
         editor.putString(ID+"stature",stature.getText().toString());
         editor.putString(ID+"age",age.getText().toString());
         editor.putString(ID+"target_weight",target_weight.getText().toString());
-        editor.putString(ID+"diet_date",diet_date.getText().toString());
         editor.putString(ID+"BMR",BMR.getText().toString());
         editor.putString(ID+"down_kcal",down_kcal.getText().toString());
+        SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+        Date time = new Date();
+        String time1 = format.format(time);
+
+
+        String bmr_down_kcal = pref.getString(ID+"down_kcal","");
+        String bmr_lastkcal = pref.getString(ID+"PAL","");
+        if (bmr_lastkcal != "") {
+            double max_kcal = Double.parseDouble(bmr_lastkcal)-Double.parseDouble(bmr_down_kcal);
+            double max_car = ((max_kcal / 100)*50) / 4;
+            double max_pro = ((max_kcal / 100)*30) / 4;
+            double max_fat = ((max_kcal / 100)*20) / 9;
+            String last_Kcal = String.format("%.0f", max_kcal);
+            String last_car = String.format("%.0f", max_car);
+            String last_pro = String.format("%.0f", max_pro);
+            String last_fat = String.format("%.0f", max_fat);
+            diet_date.getText();
+            editor.putString(ID+"다이어트시작일",time1);
+            editor.putString(ID+"다이어트기간",diet_date.getText().toString());
+            editor.putString(ID+"max_car",last_car);
+            editor.putString(ID+"max_pro",last_pro);
+            editor.putString(ID+"max_fat",last_fat);
+            editor.putString(ID+"max_kcal",last_Kcal);
+            editor.commit();
+
+
+        }
+
+
+        editor.commit();
         if(male.isChecked()==true){
             editor.putBoolean("male",true);
             editor.putBoolean("female",false);

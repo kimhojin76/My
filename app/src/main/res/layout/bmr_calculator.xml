@@ -393,11 +393,12 @@
 
         <ProgressBar
             android:id="@+id/last_kcal_seekbar_car"
-            android:layout_width="60dp"
             style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:progress="50"
             android:textSize="12sp"
             app:layout_constraintLeft_toLeftOf="@id/bmr_image9"
             app:layout_constraintRight_toLeftOf="@id/last_kcal_seekbar_pro"

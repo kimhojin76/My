@@ -75,8 +75,7 @@ public class FoodAdapter2 extends RecyclerView.Adapter<FoodAdapter2.ViewHolder> 
 
     //콘텍스트 메뉴를 사용하기 위하여 온크리에잇콘텍스트메뉴 리스트너를 임플리먼트 해주었음
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener{
-        TextView textView,textView2,textView3,textView4,textView5;
-        EditText food_weight;
+        TextView textView,textView2,textView3,textView4,textView5,food_weight;
         //뷰홀더 생성
         public ViewHolder(@NonNull View itemView, final OnFoodItemClickListener listener) {
             super(itemView);
@@ -98,6 +97,7 @@ public class FoodAdapter2 extends RecyclerView.Adapter<FoodAdapter2.ViewHolder> 
             textView3.setText(item.getCar());
             textView4.setText(item.getPro());
             textView5.setText(item.getFat());
+            food_weight.setText(item.getWeight());
         }
 
         @Override
