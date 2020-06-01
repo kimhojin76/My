@@ -8,19 +8,19 @@
 
 
     <EditText
-        android:id="@+id/add_foodweight_input"
+        android:id="@+id/add_acthours_input"
         android:layout_width="270dp"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
         android:ems="10"
-        android:hint="음식물 중량 입력"
-        android:inputType="number"
+        android:hint="시간 입력"
+        android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/food_add_weight_button"
+        android:id="@+id/acthours_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/btn_blue"
@@ -28,9 +28,9 @@
         android:stateListAnimator="@null"
         android:text="입력"
         android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/add_foodweight_input"
-        app:layout_constraintStart_toStartOf="@+id/add_foodweight_input"
-        app:layout_constraintTop_toBottomOf="@+id/add_foodweight_input" />
+        app:layout_constraintEnd_toEndOf="@+id/add_acthours_input"
+        app:layout_constraintStart_toStartOf="@+id/add_acthours_input"
+        app:layout_constraintTop_toBottomOf="@+id/add_acthours_input" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

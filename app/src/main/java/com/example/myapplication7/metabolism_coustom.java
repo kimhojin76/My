@@ -76,6 +76,7 @@ public class metabolism_coustom extends AppCompatActivity implements View.OnClic
             @Override
             public void onItemClick(ACTAdapter.ViewHolder holder, View view, int position) {
                 ACT item = adapter.getItem(position);
+
                 selected_adapter.addItem(new ACT(item.getActname(),item.getAct_pal(),"1"));
                 seleted_recyclerView.setAdapter(selected_adapter);
                 user_hour = 0;

@@ -13,9 +13,9 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Food_custom_weight extends AppCompatActivity implements View.OnClickListener {
-    EditText add_weight;
-    double add_kcal,add_car,add_pro,add_fat;
+public class act_custom_hours extends AppCompatActivity implements View.OnClickListener {
+    EditText add_acthours_input;
+    double acthours;
     String name;
 
     @Override
@@ -24,23 +24,18 @@ public class Food_custom_weight extends AppCompatActivity implements View.OnClic
         super.onCreate(bundle);
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.food_weight);
+        setContentView(R.layout.act_hours);
 
         Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
         int width = (int) (display.getWidth() * 0.85); //display 사이즈의 70%
         int height = (int) (display.getHeight() * 0.3);//90%
         getWindow().getAttributes().width = width;
         getWindow().getAttributes().height = height;
-        add_weight = (EditText) findViewById(R.id.add_foodweight_input);
+        add_acthours_input = (EditText) findViewById(R.id.add_acthours_input);
 
-        final Button food_add_weight_button = (Button) findViewById(R.id.food_add_weight_button);
-        food_add_weight_button.setOnClickListener(this);
+        final Button acthours_button = (Button) findViewById(R.id.acthours_button);
+        acthours_button.setOnClickListener(this);
         Intent intent = getIntent();
-        add_kcal = Double.parseDouble(intent.getStringExtra("칼로리"))/100;
-        add_car = Double.parseDouble(intent.getStringExtra("탄수화물"))/100;
-        add_pro = Double.parseDouble(intent.getStringExtra("단백질"))/100;
-        add_fat = Double.parseDouble(intent.getStringExtra("지방"))/100;
-        name = intent.getStringExtra("음식명");
 
 
 
@@ -86,22 +81,14 @@ public class Food_custom_weight extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.food_add_weight_button) {
+        if (v.getId() == R.id.acthours_button) {
             Log.v("푸드추가 엑티비티", "추가버튼 클릭 확인");
-            double input_weight = Double.parseDouble(add_weight.getText().toString());
-            double food_kcal = (Math.round(input_weight * add_kcal*10)/10.0);
-            double food_car = (Math.round(input_weight * add_car*10)/10.0);
-            double food_pro = (Math.round(input_weight * add_pro*10)/10.0);
-            double food_fat = (Math.round(input_weight * add_fat*10)/10.0);
 
-            Intent intent = new Intent(Food_custom_weight.this,meal.class);
+
+            Intent intent = new Intent(act_custom_hours.this,meal.class);
             intent.putExtra("음식명",name);
-            intent.putExtra("칼로리",String.format("%.0f", food_kcal));
-            intent.putExtra("탄수화물",String.format("%.0f", food_car));
-            intent.putExtra("단백질",String.format("%.0f", food_pro));
-            intent.putExtra("지방",String.format("%.0f", food_fat));
-            intent.putExtra("중량",String.format("%.0f", input_weight));
-            setResult(220,intent);
+
+            setResult(230,intent);
             finish();
 
 //            Log.v("푸드추가 엑티비티", add_foodname.getText().toString());

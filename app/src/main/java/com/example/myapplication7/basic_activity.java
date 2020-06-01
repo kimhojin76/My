@@ -153,12 +153,12 @@ public class basic_activity extends AppCompatActivity
         String ID = pref.getString("ID","");
 
         edit.putString(ID+"user_act_kcal","");
-        String  max_car = pref.getString(ID+"max_car","");
-        String  max_pro = pref.getString(ID+"max_pro","");
-        String  max_fat = pref.getString(ID+"max_fat","");
-        String  max_kcal = pref.getString(ID+"max_kcal","");
-        String  diet_date = pref.getString(ID+"다이어트시작일","");
-        String  diet_maxdate = pref.getString(ID+"다이어트기간","");
+        String  max_car = pref.getString(ID+"max_car","0");
+        String  max_pro = pref.getString(ID+"max_pro","0");
+        String  max_fat = pref.getString(ID+"max_fat","0");
+        String  max_kcal = pref.getString(ID+"max_kcal","0");
+        String  diet_date = pref.getString(ID+"다이어트시작일","0");
+        String  diet_maxdate = pref.getString(ID+"다이어트기간","0");
         Log.v("베이직 엑티비티",diet_date+diet_maxdate);
 
 
@@ -167,14 +167,13 @@ public class basic_activity extends AppCompatActivity
 
         String user_act_kcal = pref.getString(ID+"user_act_kcal","");
         int user_d_day = pref.getInt(ID+"user_d_day",0);
-        Float user_meal_kcal = pref.getFloat(ID+"user_meal_kcal",0);
-        double user_meal_car = pref.getFloat(ID+"user_meal_car",0);
-        double user_meal_pro = pref.getFloat(ID+"user_meal_pro",0);
-        double user_meal_fat = pref.getFloat(ID+"user_meal_fat",0);
+        String user_meal_kcal = pref.getString(ID+"user_meal_kcal","0000");
+        String user_meal_car = pref.getString(ID+"user_meal_car","0");
+        String user_meal_pro = pref.getString(ID+"user_meal_pro","0");
+        String user_meal_fat = pref.getString(ID+"user_meal_fat","0");
         ProgressBar basic_in_seekBar1 = (ProgressBar) findViewById(R.id.basic_in_seekBar1);
         ProgressBar basic_in_seekBar2 = (ProgressBar) findViewById(R.id.basic_in_seekBar2);
         ProgressBar basic_in_seekBar3 = (ProgressBar) findViewById(R.id.basic_in_seekBar3);
-        basic_in_seekBar3.setMax(Integer.parseInt(diet_maxdate));
 
         ProgressBar basic_in_seekBar4 = (ProgressBar) findViewById(R.id.basic_in_seekBar4);
         ProgressBar basic_in_seekBar5 = (ProgressBar) findViewById(R.id.basic_in_seekBar5);
@@ -198,13 +197,13 @@ public class basic_activity extends AppCompatActivity
         TextView basic_intext16 = (TextView) findViewById(R.id.basic_intext16);
         TextView basic_intext18 = (TextView) findViewById(R.id.basic_intext18);
 
-
-        basic_intext1.setText(Double.toString(user_meal_kcal));
+        basic_in_seekBar3.setMax(Integer.parseInt(diet_maxdate));
+        basic_intext1.setText(user_meal_kcal);
         basic_intext12.setText(max_car);
         basic_intext15.setText(max_pro);
         basic_intext18.setText(max_fat);
         basic_intext2.setText(max_kcal);
-
+//
         basic_in_seekBar2.setMax(Integer.parseInt(max_kcal));
         basic_in_seekBar4.setMax(Integer.parseInt(max_car));
         basic_in_seekBar5.setMax(Integer.parseInt(max_pro));

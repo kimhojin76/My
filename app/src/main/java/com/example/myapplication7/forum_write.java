@@ -21,7 +21,7 @@ import java.util.Date;
 public class forum_write extends AppCompatActivity implements View.OnClickListener {
     EditText title, contents;
     TextView date, nickcame;
-    ImageView reple_input_image;
+//    ImageView reple_input_image;
 //    Uri imageUri;
 
     @Override
@@ -31,8 +31,8 @@ public class forum_write extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.forum_write);
 
 
-        reple_input_image = (ImageView) findViewById(R.id.reple_input_image);
-        reple_input_image.setOnClickListener(this);
+//        reple_input_image = (ImageView) findViewById(R.id.reple_input_image);
+//        reple_input_image.setOnClickListener(this);
         title = (EditText) findViewById(R.id.forum_write_title);
         contents = (EditText) findViewById(R.id.forum_write_contents);
 //        imageView = (ImageView) findViewById(R.id.write_image);
