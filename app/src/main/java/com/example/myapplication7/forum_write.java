@@ -21,7 +21,7 @@ import java.util.Date;
 public class forum_write extends AppCompatActivity implements View.OnClickListener {
     EditText title, contents;
     TextView date, nickcame;
-    ImageView imageView;
+    ImageView reple_input_image;
 //    Uri imageUri;
 
     @Override
@@ -31,7 +31,8 @@ public class forum_write extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.forum_write);
 
 
-
+        reple_input_image = (ImageView) findViewById(R.id.reple_input_image);
+        reple_input_image.setOnClickListener(this);
         title = (EditText) findViewById(R.id.forum_write_title);
         contents = (EditText) findViewById(R.id.forum_write_contents);
 //        imageView = (ImageView) findViewById(R.id.write_image);
@@ -73,6 +74,7 @@ public class forum_write extends AppCompatActivity implements View.OnClickListen
         Log.v("포럼 글쓰기 엑티비티", "Pause");
         super.onPause();
     }
+
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -89,7 +91,7 @@ public class forum_write extends AppCompatActivity implements View.OnClickListen
 //            Glide.with(this).load(Uri.toString()).into(imageView);
 ////            imageUri=Uri;
 
-        }
+    }
 
     @Override
     public void onClick(View v) {
@@ -107,15 +109,16 @@ public class forum_write extends AppCompatActivity implements View.OnClickListen
             String getTime = simpleDate.format(mDate);
 
             Intent data = new Intent(forum_write.this, forum_activity.class);
-            data.putExtra("제목",title.getText().toString());
-            data.putExtra("닉네임",nickcame.getText().toString());
-            data.putExtra("날짜",getTime.toString());
-            data.putExtra("내용",contents.getText().toString());
+            data.putExtra("제목", title.getText().toString());
+            data.putExtra("닉네임", nickcame.getText().toString());
+            data.putExtra("날짜", getTime.toString());
+            data.putExtra("내용", contents.getText().toString());
 //            data.putExtra("이미지",imageUri.toString());
-            setResult(200,data);
+            setResult(200, data);
             finish();
 
-        }
+        } else if (v.getId() == R.id.reple_input_image) {
 
+        }
     }
 }

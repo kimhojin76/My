@@ -76,19 +76,19 @@ public class forum_activity extends AppCompatActivity
         //pal 리사이클러뷰에 레이아웃 메니져 설정
         recyclerView.setLayoutManager(layoutManager);
         //어뎁터 선언
-        if (pref.getInt("first",1) == 1) {        Log.v("포럼 엑티비티", "첫실행 꺼짐방지");
-
-
-            editor.putInt("first",2);
-            Gson gson = new Gson();
-            //쉐어드프리퍼런스 pref에 쉐어드 주소,타입 지정해서 매칭
-            //에디터 선언
-            String gson_member_adapter = gson.toJson(adapter.items);
-            //에디터에 json형식으로 변환된 객체값 집어넣기
-            editor.putString("gson_member_adapter", gson_member_adapter);
-            //쉐어드에 저장하기
-            editor.commit();
-        }
+//        if (pref.getInt("first",1) == 1) {        Log.v("포럼 엑티비티", "첫실행 꺼짐방지");
+//
+//
+//            editor.putInt("first",2);
+//            Gson gson = new Gson();
+//            //쉐어드프리퍼런스 pref에 쉐어드 주소,타입 지정해서 매칭
+//            //에디터 선언
+//            String gson_member_adapter = gson.toJson(adapter.items);
+//            //에디터에 json형식으로 변환된 객체값 집어넣기
+//            editor.putString("gson_member_adapter", gson_member_adapter);
+//            //쉐어드에 저장하기
+//            editor.commit();
+//        }
         //리사이클러뷰에 어댑터 설정
         recyclerView.setAdapter(adapter);
         adapter.setOnItemClickListener(new OnmemberItemClickListener() {

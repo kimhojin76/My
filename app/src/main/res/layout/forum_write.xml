@@ -34,10 +34,9 @@
         </TextView>
         <TextView
             android:id="@+id/forum_write_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginLeft="10dp"
-            android:hint="date"
             app:layout_constraintLeft_toRightOf="@id/forum_write_nickname"
             app:layout_constraintTop_toTopOf="@+id/forum_write_nickname">
         </TextView>
