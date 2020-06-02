@@ -51,17 +51,14 @@ public class forum_detail extends AppCompatActivity implements View.OnClickListe
         recyclerView.setAdapter(adapter);
 
 
-        Intent intent = getIntent();
         Log.v("포럼디테일", "인텐트 겟");
-        title = intent.getStringExtra("제목").toString();
-        Log.v("포럼디테일", title);
-
+        Intent intent = getIntent();
         ID = pref.getString("ID","");
         NICKNAME = pref.getString(ID+"NICKNAME","");
-
-        nickname=intent.getStringExtra("닉네임").toString();
-        date=intent.getStringExtra("날짜").toString();
-        contents=intent.getStringExtra("내용").toString();
+        title = intent.getExtras().getString("제목");
+        nickname=intent.getExtras().getString("닉네임");
+        date=intent.getExtras().getString("날짜");
+        contents=intent.getExtras().getString("내용");
 
         title2.setText(title);
         nickname2.setText(nickname);
@@ -113,20 +110,20 @@ public class forum_detail extends AppCompatActivity implements View.OnClickListe
         super.onActivityResult(requestCode, resultCode, data);
         Log.v("포럼디테일 엑티비티", "도착");
 
-        if (requestCode==1011)
-        {
-            Log.v("포럼디테일 엑티비티", "조건문 도착");
-            Intent intent = data;
-            Log.v("포럼디테일 엑티비티", intent.getStringExtra("제목").toString());
-            Log.v("포럼디테일 엑티비티", intent.getStringExtra("닉네임").toString());
-            Log.v("포럼디테일 엑티비티", intent.getStringExtra("날짜").toString());
-            Log.v("포럼디테일 엑티비티", intent.getStringExtra("내용").toString());
-
-            title =intent.getStringExtra("제목").toString();
-            nickname=intent.getStringExtra("닉네임").toString();
-            date=intent.getStringExtra("날짜").toString();
-            contents=intent.getStringExtra("내용").toString();
-        }
+//        if (requestCode==1011)
+//        {
+//            Log.v("포럼디테일 엑티비티", "조건문 도착");
+//            Intent intent = data;
+//            Log.v("포럼디테일 엑티비티", intent.getStringExtra("제목").toString());
+//            Log.v("포럼디테일 엑티비티", intent.getStringExtra("닉네임").toString());
+//            Log.v("포럼디테일 엑티비티", intent.getStringExtra("날짜").toString());
+//            Log.v("포럼디테일 엑티비티", intent.getStringExtra("내용").toString());
+//
+//            title =intent.getStringExtra("제목").toString();
+//            nickname=intent.getStringExtra("닉네임").toString();
+//            date=intent.getStringExtra("날짜").toString();
+//            contents=intent.getStringExtra("내용").toString();
+//        }
     }
     @Override
     public void onClick(View v) {

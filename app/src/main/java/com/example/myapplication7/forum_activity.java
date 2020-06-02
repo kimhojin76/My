@@ -91,6 +91,7 @@ public class forum_activity extends AppCompatActivity
 //        }
         //리사이클러뷰에 어댑터 설정
         recyclerView.setAdapter(adapter);
+
         adapter.setOnItemClickListener(new OnmemberItemClickListener() {
             @Override
             public void onItemClick(memberAdapter.ViewHolder holder, View view, int position) {
