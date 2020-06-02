@@ -55,7 +55,7 @@
         <activity android:name=".forum_detail"
             android:launchMode="singleTop"
 
-            android:label="포럼 글 작성화면">
+            android:label="포럼 게시글 클릭화면">
 
         </activity>
         <activity android:name=".diet_calender_activity"

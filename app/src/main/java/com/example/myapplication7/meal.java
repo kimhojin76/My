@@ -226,9 +226,14 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
             Log.v("식단입력 엑티비티", intent.getStringExtra("단백질").toString());
             Log.v("식단입력 엑티비티", intent.getStringExtra("지방").toString());
 
-           adapter.addItem(new Food(intent.getStringExtra("음식명").toString(),intent.getStringExtra("칼로리").toString(),intent.getStringExtra("탄수화물").toString(),intent.getStringExtra("단백질").toString(),intent.getStringExtra("지방").toString(),intent.getStringExtra("중량").toString()));
+           adapter.addItem(new Food(intent.getStringExtra("음식명").toString(),intent.getStringExtra("칼로리").toString(),intent.getStringExtra("탄수화물").toString(),intent.getStringExtra("단백질").toString(),intent.getStringExtra("지방").toString(),"100"));
             recyclerView.setAdapter(adapter);
-
+            Log.v("식단입력 엑티비티", adapter.items.toString());
+            String gson_food_adapter = gson.toJson(adapter.items);
+            //에디터에 json형식으로 변환된 객체값 집어넣기
+            editor.putString(ID+"gson_food_adapter",gson_food_adapter);
+            //쉐어드에 저장하기
+            editor.commit();
 
 
 
@@ -393,7 +398,7 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
         pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
         //에디터 선언
         SharedPreferences.Editor editor = pref.edit();
-        String gson_food_adapter = pref.getString(ID+DATE+"gson_food_adapter","[{\"Kcal\":\"\",\"car\":\"\",\"fat\":\"\",\"name\":\"닭가슴살\",\"pro\":\"\",\"weight\":\"\"}]");
+        String gson_food_adapter = pref.getString(ID+"gson_food_adapter","[{\"Kcal\":\"\",\"car\":\"\",\"fat\":\"\",\"name\":\"닭가슴살\",\"pro\":\"\",\"weight\":\"\"}]");
         String gson_morning_adapter = pref.getString(ID+DATE+"gson_morning_adapter","");
         String gson_lunch_adapter = pref.getString(ID+DATE+"gson_lunch_adapter","");
         String gson_dinner_adapter = pref.getString(ID+DATE+"gson_dinner_adapter","");
@@ -451,7 +456,7 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
         String gson_food_adapter = gson.toJson(adapter.items);
 
         //에디터에 json형식으로 변환된 객체값 집어넣기
-        editor.putString(ID+DATE+"gson_food_adapter",gson_food_adapter);
+        editor.putString(ID+"gson_food_adapter",gson_food_adapter);
         editor.putString(ID+DATE+"gson_morning_adapter",gson_morning_adapter);
         editor.putString(ID+DATE+"gson_lunch_adapter",gson_lunch_adapter);
         editor.putString(ID+DATE+"gson_dinner_adapter",gson_dinner_adapter);

@@ -19,7 +19,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class basic_activity extends AppCompatActivity
         implements View.OnClickListener {
@@ -35,7 +39,12 @@ public class basic_activity extends AppCompatActivity
         SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
         SharedPreferences.Editor edit = pref.edit();
         String ID = "admin";
+        String NICKNAME = "관리자";
         edit.putString("ID",ID);
+        edit.commit();
+
+        edit.putString(ID+"NICKNAME",NICKNAME);
+
         edit.commit();
         DATE = pref.getString(ID+"date","");
 
@@ -204,11 +213,42 @@ public class basic_activity extends AppCompatActivity
         TextView basic_intext16 = (TextView) findViewById(R.id.basic_intext16);
         TextView basic_intext18 = (TextView) findViewById(R.id.basic_intext18);
 
+        //유저 식단 칼로리 입력
         basic_intext1.setText(user_meal_kcal);
+        //유저 최대 영양소수치 셋팅
         basic_intext12.setText(max_car);
         basic_intext15.setText(max_pro);
         basic_intext18.setText(max_fat);
-////
+//프로그래스바 최대 수치 입력
+        try {//String Type을 Date 타입으로 변환하면서 생기는 예외로 인한 오류 방지
+            SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd");
+            Date firstdate = format2.parse(diet_date);
+            Log.v("베이직 엑티비티",format2.parse(diet_date)+"다이어트 시작일 확인");
+            Date currentTime = Calendar.getInstance().getTime();
+            String nowdate = format2.format(currentTime);
+            long calDate = currentTime.getTime() - firstdate.getTime();
+
+            // Date.getTime() 은 해당날짜를 기준으로1970년 00:00:00 부터 몇 초가 흘렀는지를 반환해준다.
+            // 이제 24*60*60*1000(각 시간값에 따른 차이점) 을 나눠주면 일수가 나온다.
+            long calDateDays = calDate / ( 24*60*60*1000);
+            Log.v("베이직 엑티비티",calDate+"다이어트 시작일 확인");
+
+            calDateDays = Math.abs(calDateDays);
+            Log.v("베이직 엑티비티",calDateDays+"다이어트 시작일 확인");
+            double now_dday = Double.parseDouble(diet_maxdate)-calDateDays;
+            basic_intext3.setText(Double.toString(now_dday));
+            basic_in_seekBar3.setProgress((int)calDateDays);
+
+
+            Log.v("베이직 엑티비티",format2.format(currentTime)+"현재일 확인");
+
+
+        }
+        catch (ParseException e)
+        {}
+
+
+
         basic_in_seekBar2.setMax(Integer.parseInt(max_kcal));
         basic_in_seekBar3.setMax(Integer.parseInt(diet_maxdate));
         basic_in_seekBar4.setMax(Integer.parseInt(max_car));
@@ -252,7 +292,6 @@ public class basic_activity extends AppCompatActivity
         lunch_adapter = new FoodAdapter2();
         dinner_adapter = new FoodAdapter2();
         snack_adapter = new FoodAdapter2();
-
         if(gson_morning_adapter != ""){
             ArrayList<Food> morninglist = gson.fromJson(gson_morning_adapter,new TypeToken<ArrayList<Food>>(){}.getType());
 //            ArrayList<Food> dinnerlist = gson.fromJson(gson_dinner_adapter,new TypeToken<ArrayList<Food>>(){}.getType());

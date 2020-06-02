@@ -82,25 +82,27 @@
             tools:layout_editor_absoluteX="0dp">
 
             ></View>
+
         <EditText
             android:id="@+id/reple_input_edittext"
             android:layout_width="0dp"
             android:layout_height="40dp"
-            android:background="#ffffff"
             android:layout_margin="10dp"
+            android:background="#ffffff"
             app:layout_constraintBottom_toBottomOf="@+id/line2"
             app:layout_constraintEnd_toEndOf="@+id/line2"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/line2"
-            app:layout_constraintTop_toTopOf="@id/line2"
-            >></EditText>
+            app:layout_constraintTop_toTopOf="@id/line2">></EditText>
+
         <ImageView
             android:id="@+id/reple_input_image"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:src="@drawable/baseline_input"
             app:layout_constraintTop_toTopOf="@id/reple_input_edittext"
-            app:layout_constraintRight_toRightOf="@+id/reple_input_edittext">
-        </ImageView>
+            app:layout_constraintRight_toRightOf="@+id/reple_input_edittext"></ImageView>
+
 
 
         <androidx.recyclerview.widget.RecyclerView

@@ -39,6 +39,7 @@
                     android:layout_height="match_parent"
                     android:text="2019-04-30 12:30" />
 
+
             </LinearLayout>
 
             <TextView
