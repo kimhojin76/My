@@ -37,7 +37,7 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
     double user_kcal = 0;
     FoodAdapter2 morning_adapter,lunch_adapter,dinner_adapter,snack_adapter;
     String[] spinner_item = {"아침식단","점심식단","저녘식단","간식"};
-
+//gj
     protected void onCreate(Bundle bundle) {
         pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
         SharedPreferences.Editor edit = pref.edit();
