@@ -7,8 +7,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -45,8 +47,12 @@ public class diet_calender_activity extends AppCompatActivity
                 SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
                 SharedPreferences.Editor edit = pref.edit();
                 String finaledate = Integer.toString(year)+Integer.toString(month+1)+Integer.toString(dayOfMonth);
+                String datetitle = Integer.toString(year)+"년"+Integer.toString(month+1)+"월"+Integer.toString(dayOfMonth)+"일";
                 Log.v("체중/식단 엑티비티",finaledate);
+
                 edit.putString(ID+"date",finaledate);
+                edit.putString(ID+"datetitle",datetitle);
+
                 edit.commit();
 
 
@@ -60,7 +66,9 @@ public class diet_calender_activity extends AppCompatActivity
         int Day = calendar.get(Calendar.DAY_OF_MONTH);
 //customize According to Your requirement
         String finalDate=""+Year+(Month+1)+Day;
+        String datetitle = Integer.toString(Year)+"년 "+Integer.toString(Month+1)+"월 "+Integer.toString(Day)+"일";
         edit.putString(ID+"date",finalDate);
+        edit.putString(ID+"datetitle",datetitle);
         edit.commit();
         Log.v("체중/식단 엑티비티",finalDate);
 
@@ -89,6 +97,8 @@ public class diet_calender_activity extends AppCompatActivity
         basic_forum_image.setOnClickListener(this);
         final Button morning = (Button) findViewById(R.id.morning_button);
         morning.setOnClickListener(this);
+        final Button button10  = (Button) findViewById(R.id.button10);
+        button10.setOnClickListener(this);
 
 
 
@@ -97,6 +107,7 @@ public class diet_calender_activity extends AppCompatActivity
     @Override
     //인터페이스 활용하여 클릭시 이곳으로 오게 하였음
     public void onClick(View v) {
+        final EditText weight_text  = (EditText) findViewById(R.id.weight_text);
         if(v.getId() == R.id.textView5){
             Intent intent = new Intent(diet_calender_activity.this, bmr_activity.class);
             startActivity(intent);
@@ -154,6 +165,23 @@ public class diet_calender_activity extends AppCompatActivity
         }else if(v.getId() == R.id.morning_button) {
             Intent intent = new Intent(diet_calender_activity.this, meal.class);
             startActivity(intent);
+
+            //체중 저장 입력버튼 클릭 시
+        }else if(v.getId() == R.id.button10) {
+            SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
+            SharedPreferences.Editor edit = pref.edit();
+
+            String dateweight = weight_text.getText().toString();
+            Log.v("체중/식단 엑티비티",dateweight);
+            String DATE = pref.getString(ID+"date","");
+            String DATEtitle = pref.getString(ID+"datetitle","");
+            edit.putString(ID+DATE+"weight",dateweight);
+
+            String todayweight = pref.getString(ID+DATE+"weight","");
+            edit.commit();
+
+            Toast.makeText(diet_calender_activity.this, DATEtitle+todayweight+"Kg", Toast.LENGTH_LONG).show();
+
 
 
         }

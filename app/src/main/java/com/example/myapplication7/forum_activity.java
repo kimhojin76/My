@@ -214,17 +214,20 @@ public class forum_activity extends AppCompatActivity
         String get_gson_member_adapter = pref.getString("gson_member_adapter","");
         //이를 변환
         Log.v("포럼 엑티비티 gson", get_gson_member_adapter.toString());
-        ArrayList<member> list = gson.fromJson(get_gson_member_adapter,new TypeToken<ArrayList<member>>(){}.getType());
-        adapter.items = list;
+        //첫실행 꺼짐 방지
+        if (get_gson_member_adapter != "") {
+            ArrayList<member> list = gson.fromJson(get_gson_member_adapter, new TypeToken<ArrayList<member>>() {
+            }.getType());
+            adapter.items = list;
 
-        recyclerView = findViewById(R.id.forum_board);
-        //레이아웃 메너저를 통해 List형식으로 할지 Grid형식으로 할지 결정정
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        //pal 리사이클러뷰에 레이아웃 메니져 설정
-        recyclerView.setLayoutManager(layoutManager);
-        //어뎁터 선언
-        recyclerView.setAdapter(adapter);
-
+            recyclerView = findViewById(R.id.forum_board);
+            //레이아웃 메너저를 통해 List형식으로 할지 Grid형식으로 할지 결정정
+            LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+            //pal 리사이클러뷰에 레이아웃 메니져 설정
+            recyclerView.setLayoutManager(layoutManager);
+            //어뎁터 선언
+            recyclerView.setAdapter(adapter);
+        }
 
     }
 

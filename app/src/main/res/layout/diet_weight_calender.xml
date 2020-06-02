@@ -48,8 +48,7 @@
         android:hint="체중"
         android:inputType="number"
         app:layout_constraintLeft_toLeftOf="@id/calendarView"
-        app:layout_constraintTop_toBottomOf="@id/calendarView"
-        ></EditText>
+        app:layout_constraintTop_toBottomOf="@id/calendarView"></EditText>
 
     <ImageView
         android:id="@+id/imageView3"

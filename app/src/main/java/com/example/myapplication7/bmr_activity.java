@@ -226,6 +226,12 @@ public class bmr_activity extends AppCompatActivity implements View.OnClickListe
         String bmr_diet_date = pref.getString(ID+"다이어트기간","");
         String bmr_BMR = pref.getString(ID+"BMR","");
         String bmr_down_kcal = pref.getString(ID+"down_kcal","");
+        boolean putmale = pref.getBoolean(ID+"male",false);
+        boolean putfemale = pref.getBoolean(ID+"female",false);
+
+        male.setChecked(putmale);
+        female.setChecked(putfemale);
+
         last_kcal.setText(bmr_lastkcal);
         weight.setText(bmr_weight);
         stature.setText(bmr_stature);
@@ -302,6 +308,8 @@ public class bmr_activity extends AppCompatActivity implements View.OnClickListe
         editor.putString(ID+"BMR",BMR.getText().toString());
         editor.putString(ID+"down_kcal",down_kcal.getText().toString());
         SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+        SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd");
+
         Date time = new Date();
         String time1 = format.format(time);
 
@@ -332,13 +340,12 @@ public class bmr_activity extends AppCompatActivity implements View.OnClickListe
 
         editor.commit();
         if(male.isChecked()==true){
-            editor.putBoolean("male",true);
-            editor.putBoolean("female",false);
+            editor.putBoolean(ID+"male",true);
+            editor.putBoolean(ID+"female",false);
         }else {
-            editor.putBoolean("male",false);
-            editor.putBoolean("female",true);
+            editor.putBoolean(ID+"male",false);
+            editor.putBoolean(ID+"female",true);
         }
-
 
         editor.commit();
         super.onPause();

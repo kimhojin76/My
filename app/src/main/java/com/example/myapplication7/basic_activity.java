@@ -3,6 +3,7 @@ package com.example.myapplication7;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,22 +16,28 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.util.ArrayList;
+
 public class basic_activity extends AppCompatActivity
         implements View.OnClickListener {
     public String PREFERENCE = "com.studio572.samplesharepreference";
+    String DATE;
+    FoodAdapter2 morning_adapter,lunch_adapter,dinner_adapter,snack_adapter;
 
 
     @Override
     protected void onCreate(Bundle bundle){
         super.onCreate(bundle);
         setContentView(R.layout.basic);
-
         SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
         SharedPreferences.Editor edit = pref.edit();
         String ID = "admin";
-        edit.putInt("first",1);
         edit.putString("ID",ID);
         edit.commit();
+        DATE = pref.getString(ID+"date","");
 
 
 
@@ -151,8 +158,8 @@ public class basic_activity extends AppCompatActivity
         SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
         SharedPreferences.Editor edit = pref.edit();
         String ID = pref.getString("ID","");
-
         edit.putString(ID+"user_act_kcal","");
+
         String  max_car = pref.getString(ID+"max_car","0");
         String  max_pro = pref.getString(ID+"max_pro","0");
         String  max_fat = pref.getString(ID+"max_fat","0");
@@ -171,7 +178,7 @@ public class basic_activity extends AppCompatActivity
         String user_meal_car = pref.getString(ID+"user_meal_car","0");
         String user_meal_pro = pref.getString(ID+"user_meal_pro","0");
         String user_meal_fat = pref.getString(ID+"user_meal_fat","0");
-        ProgressBar basic_in_seekBar1 = (ProgressBar) findViewById(R.id.basic_in_seekBar1);
+//        ProgressBar basic_in_seekBar1 = (ProgressBar) findViewById(R.id.basic_in_seekBar1);
         ProgressBar basic_in_seekBar2 = (ProgressBar) findViewById(R.id.basic_in_seekBar2);
         ProgressBar basic_in_seekBar3 = (ProgressBar) findViewById(R.id.basic_in_seekBar3);
 
@@ -197,19 +204,149 @@ public class basic_activity extends AppCompatActivity
         TextView basic_intext16 = (TextView) findViewById(R.id.basic_intext16);
         TextView basic_intext18 = (TextView) findViewById(R.id.basic_intext18);
 
-        basic_in_seekBar3.setMax(Integer.parseInt(diet_maxdate));
         basic_intext1.setText(user_meal_kcal);
         basic_intext12.setText(max_car);
         basic_intext15.setText(max_pro);
         basic_intext18.setText(max_fat);
-        basic_intext2.setText(max_kcal);
-//
+////
         basic_in_seekBar2.setMax(Integer.parseInt(max_kcal));
+        basic_in_seekBar3.setMax(Integer.parseInt(diet_maxdate));
         basic_in_seekBar4.setMax(Integer.parseInt(max_car));
         basic_in_seekBar5.setMax(Integer.parseInt(max_pro));
         basic_in_seekBar6.setMax(Integer.parseInt(max_fat));
 
         Log.v("베이직 엑티비티",ID+"입력확인");
+
+
+
+        String gson_morning_adapter = pref.getString(ID+DATE+"gson_morning_adapter","");
+        String gson_lunch_adapter = pref.getString(ID+DATE+"gson_lunch_adapter","");
+        String gson_dinner_adapter = pref.getString(ID+DATE+"gson_dinner_adapter","");
+        String gson_snack_adapter = pref.getString(ID+DATE+"gson_snack_adapter","");
+        Gson gson = new Gson();
+        double user_date_meal_kcal = 0;
+        double user_date_meal_car = 0;
+        double user_date_meal_pro = 0;
+        double user_date_meal_fat = 0;
+
+        double user_morning_kcal = 0;
+        double user_morning_car = 0;
+        double user_morning_pro = 0;
+        double user_morning_fat = 0;
+
+        double user_lunch_kcal = 0;
+        double user_lunch_car = 0;
+        double user_lunch_pro = 0;
+        double user_lunch_fat = 0;
+
+        double user_dinner_kcal = 0;
+        double user_dinner_car = 0;
+        double user_dinner_pro = 0;
+        double user_dinner_fat = 0;
+
+        double user_snack_kcal = 0;
+        double user_snack_car = 0;
+        double user_snack_pro = 0;
+        double user_snack_fat = 0;
+        morning_adapter = new FoodAdapter2();
+        lunch_adapter = new FoodAdapter2();
+        dinner_adapter = new FoodAdapter2();
+        snack_adapter = new FoodAdapter2();
+
+        if(gson_morning_adapter != ""){
+            ArrayList<Food> morninglist = gson.fromJson(gson_morning_adapter,new TypeToken<ArrayList<Food>>(){}.getType());
+//            ArrayList<Food> dinnerlist = gson.fromJson(gson_dinner_adapter,new TypeToken<ArrayList<Food>>(){}.getType());
+//            ArrayList<Food> snacklist = gson.fromJson(gson_snack_adapter,new TypeToken<ArrayList<Food>>(){}.getType());
+
+            morning_adapter.items = morninglist;
+            Log.v("베이직 엑티비티 리줌",gson_morning_adapter);
+            for (int i = 0; i < morninglist.size(); i++) {
+                Food item1 = morning_adapter.getItem(i);
+                Log.v("식단입력 엑티비티", item1.getName());
+                user_morning_car = user_morning_car + Double.parseDouble(item1.getCar());
+                user_morning_pro = user_morning_pro + Double.parseDouble(item1.getPro());
+                user_morning_fat = user_morning_fat + Double.parseDouble(item1.getFat());
+                user_morning_kcal = user_morning_kcal + Double.parseDouble(item1.getKcal());
+            }
+        }
+        if(gson_lunch_adapter != ""){
+            ArrayList<Food> lunchlist = gson.fromJson(gson_lunch_adapter,new TypeToken<ArrayList<Food>>(){}.getType());
+            lunch_adapter.items = lunchlist;
+            for (int i = 0; i < lunchlist.size(); i++) {
+                Food item1 = lunch_adapter.getItem(i);
+                user_lunch_car = user_lunch_car + Double.parseDouble(item1.getCar());
+                user_lunch_pro = user_lunch_pro + Double.parseDouble(item1.getPro());
+                user_lunch_fat = user_lunch_fat + Double.parseDouble(item1.getFat());
+                user_lunch_kcal = user_lunch_kcal + Double.parseDouble(item1.getKcal());
+            }
+        }
+        if(gson_dinner_adapter != ""){
+            ArrayList<Food> lunchlist = gson.fromJson(gson_dinner_adapter,new TypeToken<ArrayList<Food>>(){}.getType());
+            dinner_adapter.items = lunchlist;
+            for (int i = 0; i < lunchlist.size(); i++) {
+                Food item1 = dinner_adapter.getItem(i);
+                user_dinner_car = user_dinner_car + Double.parseDouble(item1.getCar());
+                user_dinner_pro = user_dinner_pro + Double.parseDouble(item1.getPro());
+                user_dinner_fat = user_dinner_fat + Double.parseDouble(item1.getFat());
+                user_dinner_kcal = user_dinner_kcal + Double.parseDouble(item1.getKcal());
+            }
+        }
+        if(gson_snack_adapter != ""){
+            ArrayList<Food> lunchlist = gson.fromJson(gson_snack_adapter,new TypeToken<ArrayList<Food>>(){}.getType());
+            snack_adapter.items = lunchlist;
+            for (int i = 0; i < lunchlist.size(); i++) {
+                Food item1 = snack_adapter.getItem(i);
+                user_snack_car = user_snack_car + Double.parseDouble(item1.getCar());
+                user_snack_pro = user_snack_pro + Double.parseDouble(item1.getPro());
+                user_snack_fat = user_snack_fat + Double.parseDouble(item1.getFat());
+                user_snack_kcal = user_snack_kcal + Double.parseDouble(item1.getKcal());
+            }
+        }
+        user_date_meal_kcal = user_morning_kcal+user_lunch_kcal+user_dinner_kcal+user_snack_kcal;
+        user_date_meal_car = user_morning_car+user_lunch_car+user_dinner_car+user_snack_car;
+        user_date_meal_pro = user_morning_pro+user_lunch_pro+user_dinner_pro+user_snack_pro;
+        user_date_meal_fat = user_morning_fat+user_lunch_fat+user_dinner_fat+user_snack_fat;
+        //섭취칼로리량
+        basic_intext1.setText(String.format("%.0f", user_date_meal_kcal));
+        basic_in_seekBar2.setProgress(Integer.parseInt(basic_intext1.getText().toString()));
+
+        //잔여 칼로리량
+        double kcal = Double.parseDouble(max_kcal)-user_date_meal_kcal;
+        if (kcal < 0) {
+            Math.abs(kcal);
+            basic_intext2.setText(String.format("%.0f", Math.abs(kcal)));
+            basic_intext2.setTextColor(Color.parseColor("#ff0000"));
+
+        }else{
+            basic_intext2.setText(String.format("%.0f", kcal));
+
+        }
+
+        //탄수화물 현재 식단 수치
+        basic_intext10.setText(String.format("%.0f", user_date_meal_car));
+        basic_in_seekBar4.setProgress(Integer.parseInt(basic_intext10.getText().toString()));
+
+        //단백질 현재 식단 수치
+        basic_intext13.setText(String.format("%.0f", user_date_meal_pro));
+        basic_in_seekBar5.setProgress(Integer.parseInt(basic_intext13.getText().toString()));
+
+        //지방 현재 식단 수치
+        basic_intext16.setText(String.format("%.0f", user_date_meal_fat));
+        basic_in_seekBar6.setProgress(Integer.parseInt(basic_intext16.getText().toString()));
+
+        Log.v("식단입력 엑티비티", Double.toString(user_date_meal_kcal));
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
     @Override

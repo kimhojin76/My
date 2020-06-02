@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class meal extends AppCompatActivity implements View.OnClickListener {
@@ -42,9 +43,12 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
         SharedPreferences.Editor edit = pref.edit();
         ID = pref.getString("ID","");
         DATE = pref.getString(ID+"date","");
+        String DATEtitle = pref.getString(ID+"datetitle","");
+
         Log.v("체중그래프 엑티비티", ID+DATE);
         //타이틀 바 날자+식단으로 변경
-        setTitle(DATE+"식단");
+
+        setTitle(DATEtitle+" 식단");
 
 
         Log.v("체중그래프 엑티비티", "create");
@@ -104,6 +108,7 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
                     }else{
                     morning_recyclerView.setAdapter(morning_adapter);
                     user_kcal = 0;
+
                     for (int i = 0; i < morning_adapter.items.size(); i++) {
                         Food item1 = morning_adapter.getItem(i);
                         Log.v("식단입력 엑티비티", item1.getName());
@@ -388,14 +393,14 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
         pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
         //에디터 선언
         SharedPreferences.Editor editor = pref.edit();
-        String gson_food_adapter = pref.getString(ID+DATE+"gson_food_adapter","");
+        String gson_food_adapter = pref.getString(ID+DATE+"gson_food_adapter","[{\"Kcal\":\"\",\"car\":\"\",\"fat\":\"\",\"name\":\"닭가슴살\",\"pro\":\"\",\"weight\":\"\"}]");
         String gson_morning_adapter = pref.getString(ID+DATE+"gson_morning_adapter","");
         String gson_lunch_adapter = pref.getString(ID+DATE+"gson_lunch_adapter","");
         String gson_dinner_adapter = pref.getString(ID+DATE+"gson_dinner_adapter","");
         String gson_snack_adapter = pref.getString(ID+DATE+"gson_snack_adapter","");
         Log.v("포럼 엑티비티 pause gson road", gson_morning_adapter);
-
-        if (gson.fromJson(gson_morning_adapter,new TypeToken<ArrayList<Food>>(){}.getType()) != "" && gson.fromJson(gson_lunch_adapter,new TypeToken<ArrayList<Food>>(){}.getType()) != "") {
+        //첫실행 꺼짐 방지
+        if (gson_morning_adapter != "" && gson_lunch_adapter != "" && gson_dinner_adapter != "" && gson_snack_adapter != "") {
         ArrayList<Food> foodlist = gson.fromJson(gson_food_adapter,new TypeToken<ArrayList<Food>>(){}.getType());
         ArrayList<Food> morninglist = gson.fromJson(gson_morning_adapter,new TypeToken<ArrayList<Food>>(){}.getType());
         ArrayList<Food> lunchlist = gson.fromJson(gson_lunch_adapter,new TypeToken<ArrayList<Food>>(){}.getType());
