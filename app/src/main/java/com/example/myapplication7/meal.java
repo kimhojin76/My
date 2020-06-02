@@ -40,7 +40,7 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
 //gj
     protected void onCreate(Bundle bundle) {
         pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
-        SharedPreferences.Editor edit = pref.edit();
+        SharedPreferences.Editor editor = pref.edit();
         ID = pref.getString("ID","");
         DATE = pref.getString(ID+"date","");
         String DATEtitle = pref.getString(ID+"datetitle","");
@@ -79,6 +79,12 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
         adapter.addItem(new Food("쌀밥","270","61","5","0.7","100"));
         adapter.addItem(new Food("찐고구마","193","45.8","2.6","0.2","100"));
         adapter.addItem(new Food("닭가슴살","100","0","23","1.2","100"));
+        Gson gson = new Gson();
+//        String gson_food_adapter = gson.toJson(adapter.items);
+//        //에디터에 json형식으로 변환된 객체값 집어넣기
+//        editor.putString(ID+"gson_food_adapter",gson_food_adapter);
+//        editor.commit();
+        Log.v("식단입력 엑티비티",adapter.items.toString());
 
         //칼로리계산기 버튼 연결 및 클릭이벤트 설정
         final Button add_foodadapter_button = (Button) findViewById(R.id.add_food);
@@ -398,7 +404,14 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
         pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
         //에디터 선언
         SharedPreferences.Editor editor = pref.edit();
-        String gson_food_adapter = pref.getString(ID+"gson_food_adapter","[{\"Kcal\":\"\",\"car\":\"\",\"fat\":\"\",\"name\":\"닭가슴살\",\"pro\":\"\",\"weight\":\"\"}]");
+        String gson_food_adapter = pref.getString(ID+"gson_food_adapter","");
+
+        if (gson_food_adapter != "") {
+            gson_food_adapter = pref.getString(ID + "gson_food_adapter", "");
+            ArrayList<Food> foodlist = gson.fromJson(gson_food_adapter,new TypeToken<ArrayList<Food>>(){}.getType());
+            adapter.items = foodlist;
+
+        }
         String gson_morning_adapter = pref.getString(ID+DATE+"gson_morning_adapter","");
         String gson_lunch_adapter = pref.getString(ID+DATE+"gson_lunch_adapter","");
         String gson_dinner_adapter = pref.getString(ID+DATE+"gson_dinner_adapter","");
@@ -406,13 +419,11 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
         Log.v("포럼 엑티비티 pause gson road", gson_morning_adapter);
         //첫실행 꺼짐 방지
         if (gson_morning_adapter != "" && gson_lunch_adapter != "" && gson_dinner_adapter != "" && gson_snack_adapter != "") {
-        ArrayList<Food> foodlist = gson.fromJson(gson_food_adapter,new TypeToken<ArrayList<Food>>(){}.getType());
         ArrayList<Food> morninglist = gson.fromJson(gson_morning_adapter,new TypeToken<ArrayList<Food>>(){}.getType());
         ArrayList<Food> lunchlist = gson.fromJson(gson_lunch_adapter,new TypeToken<ArrayList<Food>>(){}.getType());
         ArrayList<Food> dinnerlist = gson.fromJson(gson_dinner_adapter,new TypeToken<ArrayList<Food>>(){}.getType());
         ArrayList<Food> snacklist = gson.fromJson(gson_snack_adapter,new TypeToken<ArrayList<Food>>(){}.getType());
 
-        adapter.items = foodlist;
         morning_adapter.items = morninglist;
         lunch_adapter.items = lunchlist;
         dinner_adapter.items = dinnerlist;
