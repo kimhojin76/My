@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:fillViewport="true"
+    tools:context=".MainActivity">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dp"
+        android:text="음식 명"
+        app:layout_constraintRight_toLeftOf="@+id/textView12"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/textView12" />
+
+
+
+    <Spinner
+        android:id="@+id/spiner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="5dp"
+        android:text="아침 식단"
+        app:layout_constraintBottom_toTopOf="@+id/textView18"
+        app:layout_constraintRight_toLeftOf="@+id/textView12"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/food_linear"
+        app:layout_constraintVertical_bias="0.0" />
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="right"
+        android:hint="총 칼로리"
+        app:layout_constraintLeft_toRightOf="@+id/spiner"
+        app:layout_constraintTop_toBottomOf="@+id/food_linear"
+        app:layout_constraintVertical_bias="0.0" />
+    <TextView
+        android:id="@+id/textView27"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="5dp"
+        android:gravity="left"
+android:text="kcal"
+        app:layout_constraintLeft_toRightOf="@+id/textView26"
+        app:layout_constraintTop_toBottomOf="@+id/food_linear"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/kcal_sum_button"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:gravity="left"
+        android:text="칼로리 계산"
+        app:layout_constraintBottom_toBottomOf="@+id/textView27"
+        app:layout_constraintLeft_toRightOf="@+id/textView27"
+        app:layout_constraintTop_toTopOf="@+id/textView27"
+                                                     />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:text="칼로리"
+        app:layout_constraintLeft_toRightOf="@id/textView11"
+        app:layout_constraintRight_toLeftOf="@+id/textView13"
+        app:layout_constraintTop_toTopOf="@id/textView13" />
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="5dp"
+        android:text="음식 명"
+        app:layout_constraintRight_toLeftOf="@+id/textView12"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spiner" />
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:text="칼로리"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toRightOf="@id/textView11"
+        app:layout_constraintRight_toLeftOf="@+id/textView13"
+        app:layout_constraintTop_toTopOf="@+id/textView18" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+
+        android:text="탄수화물"
+        app:layout_constraintLeft_toRightOf="@id/textView12"
+        app:layout_constraintRight_toLeftOf="@id/textView14"
+        app:layout_constraintTop_toTopOf="@id/textView14" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="6dp"
+
+        android:text="탄수화물"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toRightOf="@id/textView12"
+        app:layout_constraintRight_toLeftOf="@id/textView14"
+        app:layout_constraintTop_toTopOf="@+id/textView18" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="12dp"
+
+        android:layout_height="wrap_content"
+        android:text="단백질"
+        app:layout_constraintRight_toLeftOf="@id/textView15"
+        app:layout_constraintLeft_toRightOf="@id/textView13"
+        app:layout_constraintTop_toBottomOf="@+id/add_food" />
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="9dp"
+        android:text="단백질"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toRightOf="@id/textView13"
+        app:layout_constraintRight_toLeftOf="@id/textView15"
+        app:layout_constraintStart_toEndOf="@+id/textView21"
+        app:layout_constraintTop_toTopOf="@+id/textView18" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="20dp"
+
+        android:layout_height="wrap_content"
+        android:text="지방"
+        app:layout_constraintRight_toLeftOf="@id/textView16"
+        app:layout_constraintLeft_toRightOf="@id/textView14"
+        app:layout_constraintTop_toBottomOf="@+id/add_food" />
+
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+android:layout_marginLeft="21dp"
+        android:text="지방"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toRightOf="@id/textView14"
+        app:layout_constraintRight_toLeftOf="@id/textView16"
+        app:layout_constraintStart_toEndOf="@+id/textView22"
+        app:layout_constraintTop_toTopOf="@+id/textView22" />
+
+    <TextView
+    android:id="@+id/textView16"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text=""
+        app:layout_constraintRight_toLeftOf="@id/textView17"
+    app:layout_constraintLeft_toRightOf="@id/textView15"
+    app:layout_constraintTop_toBottomOf="@+id/add_food" />
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        app:layout_constraintLeft_toRightOf="@id/textView13"
+        app:layout_constraintTop_toBottomOf="@+id/add_food" />
+
+    <Button
+        android:id="@+id/add_food"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+
+
+        android:text="추가"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/food_linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="@+id/selected_view"
+        app:layout_constraintTop_toBottomOf="@+id/textView13">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:background="@drawable/btn_blue2"
+            android:id="@+id/food_recyleview_ex"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_food" />
+
+    </LinearLayout>
+
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="검색"
+        app:layout_constraintEnd_toStartOf="@+id/add_food"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/add_food" />
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="15dp"
+        android:text="중량"
+        app:layout_constraintLeft_toRightOf="@id/textView23"
+        app:layout_constraintTop_toTopOf="@+id/textView23"
+        />
+    <ScrollView
+        android:id="@+id/selected_view"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView18"
+        tools:layout_editor_absoluteX="0dp">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:background="@drawable/btn_yellow"
+            android:id="@+id/morning_food_recyle_selected"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

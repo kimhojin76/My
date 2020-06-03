@@ -1,6 +1,7 @@
 package com.example.myapplication7;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -34,7 +35,8 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> im
 //        select_list = new ArrayList<Food>();
 //        select_list.addAll(items);
 //    }
-
+public FoodAdapter(Context context) {
+        mContext = context; }
     @NonNull
     @Override
     //뷰홀더 초기화될때 실행하는 메소드
@@ -134,6 +136,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> im
 //        }
 //        notifyDataSetChanged();
 //    }
+
         @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
             MenuItem Edit = menu.add(Menu.NONE, 1001, 1, "편집");
@@ -146,12 +149,15 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> im
         private final MenuItem.OnMenuItemClickListener onMenuItemClickListener  = new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
+
                 switch (item.getItemId()) {
                     case 1001: //편집 클릭시
+                        Log.v("푸드아답터 콘텍스트 메뉴 엑티비티", "편집클릭");
+
                         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-
-                        // 다이얼로그를 보여주기 위해 edit_box.xml 파일을 사용합니다.
-
+//
+//                        // 다이얼로그를 보여주기 위해 edit_box.xml 파일을 사용합니다.
+//
                         View view = LayoutInflater.from(mContext)
                                 .inflate(R.layout.food_item_edit, null, false);
                         builder.setView(view);
@@ -161,34 +167,34 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> im
                         final EditText edit_car_input = (EditText) view.findViewById(R.id.edit_car_input);
                         final EditText edit_pro_input = (EditText) view.findViewById(R.id.edit_pro_input);
                         final EditText edit_fat_input = (EditText) view.findViewById(R.id.edit_fat_input);
-
-
-
-                        // 6. 해당 줄에 입력되어 있던 데이터를 불러와서 다이얼로그에 보여줍니다.
+//
+//
+//
+//                        // 6. 해당 줄에 입력되어 있던 데이터를 불러와서 다이얼로그에 보여줍니다.
                         edit_foodname_input.setText(items.get(getAdapterPosition()).getName());
                         edit_kcal_input.setText(items.get(getAdapterPosition()).getKcal());
                         edit_car_input.setText(items.get(getAdapterPosition()).getCar());
                         edit_pro_input.setText(items.get(getAdapterPosition()).getPro());
                         edit_fat_input.setText(items.get(getAdapterPosition()).getFat());
-
-
-
+//
+//
+//
                         final AlertDialog dialog = builder.create();
                         ButtonSubmit.setOnClickListener(new View.OnClickListener() {
-
-
-                            // 7. 수정 버튼을 클릭하면 현재 UI에 입력되어 있는 내용으로
-
+//
+//
+//                            // 7. 수정 버튼을 클릭하면 현재 UI에 입력되어 있는 내용으로
+//
                             public void onClick(View v) {
                                 String strname = edit_foodname_input.getText().toString();
                                 String strkcal = edit_kcal_input.getText().toString();
                                 String strcar = edit_car_input.getText().toString();
                                 String strpro = edit_pro_input.getText().toString();
                                 String strfat = edit_fat_input.getText().toString();
-
+//
                                 Food dict = new Food(strname, strkcal, strcar, strpro,strfat,"100");
-
-
+//
+//
                                 // 8. ListArray에 있는 데이터를 변경하고
                                 items.set(getAdapterPosition(), dict);
 
@@ -200,11 +206,12 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> im
                                 dialog.dismiss();
                             }
                         });
-
+//
                         dialog.show();
-
+//
                         break;
                     case 1002:
+                        Log.v("푸드아답터 콘텍스트 메뉴 엑티비티", "삭제클릭클릭");
                         items.remove(getAdapterPosition());
                         // 7. 어댑터에서 RecyclerView에 반영하도록 합니다.
                         notifyItemRemoved(getAdapterPosition());

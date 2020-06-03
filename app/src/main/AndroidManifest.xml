@@ -58,7 +58,7 @@
         </activity>
         <activity android:name=".diet_calender_activity"
             android:launchMode="singleTop"
-
+            android:windowSoftInputMode="adjustNothing"
             android:label="식단/체중">
 
 

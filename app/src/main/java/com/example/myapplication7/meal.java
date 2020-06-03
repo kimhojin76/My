@@ -69,7 +69,7 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
         morning_recyclerView.setLayoutManager(morning_layoutManager);
 
         //어뎁터 선언
-        adapter = new FoodAdapter();
+        adapter = new FoodAdapter(this);
         morning_adapter = new FoodAdapter2();
         lunch_adapter = new FoodAdapter2();
         dinner_adapter = new FoodAdapter2();
