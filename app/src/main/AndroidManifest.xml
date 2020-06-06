@@ -30,6 +30,15 @@
             android:label="회원가입">
         </activity>
         <activity
+            android:name=".splash"
+            android:label="로그인">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
             android:name=".Food_custom_weight"
             android:launchMode="singleTop"
             android:theme="@style/Theme.AppCompat.Dialog"
@@ -50,10 +59,7 @@
             android:launchMode="singleTop"
 
             android:label="기본 화면">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
 
         </activity>
 
