@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class forum_detail extends AppCompatActivity implements View.OnClickListener {
-    String title,date,contents,nickname,ID,NICKNAME;
+    String title,date,contents,nickname,ID,NICKNAME,position;
     RecyclerView recyclerView;
     repleadapter adapter;
     public String PREFERENCE = "com.studio572.samplesharepreference";
@@ -63,6 +63,7 @@ public class forum_detail extends AppCompatActivity implements View.OnClickListe
         nickname=intent.getExtras().getString("닉네임");
         date=intent.getExtras().getString("날짜");
         contents=intent.getExtras().getString("내용");
+        position = intent.getExtras().getString("포지션");
 
         title2.setText(title);
         nickname2.setText(nickname);
@@ -176,5 +177,15 @@ public class forum_detail extends AppCompatActivity implements View.OnClickListe
 //            finish();
 
         }
+    public void onBackPressed() {
+        Intent intent = new Intent(forum_detail.this, forum_activity.class);
+        intent.putExtra("리플수",Integer.toString(adapter.items.size()));
+        intent.putExtra("포지션",position);
+        Log.v("포럼엑티비티 게시글 클릭 포지션", position);
+        Log.v("포럼엑티비티 게시글 클릭 리플 갯수", Integer.toString(adapter.items.size()));
+
+        setResult(1031,intent);
+        finish();
+    }
     }
 

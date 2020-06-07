@@ -3,8 +3,10 @@ package com.example.myapplication7;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -27,19 +29,32 @@ public class basic_activity extends AppCompatActivity
         implements View.OnClickListener {
     public String PREFERENCE = "com.studio572.samplesharepreference";
     String DATE;
-    FoodAdapter2 morning_adapter,lunch_adapter,dinner_adapter,snack_adapter;
+    FoodAdapter2 morning_adapter, lunch_adapter, dinner_adapter, snack_adapter;
+    ImageView mImageView;
+    int index;
+    Drawable drawable;
+    ArrayList<Drawable> mList = new ArrayList<>();
 
+    Handler handler = new Handler();
 
     @Override
-    protected void onCreate(Bundle bundle){
+    protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView(R.layout.basic);
         SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
         SharedPreferences.Editor edit = pref.edit();
         String ID = "admin";
         String NICKNAME = "관리자";
-        edit.putString("ID",ID);
+        edit.putString("ID", ID);
         edit.commit();
+        mList.add(getDrawable(R.drawable.ad1));
+        mList.add(getDrawable(R.drawable.ad2));
+        mList.add(getDrawable(R.drawable.ad3));
+        mList.add(getDrawable(R.drawable.ad4));
+        mImageView = (ImageView) findViewById(R.id.basic_adimage);
+        mImageView.setOnClickListener(this);
+        AnimThread thread = new AnimThread();
+        thread.start();
 
         //알람 설정
         Calendar calendar = Calendar.getInstance();
@@ -49,17 +64,10 @@ public class basic_activity extends AppCompatActivity
         calendar.set(Calendar.SECOND, 0);
 
 
-
-
-
-
-
-        edit.putString(ID+"NICKNAME",NICKNAME);
+        edit.putString(ID + "NICKNAME", NICKNAME);
 
         edit.commit();
-        DATE = pref.getString(ID+"date","");
-
-
+        DATE = pref.getString(ID + "date", "");
 
 
         final TextView kcal = (TextView) findViewById(R.id.textView5);
@@ -92,113 +100,133 @@ public class basic_activity extends AppCompatActivity
         logout.setOnClickListener(this);
 
 
-
     }
 
     @Override
     //인터페이스 활용하여 클릭시 이곳으로 오게 하였음
     public void onClick(View v) {
-        if(v.getId() == R.id.textView5){
+        if (v.getId() == R.id.textView5) {
             Intent intent = new Intent(basic_activity.this, bmr_activity.class);
             startActivity(intent);
             finish();
 
             //활동칼로리 계산
-        }else if(v.getId() == R.id.textView8) {
+        } else if (v.getId() == R.id.textView8) {
             Intent intent = new Intent(basic_activity.this, diet_calender_activity.class);
             startActivity(intent);
             finish();
 
             // 그래프로 이동
-        }else if(v.getId() == R.id.textView9) {
+        } else if (v.getId() == R.id.textView9) {
             Intent intent = new Intent(basic_activity.this, weight_graph.class);
             startActivity(intent);
             finish();
 
         }
         //지금 속해있는 액티비티
-        else if(v.getId() == R.id.textView10){
-
+        else if (v.getId() == R.id.textView10) {
 
 
             //게시판 텍스트 클릭
-        }else if(v.getId() == R.id.textView16) {
+        } else if (v.getId() == R.id.textView16) {
             Intent intent = new Intent(basic_activity.this, forum_activity.class);
             startActivity(intent);
             finish();
 
 
-        }else if(v.getId() == R.id.imageView3) {
+        } else if (v.getId() == R.id.imageView3) {
             Intent intent = new Intent(basic_activity.this, diet_calender_activity.class);
             startActivity(intent);
             finish();
 
             //하단 매뉴 그래프 그림 클릭시 이동
-        }else if(v.getId() == R.id.imageView4) {
+        } else if (v.getId() == R.id.imageView4) {
             Intent intent = new Intent(basic_activity.this, weight_graph.class);
             startActivity(intent);
             finish();
 
             //하단 매뉴 메인메뉴 클릭시 (현재 액티비티)
-        }else if(v.getId() == R.id.imageView5) {
+        } else if (v.getId() == R.id.imageView5) {
 
 
-        }else if(v.getId() == R.id.imageView6) {
+        } else if (v.getId() == R.id.imageView6) {
             Intent intent = new Intent(basic_activity.this, bmr_activity.class);
             startActivity(intent);
             finish();
-        }else if(v.getId() == R.id.imageView7) {
+        } else if (v.getId() == R.id.imageView7) {
             Intent intent = new Intent(basic_activity.this, forum_activity.class);
             startActivity(intent);
             finish();
-        }else if(v.getId() == R.id.youtube_button1) {
-            String url ="https://www.youtube.com/watch?v=By7i6rDTjLg&feature=youtu.be";
+        } else if (v.getId() == R.id.youtube_button1) {
+            String url = "https://www.youtube.com/watch?v=By7i6rDTjLg&feature=youtu.be";
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             startActivity(intent);
-        }else if(v.getId() == R.id.youtube_button2) {
-            String url ="https://www.fatsecret.kr/%EC%B9%BC%EB%A1%9C%EB%A6%AC-%EC%98%81%EC%96%91%EC%86%8C/";
+        } else if (v.getId() == R.id.youtube_button2) {
+            String url = "https://www.fatsecret.kr/%EC%B9%BC%EB%A1%9C%EB%A6%AC-%EC%98%81%EC%96%91%EC%86%8C/";
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             startActivity(intent);
-        }else if(v.getId() == R.id.basic_in_profile) {
+        } else if (v.getId() == R.id.basic_in_profile) {
             Intent intent = new Intent(basic_activity.this, profile_activity.class);
             startActivity(intent);
-         }else if(v.getId() == R.id.basic_in_logout) {
+        } else if (v.getId() == R.id.basic_in_logout) {
             Intent intent = new Intent(basic_activity.this, MainActivity.class);
             startActivity(intent);
             finish();
+        } else if (v.getId() == R.id.basic_adimage) {
+            String a = Integer.toString(mList.size());
+            if (index % 4 == 1) {
+                Log.v("베이직 엑티비티", "프로바이오틱스");
+                String url = "http://dshop.dietshin.com/goods/view.asp?g=13140";
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(intent);
+            } else if (index % 4 == 2) {
+                Log.v("베이직 엑티비티", "현미볼");
+                String url = "http://dshop.dietshin.com/goods/view.asp?g=12722";
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(intent);
+            } else if (index % 4 == 3) {
+                Log.v("베이직 엑티비티", "샌드위치");
+                String url = "https://dshop.dietshin.com/goods/view.asp?g=11134";
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(intent);
+
+            } else if (index % 4 == 0) {
+                Log.v("베이직 엑티비티", "티라미수");
+                String url = "https://dshop.dietshin.com/goods/view.asp?g=12996";
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(intent);
+            }
         }
     }
 
 
-
     @Override
     protected void onResume() {
-        Log.v("베이직 엑티비티","Resume");
+        Log.v("베이직 엑티비티", "Resume");
         super.onResume();
-        Log.v("베이직 엑티비티","create");
+        Log.v("베이직 엑티비티", "create");
         SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
         SharedPreferences.Editor edit = pref.edit();
-        String ID = pref.getString("ID","");
-        edit.putString(ID+"user_act_kcal","");
+        String ID = pref.getString("ID", "");
+        edit.putString(ID + "user_act_kcal", "");
 
-        String  max_car = pref.getString(ID+"max_car","0");
-        String  max_pro = pref.getString(ID+"max_pro","0");
-        String  max_fat = pref.getString(ID+"max_fat","0");
-        String  max_kcal = pref.getString(ID+"max_kcal","0");
-        String  diet_date = pref.getString(ID+"다이어트시작일","0");
-        String  diet_maxdate = pref.getString(ID+"다이어트기간","0");
-        Log.v("베이직 엑티비티",diet_date+diet_maxdate);
+        String max_car = pref.getString(ID + "max_car", "0");
+        String max_pro = pref.getString(ID + "max_pro", "0");
+        String max_fat = pref.getString(ID + "max_fat", "0");
+        String max_kcal = pref.getString(ID + "max_kcal", "0");
+        String diet_date = pref.getString(ID + "다이어트시작일", "0");
+        String diet_maxdate = pref.getString(ID + "다이어트기간", "0");
+        Log.v("베이직 엑티비티", diet_date + diet_maxdate);
 
 
+        Log.v("베이직 엑티비티", pref.getString(ID + "_user_act_kcal", ""));
 
-        Log.v("베이직 엑티비티",pref.getString(ID+"_user_act_kcal",""));
-
-        String user_act_kcal = pref.getString(ID+"user_act_kcal","");
-        int user_d_day = pref.getInt(ID+"user_d_day",0);
-        String user_meal_kcal = pref.getString(ID+"user_meal_kcal","0000");
-        String user_meal_car = pref.getString(ID+"user_meal_car","0");
-        String user_meal_pro = pref.getString(ID+"user_meal_pro","0");
-        String user_meal_fat = pref.getString(ID+"user_meal_fat","0");
+        String user_act_kcal = pref.getString(ID + "user_act_kcal", "");
+        int user_d_day = pref.getInt(ID + "user_d_day", 0);
+        String user_meal_kcal = pref.getString(ID + "user_meal_kcal", "0000");
+        String user_meal_car = pref.getString(ID + "user_meal_car", "0");
+        String user_meal_pro = pref.getString(ID + "user_meal_pro", "0");
+        String user_meal_fat = pref.getString(ID + "user_meal_fat", "0");
 //        ProgressBar basic_in_seekBar1 = (ProgressBar) findViewById(R.id.basic_in_seekBar1);
         ProgressBar basic_in_seekBar2 = (ProgressBar) findViewById(R.id.basic_in_seekBar2);
         ProgressBar basic_in_seekBar3 = (ProgressBar) findViewById(R.id.basic_in_seekBar3);
@@ -235,30 +263,28 @@ public class basic_activity extends AppCompatActivity
         try {//String Type을 Date 타입으로 변환하면서 생기는 예외로 인한 오류 방지
             SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd");
             Date firstdate = format2.parse(diet_date);
-            Log.v("베이직 엑티비티",format2.parse(diet_date)+"다이어트 시작일 확인");
+            Log.v("베이직 엑티비티", format2.parse(diet_date) + "다이어트 시작일 확인");
             Date currentTime = Calendar.getInstance().getTime();
             String nowdate = format2.format(currentTime);
             long calDate = currentTime.getTime() - firstdate.getTime();
 
             // Date.getTime() 은 해당날짜를 기준으로1970년 00:00:00 부터 몇 초가 흘렀는지를 반환해준다.
             // 이제 24*60*60*1000(각 시간값에 따른 차이점) 을 나눠주면 일수가 나온다.
-            long calDateDays = calDate / ( 24*60*60*1000);
-            Log.v("베이직 엑티비티",calDate+"다이어트 시작일 확인");
+            long calDateDays = calDate / (24 * 60 * 60 * 1000);
+            Log.v("베이직 엑티비티", calDate + "다이어트 시작일 확인");
 
             calDateDays = Math.abs(calDateDays);
-            Log.v("베이직 엑티비티",calDateDays+"다이어트 시작일 확인");
-            double now_dday = Double.parseDouble(diet_maxdate)-calDateDays;
+            Log.v("베이직 엑티비티", calDateDays + "다이어트 시작일 확인");
+            double now_dday = Double.parseDouble(diet_maxdate) - calDateDays;
             basic_intext3.setText(Double.toString(now_dday));
-            basic_in_seekBar3.setProgress((int)calDateDays);
+            basic_in_seekBar3.setProgress((int) calDateDays);
 
 
-            Log.v("베이직 엑티비티",format2.format(currentTime)+"현재일 확인");
+            Log.v("베이직 엑티비티", format2.format(currentTime) + "현재일 확인");
 
 
+        } catch (ParseException e) {
         }
-        catch (ParseException e)
-        {}
-
 
 
         basic_in_seekBar2.setMax(Integer.parseInt(max_kcal));
@@ -267,14 +293,13 @@ public class basic_activity extends AppCompatActivity
         basic_in_seekBar5.setMax(Integer.parseInt(max_pro));
         basic_in_seekBar6.setMax(Integer.parseInt(max_fat));
 
-        Log.v("베이직 엑티비티",ID+"입력확인");
+        Log.v("베이직 엑티비티", ID + "입력확인");
 
 
-
-        String gson_morning_adapter = pref.getString(ID+DATE+"gson_morning_adapter","");
-        String gson_lunch_adapter = pref.getString(ID+DATE+"gson_lunch_adapter","");
-        String gson_dinner_adapter = pref.getString(ID+DATE+"gson_dinner_adapter","");
-        String gson_snack_adapter = pref.getString(ID+DATE+"gson_snack_adapter","");
+        String gson_morning_adapter = pref.getString(ID + DATE + "gson_morning_adapter", "");
+        String gson_lunch_adapter = pref.getString(ID + DATE + "gson_lunch_adapter", "");
+        String gson_dinner_adapter = pref.getString(ID + DATE + "gson_dinner_adapter", "");
+        String gson_snack_adapter = pref.getString(ID + DATE + "gson_snack_adapter", "");
         Gson gson = new Gson();
         double user_date_meal_kcal = 0;
         double user_date_meal_car = 0;
@@ -304,13 +329,14 @@ public class basic_activity extends AppCompatActivity
         lunch_adapter = new FoodAdapter2();
         dinner_adapter = new FoodAdapter2();
         snack_adapter = new FoodAdapter2();
-        if(gson_morning_adapter != ""){
-            ArrayList<Food> morninglist = gson.fromJson(gson_morning_adapter,new TypeToken<ArrayList<Food>>(){}.getType());
+        if (gson_morning_adapter != "") {
+            ArrayList<Food> morninglist = gson.fromJson(gson_morning_adapter, new TypeToken<ArrayList<Food>>() {
+            }.getType());
 //            ArrayList<Food> dinnerlist = gson.fromJson(gson_dinner_adapter,new TypeToken<ArrayList<Food>>(){}.getType());
 //            ArrayList<Food> snacklist = gson.fromJson(gson_snack_adapter,new TypeToken<ArrayList<Food>>(){}.getType());
 
             morning_adapter.items = morninglist;
-            Log.v("베이직 엑티비티 리줌",gson_morning_adapter);
+            Log.v("베이직 엑티비티 리줌", gson_morning_adapter);
             for (int i = 0; i < morninglist.size(); i++) {
                 Food item1 = morning_adapter.getItem(i);
                 Log.v("식단입력 엑티비티", item1.getName());
@@ -320,8 +346,9 @@ public class basic_activity extends AppCompatActivity
                 user_morning_kcal = user_morning_kcal + Double.parseDouble(item1.getKcal());
             }
         }
-        if(gson_lunch_adapter != ""){
-            ArrayList<Food> lunchlist = gson.fromJson(gson_lunch_adapter,new TypeToken<ArrayList<Food>>(){}.getType());
+        if (gson_lunch_adapter != "") {
+            ArrayList<Food> lunchlist = gson.fromJson(gson_lunch_adapter, new TypeToken<ArrayList<Food>>() {
+            }.getType());
             lunch_adapter.items = lunchlist;
             for (int i = 0; i < lunchlist.size(); i++) {
                 Food item1 = lunch_adapter.getItem(i);
@@ -331,8 +358,9 @@ public class basic_activity extends AppCompatActivity
                 user_lunch_kcal = user_lunch_kcal + Double.parseDouble(item1.getKcal());
             }
         }
-        if(gson_dinner_adapter != ""){
-            ArrayList<Food> lunchlist = gson.fromJson(gson_dinner_adapter,new TypeToken<ArrayList<Food>>(){}.getType());
+        if (gson_dinner_adapter != "") {
+            ArrayList<Food> lunchlist = gson.fromJson(gson_dinner_adapter, new TypeToken<ArrayList<Food>>() {
+            }.getType());
             dinner_adapter.items = lunchlist;
             for (int i = 0; i < lunchlist.size(); i++) {
                 Food item1 = dinner_adapter.getItem(i);
@@ -342,8 +370,9 @@ public class basic_activity extends AppCompatActivity
                 user_dinner_kcal = user_dinner_kcal + Double.parseDouble(item1.getKcal());
             }
         }
-        if(gson_snack_adapter != ""){
-            ArrayList<Food> lunchlist = gson.fromJson(gson_snack_adapter,new TypeToken<ArrayList<Food>>(){}.getType());
+        if (gson_snack_adapter != "") {
+            ArrayList<Food> lunchlist = gson.fromJson(gson_snack_adapter, new TypeToken<ArrayList<Food>>() {
+            }.getType());
             snack_adapter.items = lunchlist;
             for (int i = 0; i < lunchlist.size(); i++) {
                 Food item1 = snack_adapter.getItem(i);
@@ -353,22 +382,22 @@ public class basic_activity extends AppCompatActivity
                 user_snack_kcal = user_snack_kcal + Double.parseDouble(item1.getKcal());
             }
         }
-        user_date_meal_kcal = user_morning_kcal+user_lunch_kcal+user_dinner_kcal+user_snack_kcal;
-        user_date_meal_car = user_morning_car+user_lunch_car+user_dinner_car+user_snack_car;
-        user_date_meal_pro = user_morning_pro+user_lunch_pro+user_dinner_pro+user_snack_pro;
-        user_date_meal_fat = user_morning_fat+user_lunch_fat+user_dinner_fat+user_snack_fat;
+        user_date_meal_kcal = user_morning_kcal + user_lunch_kcal + user_dinner_kcal + user_snack_kcal;
+        user_date_meal_car = user_morning_car + user_lunch_car + user_dinner_car + user_snack_car;
+        user_date_meal_pro = user_morning_pro + user_lunch_pro + user_dinner_pro + user_snack_pro;
+        user_date_meal_fat = user_morning_fat + user_lunch_fat + user_dinner_fat + user_snack_fat;
         //섭취칼로리량
         basic_intext1.setText(String.format("%.0f", user_date_meal_kcal));
         basic_in_seekBar2.setProgress(Integer.parseInt(basic_intext1.getText().toString()));
 
         //잔여 칼로리량
-        double kcal = Double.parseDouble(max_kcal)-user_date_meal_kcal;
+        double kcal = Double.parseDouble(max_kcal) - user_date_meal_kcal;
         if (kcal < 0) {
             Math.abs(kcal);
             basic_intext2.setText(String.format("%.0f", Math.abs(kcal)));
             basic_intext2.setTextColor(Color.parseColor("#ff0000"));
 
-        }else{
+        } else {
             basic_intext2.setText(String.format("%.0f", kcal));
 
         }
@@ -388,38 +417,51 @@ public class basic_activity extends AppCompatActivity
         Log.v("식단입력 엑티비티", Double.toString(user_date_meal_kcal));
 
 
-
-
-
-
-
-
-
-
-
-
     }
 
     @Override
     protected void onStart() {
-        Log.v("베이직 엑티비티","Start");
+        Log.v("베이직 엑티비티", "Start");
         super.onStart();
     }
 
     @Override
     protected void onStop() {
-        Log.v("베이직 엑티비티","Stop");
+        Log.v("베이직 엑티비티", "Stop");
         super.onStop();
     }
 
     @Override
     protected void onDestroy() {
-        Log.v("베이직 엑티비티","Destroy");
+        Log.v("베이직 엑티비티", "Destroy");
         super.onDestroy();
     }
+
     protected void onPause() {
-        Log.v("베이직 엑티비티","Pause");
+        Log.v("베이직 엑티비티", "Pause");
         super.onPause();
     }
 
+    class AnimThread extends Thread {
+        @Override
+        public void run() {
+            index = 0;
+            while (true) {
+                drawable = mList.get(index % mList.size());
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        mImageView.setImageDrawable(drawable);
+                    }
+                });
+                index++;
+                int a = (index % mList.size());
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 }

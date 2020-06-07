@@ -69,7 +69,7 @@ public class memberAdapter extends RecyclerView.Adapter<memberAdapter.ViewHolder
     }
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener{
-        TextView nickname, title, date,contents;
+        TextView nickname, title, date,contents,amount;
         ImageView profile_image;
 
         //뷰홀더 생성
@@ -80,6 +80,7 @@ public class memberAdapter extends RecyclerView.Adapter<memberAdapter.ViewHolder
             title = itemView.findViewById(R.id.forum_title);
             date = itemView.findViewById(R.id.forum_date);
             contents = itemView.findViewById(R.id.forum_contents);
+            amount = itemView.findViewById(R.id.forum_reple_amount);
 //            profile_image = itemView.findViewById(R.id.forum_profile);
 
             itemView.setOnCreateContextMenuListener(this); // 온크리에잇 리스터 현재 클레스에 구현
@@ -100,6 +101,9 @@ public class memberAdapter extends RecyclerView.Adapter<memberAdapter.ViewHolder
             title.setText(item.getTitle());
             date.setText(item.getDate());
             contents.setText(item.getContents());
+            if(item.getReple_amount()!=null){
+                amount.setText(item.getReple_amount());
+            }
         }
 
         //    public void filter(String charText) {

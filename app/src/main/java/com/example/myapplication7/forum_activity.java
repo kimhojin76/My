@@ -23,7 +23,7 @@ public class forum_activity extends AppCompatActivity
         implements View.OnClickListener {
     RecyclerView recyclerView;
     memberAdapter adapter= new memberAdapter();
-    private String ID;
+    private String ID,pos,reple_amount;
     public String PREFERENCE = "com.studio572.samplesharepreference";
 
 
@@ -96,7 +96,9 @@ public class forum_activity extends AppCompatActivity
             @Override
             public void onItemClick(memberAdapter.ViewHolder holder, View view, int position) {
                 member item = adapter.getitem(position);
+
                 Intent data = new Intent(forum_activity.this, forum_detail.class);
+                data.putExtra("포지션",Integer.toString(position));
                 data.putExtra("닉네임",item.getNickname().toString());
                 data.putExtra("제목",item.getTitle().toString());
                 data.putExtra("날짜",item.getDate().toString());
@@ -113,6 +115,8 @@ public class forum_activity extends AppCompatActivity
     }
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
+
         Log.v("포럼 엑티비티", "도착");
 
         if (requestCode==1010&&resultCode==200)
@@ -124,7 +128,6 @@ public class forum_activity extends AppCompatActivity
             recyclerView.setAdapter(adapter);
             Gson gson = new Gson();
             //쉐어드프리퍼런스 pref에 쉐어드 주소,타입 지정해서 매칭
-            SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
             //에디터 선언
             SharedPreferences.Editor editor = pref.edit();
             String gson_member_adapter = gson.toJson(adapter.items);
@@ -132,6 +135,17 @@ public class forum_activity extends AppCompatActivity
             editor.putString("gson_member_adapter",gson_member_adapter);
             //쉐어드에 저장하기
             editor.commit();
+        }else if(resultCode==1031){
+            Log.v("포럼 엑티비티", "1031 도착");
+           String pos1 = data.getExtras().getString("포지션");
+           String reple_amount1 = data.getExtras().getString("리플수");
+            Log.v("포럼 엑티비티", pos1);
+            Log.v("포럼 엑티비티", reple_amount1);
+
+            member item = adapter.getitem(Integer.parseInt(pos1));
+            item.setReple_amount(reple_amount1);
+            recyclerView.setAdapter(adapter);
+
         }
     }
     @Override

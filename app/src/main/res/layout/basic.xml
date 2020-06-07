@@ -51,16 +51,24 @@
         app:layout_constraintLeft_toLeftOf="@id/imageView3"
         app:layout_constraintBottom_toBottomOf="parent" />
 
+    <ImageView
+        android:id="@+id/basic_adimage"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        app:layout_constraintEnd_toEndOf="@+id/basic_imageview1"
+        app:layout_constraintLeft_toLeftOf="@id/imageView3"
+        app:layout_constraintStart_toStartOf="@+id/basic_imageview1"
+        app:layout_constraintTop_toBottomOf="@+id/bottom_imageView2" />
 
     <ImageView
         android:id="@+id/basic_imageview1"
+        android:layout_marginTop="30dp"
         android:layout_width="330dp"
         android:layout_height="300dp"
-        android:layout_marginTop="30dp"
         android:background="@drawable/btn_green_gra"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bottom_imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/basic_adimage" />
 
     <TextView
         android:id="@+id/basic_intext1"
@@ -491,7 +499,7 @@
     <Button
         android:id="@+id/youtube_button1"
         android:layout_width="160dp"
-        android:layout_height="100dp"
+        android:layout_height="70dp"
         android:layout_marginTop="15dp"
         android:background="@drawable/btn_gray"
         android:text="웨이트 vs 유산소 \n고민 해결영상\n(유튜브 링크)"
@@ -501,7 +509,7 @@
     <Button
         android:id="@+id/youtube_button2"
         android:layout_width="160dp"
-        android:layout_height="100dp"
+        android:layout_height="70dp"
         android:layout_marginTop="15dp"
         android:background="@drawable/btn_gray"
         android:text="음식 칼로리\n 손쉽개 확인하자\n(fatsecret 사이트)"
