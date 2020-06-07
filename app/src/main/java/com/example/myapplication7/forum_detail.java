@@ -19,7 +19,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class forum_detail extends AppCompatActivity implements View.OnClickListener {
@@ -30,7 +34,7 @@ public class forum_detail extends AppCompatActivity implements View.OnClickListe
     EditText reple_input_edittext;
     @Override
     protected void onCreate(Bundle bundle) {
-        Log.v("포럼디테일", "create");
+        Log.v("포럼디테일 엑티비티", "create");
         super.onCreate(bundle);
         setContentView(R.layout.forum_item_detail);
         SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
@@ -51,7 +55,7 @@ public class forum_detail extends AppCompatActivity implements View.OnClickListe
         recyclerView.setAdapter(adapter);
 
 
-        Log.v("포럼디테일", "인텐트 겟");
+        Log.v("포럼디테일 엑티비티", "인텐트 겟");
         Intent intent = getIntent();
         ID = pref.getString("ID","");
         NICKNAME = pref.getString(ID+"NICKNAME","");
@@ -64,7 +68,7 @@ public class forum_detail extends AppCompatActivity implements View.OnClickListe
         nickname2.setText(nickname);
         date2.setText(date);
         contents2.setText(contents);
-        Log.v("포럼디테일", "입력테스트");
+        Log.v("포럼디테일 엑티비티", "입력테스트");
 //        adapter.addItem(new reple(NICKNAME,"",reple_input_edittext.getText().toString()));
 //        recyclerView.setAdapter(adapter);
 
@@ -81,6 +85,17 @@ public class forum_detail extends AppCompatActivity implements View.OnClickListe
     protected void onResume() {
         Log.v("포럼디테일 엑티비티", "Resume");
         super.onResume();
+        Gson gson = new Gson();
+        SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
+        String gson_reple_adapter = pref.getString(NICKNAME+date+"gson_reple_adapter","");
+        if(gson_reple_adapter !=""){
+            ArrayList<reple> replelist = gson.fromJson(gson_reple_adapter,new TypeToken<ArrayList<reple>>(){}.getType());
+            adapter.items = replelist;
+//            recyclerView.setAdapter(adapter);
+
+
+        }
+
 
     }
 
@@ -128,19 +143,28 @@ public class forum_detail extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.reple_input_image) {
-            Log.v("포럼 게시글 클릭", "연필 이미지 클릭");
+            Log.v("포럼엑티비티 게시글 클릭", "연필 이미지 클릭");
 
             long now = System.currentTimeMillis();
             Date mDate = new Date(now);
             SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             String getTime = simpleDate.format(mDate);
-            Log.v("포럼 게시글 클릭", getTime);
-            Log.v("포럼 게시글 클릭", NICKNAME);
+            Log.v("포럼엑티비티 게시글 클릭", getTime);
+            Log.v("포럼엑티비티 게시글 클릭", NICKNAME);
+            Log.v("포럼엑티비티 게시글 클릭", reple_input_edittext.getText().toString());
 
-//            adapter.addItem(new reple(NICKNAME,getTime,reple_input_edittext.getText().toString()));
-//            recyclerView.setAdapter(adapter);
-
+            adapter.addItem(new reple(NICKNAME,getTime,reple_input_edittext.getText().toString()));
+            recyclerView.setAdapter(adapter);
+            SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
+            SharedPreferences.Editor editor = pref.edit();
+            Gson gson = new Gson();
+            String gson_reple_adapter = gson.toJson(adapter.items);
+            //에디터에 json형식으로 변환된 객체값 집어넣기
+            editor.putString(NICKNAME+date+"gson_reple_adapter",gson_reple_adapter);
+            //쉐어드에 저장하기
+            editor.commit();
         }
+
 
 //            Intent data = new Intent(forum_detail.this, meal.class);
 //            data.putExtra("음식명",add_foodname.getText().toString());

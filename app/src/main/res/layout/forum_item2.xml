@@ -36,7 +36,10 @@
 
 
             </LinearLayout>
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
             <TextView
                 android:id="@+id/forum_title"
                 android:layout_width="wrap_content"
@@ -46,6 +49,17 @@
                 android:padding="5dp"
                 android:text="메세지 내용"
                 android:textSize="15dp" />
+                <TextView
+                    android:id="@+id/forum_reple_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLength="150"
+                    android:maxLines="15"
+                    android:padding="5dp"
+                    android:text=""
+                    android:textSize="15dp" />
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/forum_contents"
                 android:layout_width="0dp"

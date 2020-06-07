@@ -1,14 +1,15 @@
 package com.example.myapplication7;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.Handler;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.ImageView;
 
-public class splash extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class Splash_activity extends AppCompatActivity {
     ImageView limage1,limage2,limage3,limage4;
     int count;
     @Override
@@ -24,10 +25,7 @@ public class splash extends Activity {
 
         new Loader().execute();
 
-
-    } // onCreate
-
-    //// AsyncTask
+    }
 
     class Loader extends AsyncTask<Void, Integer, Integer> {
 
@@ -86,8 +84,9 @@ public class splash extends Activity {
                     break;
                 case 3:
                     limage4.setVisibility(View.VISIBLE);
-                    Intent intent = new Intent(splash.this, basic_activity.class);
+                    Intent intent = new Intent(Splash_activity.this, basic_activity.class);
                     startActivity(intent);
+                    finish();
                     break;
             }
         }

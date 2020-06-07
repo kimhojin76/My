@@ -1,12 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/btn_blue2"
-    tools:context=".Splash_activity">
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/loading_image1"
@@ -14,7 +12,7 @@
         android:layout_height="141dp"
         android:layout_marginStart="56dp"
         android:layout_marginLeft="56dp"
-        android:layout_marginBottom="272dp"
+        android:layout_marginBottom="320dp"
         app:layout_constraintBottom_toTopOf="@+id/loading_image4"
         app:layout_constraintStart_toStartOf="@+id/loading_image4"
         app:srcCompat="@drawable/loading1" />
@@ -25,7 +23,7 @@
         android:layout_height="135dp"
         android:layout_marginEnd="44dp"
         android:layout_marginRight="44dp"
-        android:layout_marginBottom="172dp"
+        android:layout_marginBottom="220dp"
         app:layout_constraintBottom_toTopOf="@+id/loading_image4"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/loading2" />
@@ -34,8 +32,8 @@
         android:id="@+id/loading_image3"
         android:layout_width="187dp"
         android:layout_height="175dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="15dp"
         app:layout_constraintBottom_toTopOf="@+id/loading_image4"
         app:layout_constraintStart_toStartOf="@+id/loading_image1"
         app:srcCompat="@drawable/loading3" />
@@ -46,8 +44,10 @@
         android:layout_height="144dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.38"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.919"
+        app:layout_constraintVertical_bias="0.835"
         app:srcCompat="@drawable/loading6" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

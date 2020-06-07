@@ -1,11 +1,20 @@
 package com.example.myapplication7;
 
 public class member {
+    public void setReple_amount(String reple_amount) {
+        this.reple_amount = reple_amount;
+    }
+
+    public String getReple_amount() {
+        return reple_amount;
+    }
+
     String nickname;
     String title;
     String date;
     String contents;
     String uri;
+    String reple_amount;
 
     public member(String nickname, String title, String date, String contents, String uri) {
         this.nickname = nickname;

@@ -41,7 +41,7 @@ public class forum_write extends AppCompatActivity implements View.OnClickListen
         Button register = (Button) findViewById(R.id.write_register);
         register.setOnClickListener(this);
         nickcame = (TextView) findViewById(R.id.forum_write_nickname);
-        nickcame.setText("운영자");
+        nickcame.setText("관리자");
     }
 
 

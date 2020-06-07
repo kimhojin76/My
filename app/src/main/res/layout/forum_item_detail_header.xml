@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".MainActivity">
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/forum_detail_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:hint="nickname"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent">
+        </TextView>
+        <TextView
+            android:id="@+id/forum_detail_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:hint="date"
+            app:layout_constraintLeft_toRightOf="@id/forum_detail_nickname"
+            app:layout_constraintTop_toTopOf="@+id/forum_detail_nickname">
+        </TextView>
+        <TextView
+            android:id="@+id/forum_detail_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="25dp"
+            android:hint="title"
+            app:layout_constraintLeft_toLeftOf="@id/forum_detail_nickname"
+            app:layout_constraintTop_toBottomOf="@+id/forum_detail_nickname">
+        </TextView>
+        <ImageView
+            android:id="@+id/forum_detail_contents_image"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:hint="image"
+            app:layout_constraintLeft_toLeftOf="@id/forum_detail_title"
+            app:layout_constraintTop_toBottomOf="@id/forum_detail_title">
+        </ImageView>
+        <TextView
+            android:id="@+id/forum_detail_contents"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="contents"
+            app:layout_constraintLeft_toLeftOf="@id/forum_detail_contents_image"
+            app:layout_constraintTop_toBottomOf="@id/forum_detail_contents_image">
+        </TextView>
+        <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_marginTop="15dp"
+        android:layout_height="2px"
+        android:background="#00ff00"
+        app:layout_constraintTop_toBottomOf="@id/forum_detail_contents">
+
+        ></View>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

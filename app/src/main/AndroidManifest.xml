@@ -30,8 +30,10 @@
             android:label="회원가입">
         </activity>
         <activity
-            android:name=".splash"
+            android:name=".Splash_activity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
             android:label="로그인">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

@@ -20,15 +20,15 @@ import java.util.ArrayList;
 
 public class repleadapter extends RecyclerView.Adapter<repleadapter.ViewHolder>  {
     private Context mContext;
-    public ArrayList<reple> items = new ArrayList<reple>();
+    ArrayList<reple> items = new ArrayList<reple>();
     OnmemberItemClickListener listener;
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
         //인플레이션을 통한 뷰 객체 생성
-        View itemView = inflater.inflate(R.layout.forum_reple_item,parent,false);
+        View itemView = inflater.inflate(R.layout.forum_reple_item,viewGroup,false);
         return new ViewHolder(itemView);
     }
 
@@ -59,7 +59,13 @@ public class repleadapter extends RecyclerView.Adapter<repleadapter.ViewHolder> 
         TextView textView1,textView2,textView3,textView4;
 
         public ViewHolder(@NonNull View itemView) {
+
             super(itemView);
+            textView1 = itemView.findViewById(R.id.forum_reple_nickname);
+            textView2 = itemView.findViewById(R.id.forum_reple_date);
+            textView3 = itemView.findViewById(R.id.forum_reple_contents);
+            textView4 = itemView.findViewById(R.id.forum_reple_amount);
+
         }
         public void setItem(reple item){
             textView1.setText(item.getNickname());

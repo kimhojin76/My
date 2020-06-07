@@ -1,6 +1,5 @@
 package com.example.myapplication7;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -12,9 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
@@ -25,8 +22,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Locale;
 
 public class basic_activity extends AppCompatActivity
         implements View.OnClickListener {
@@ -95,6 +90,7 @@ public class basic_activity extends AppCompatActivity
         in_profile.setOnClickListener(this);
         final TextView logout = (TextView) findViewById(R.id.basic_in_logout);
         logout.setOnClickListener(this);
+
 
 
     }
