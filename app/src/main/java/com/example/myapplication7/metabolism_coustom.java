@@ -77,6 +77,10 @@ public class metabolism_coustom extends AppCompatActivity implements View.OnClic
             public void onItemClick(ACTAdapter.ViewHolder holder, View view, int position) {
                 ACT item = adapter.getItem(position);
 
+                Intent fooddata = new Intent(metabolism_coustom.this, Food_custom_weight.class);
+
+
+
                 selected_adapter.addItem(new ACT(item.getActname(),item.getAct_pal(),"1"));
                 seleted_recyclerView.setAdapter(selected_adapter);
                 user_hour = 0;
@@ -84,7 +88,9 @@ public class metabolism_coustom extends AppCompatActivity implements View.OnClic
                     ACT item1 = selected_adapter.getItem(i);
                     Log.v("식단입력 엑티비티", item1.getAct_hour());
                     user_hour = user_hour + Double.parseDouble(item1.getAct_hour());
-                    act_sum_hour.setText(Double.toString(user_hour));
+                    String string_user_hour = Double.toString(user_hour);
+                    act_sum_hour.setText(String.format("%.1f", user_hour));
+
                 }
 
             }
@@ -92,7 +98,7 @@ public class metabolism_coustom extends AppCompatActivity implements View.OnClic
 
 
         act_sum_hour = (TextView) findViewById(R.id.textView12);
-        act_sum_hour.setText(Double.toString(user_hour));
+        act_sum_hour.setText(String.format("%.1f", user_hour));
         Button save = (Button) findViewById(R.id.add_custom_pal);
         save.setOnClickListener(new View.OnClickListener() {
             @Override

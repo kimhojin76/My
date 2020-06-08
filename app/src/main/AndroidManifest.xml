@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.myapplication7">
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
@@ -16,13 +18,13 @@
         </activity>
 
         <receiver
-            android:name=".basic_activity"
+            android:name=".DeviceBootReceiver"
             android:enabled="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-<!--        <receiver android:name=".AlarmReceiver" />-->
+        <receiver android:name=".AlarmReceiver" />
 
         <activity
             android:name=".signup_activity"
@@ -44,7 +46,12 @@
             android:name=".Food_custom_weight"
             android:launchMode="singleTop"
             android:theme="@style/Theme.AppCompat.Dialog"
-            android:label="중량">
+            android:label="중량 입력">
+        </activity>
+        <activity
+            android:name=".act_hour"
+            android:theme="@style/Theme.AppCompat.Dialog"
+            android:label="시간 입력">
         </activity>
         <activity
             android:name=".forum_write"
