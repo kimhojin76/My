@@ -24,6 +24,7 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+<!--        알람 리시버 선언-->
         <receiver android:name=".AlarmReceiver" />
 
         <activity

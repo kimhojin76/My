@@ -109,7 +109,28 @@ public class basic_activity extends AppCompatActivity
         final TextView logout = (TextView) findViewById(R.id.basic_in_logout);
         logout.setOnClickListener(this);
 
-
+//        Long millis = pref.getLong("NotifyTime",Calendar.getInstance().getTimeInMillis());삭제예정
+        //추상클래스 calendar의 알람시간 객체 선언 해당 객체는 GregorianCalendar 형식으로 선언함
+        Calendar NotifyTime = new GregorianCalendar();
+//        NotifyTime.setTimeInMillis(millis); 삭제예정
+        //캘린더에 현재 시간 적용
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        //캘린더에 알람 시각(시) 적용
+        calendar.set(Calendar.HOUR_OF_DAY, 21);
+        //캘린더에 알람 시각(분) 적용
+        calendar.set(Calendar.MINUTE, 52);
+        //캘린더에 알람 시각(초) 적용
+        calendar.set(Calendar.SECOND, 0);
+        //캘린더에 적용된 시각이 현재시각(캘린더.getinstance 현재시각 반환)보다 전인지 후인지 before 매소드를 통하여 확인, 전이면 캘린더 날짜에 1을 추가하게끔 하였음.
+        if (calendar.before(Calendar.getInstance())) {
+            calendar.add(Calendar.DATE, 1);
+        }
+        //현재 저장된 알람시각 정보를 NotifyTime 키값으로 쉐어드에 입력
+        edit.putLong("NotifyTime", (long)calendar.getTimeInMillis());
+        //해당내용을 저장
+        edit.commit();
+        //diaryNotification 함수에 알람시각정보를 담은 객체를 넣어 실행
+        diaryNotification(calendar);
     }
 
     @Override
@@ -168,29 +189,11 @@ public class basic_activity extends AppCompatActivity
             startActivity(intent);
             finish();
         } else if (v.getId() == R.id.youtube_button1) {
-//            String url = "https://www.youtube.com/watch?v=By7i6rDTjLg&feature=youtu.be";
-//            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-//            startActivity(intent);
+            String url = "https://www.youtube.com/watch?v=By7i6rDTjLg&feature=youtu.be";
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            startActivity(intent);
 
-            SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
-            SharedPreferences.Editor edit = pref.edit();
-            Long millis = pref.getLong("NotifyTime",Calendar.getInstance().getTimeInMillis());
 
-            Calendar NotifyTime = new GregorianCalendar();
-            NotifyTime.setTimeInMillis(millis);
-
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTimeInMillis(System.currentTimeMillis());
-            calendar.set(Calendar.HOUR_OF_DAY, 19);
-            calendar.set(Calendar.MINUTE, 46);
-            calendar.set(Calendar.SECOND, 0);
-            if (calendar.before(Calendar.getInstance())) {
-                calendar.add(Calendar.DATE, 1);
-            }
-            edit.putLong("NotifyTime", (long)calendar.getTimeInMillis());
-            edit.commit();
-//
-            diaryNotification(calendar);
 
 
 
@@ -238,15 +241,17 @@ public class basic_activity extends AppCompatActivity
 
     void diaryNotification(Calendar calendar)
     {
-//        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
-//        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-//        Boolean dailyNotify = sharedPref.getBoolean(SettingsActivity.KEY_PREF_DAILY_NOTIFICATION, true);
         Boolean dailyNotify = true; // 무조건 알람을 사용
-
+        //패키지 관리자 인스턴스 취득
         PackageManager pm = this.getPackageManager();
+        //패키지명과 액티비티(리시버)를 지정하여 명시적 호출을 위한 사용
         ComponentName receiver = new ComponentName(this, DeviceBootReceiver.class);
+        //패키지명과 액티비티(리시버)를 지정하여 명시적 인텐트 사용
         Intent alarmIntent = new Intent(this, AlarmReceiver.class);
+        //AlarmManager를 통해 지정된 시각에 인텐트가 시작되야 하므로 (다른 프로세스에서 시행하기 때문에) PendingIntent
+        //를 사용해야 본인 앱의 프로세스에서 사용하는 것처럼 사용할 수 있음., BroadcastReceiver 를 시작하는 것이기 때문에 .getBroadcast를 해주었음.
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, 0);
+        //알람매니저 객체 생성, 알람매니저가 시스템 서비스이므로 getSystemService매소드를 사용하여 얻어옴
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
 
@@ -255,30 +260,25 @@ public class basic_activity extends AppCompatActivity
 
 
             if (alarmManager != null) {
-
+                //setRepeating 정해진 시각에 내가 원하는 동작을 함. UTC표준시간을 기준 + 장치를 깨움, 뒤에 받아왔던 켈린더 객체의 시간을 호출(내가 지정한 알람시간)
+                //반복간격은 INTERVAL_DAY(하루)이며 정해진 동작은 PendingIntent(브로드캐스트 실행)
                 alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
                         AlarmManager.INTERVAL_DAY, pendingIntent);
 
+                //머쉬맬로 sdk23 부터는 doze 모드가 생겨 디바이스가 잠들면 알람매니저가 먹히지 않는다. setExactAndAllowWhileIdle 를 통해 doze모드에서도 깨울수 있게 설정해줘야한다
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
                 }
             }
 
             // 부팅 후 실행되는 리시버 사용가능하게 설정
+            //비활성화된 액티비티를 호출 시 크래쉬 애러가 발생하기 때문에 앱을 활성화 시키고(COMPONENT_ENABLED_STATE_ENABLED),setComponentEnabledSetting의 3번째 인자값을 0으로주면
+            //이 매소드 호출종료와 동시에 앱이 종료되기 때문에 앱을 종료하지 않고 설정값만 변경시키게(DONT_KILL_APP)을 사용함
             pm.setComponentEnabledSetting(receiver,
                     PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                     PackageManager.DONT_KILL_APP);
 
         }
-//        else { //Disable Daily Notifications
-//            if (PendingIntent.getBroadcast(this, 0, alarmIntent, 0) != null && alarmManager != null) {
-//                alarmManager.cancel(pendingIntent);
-//                //Toast.makeText(this,"Notifications were disabled",Toast.LENGTH_SHORT).show();
-//            }
-//            pm.setComponentEnabledSetting(receiver,
-//                    PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
-//                    PackageManager.DONT_KILL_APP);
-//        }
     }
     @Override
     protected void onResume() {
