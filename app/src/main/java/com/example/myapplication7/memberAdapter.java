@@ -101,7 +101,7 @@ public class memberAdapter extends RecyclerView.Adapter<memberAdapter.ViewHolder
             title.setText(item.getTitle());
             date.setText(item.getDate());
             contents.setText(item.getContents());
-            if(item.getReple_amount()!=null){
+            if(item.getReple_amount()!=null || item.getReple_amount()!= ""){
                 amount.setText(item.getReple_amount());
             }
         }

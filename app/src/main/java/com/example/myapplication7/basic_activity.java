@@ -66,12 +66,8 @@ public class basic_activity extends AppCompatActivity
         AnimThread thread = new AnimThread();
         thread.start();
 
-        //알람 설정
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.set(Calendar.HOUR_OF_DAY, 18);
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.SECOND, 0);
+
+
 
 
         edit.putString(ID + "NICKNAME", NICKNAME);
@@ -109,16 +105,16 @@ public class basic_activity extends AppCompatActivity
         final TextView logout = (TextView) findViewById(R.id.basic_in_logout);
         logout.setOnClickListener(this);
 
-//        Long millis = pref.getLong("NotifyTime",Calendar.getInstance().getTimeInMillis());삭제예정
+        //알람 설정
+        Calendar calendar = Calendar.getInstance();
         //추상클래스 calendar의 알람시간 객체 선언 해당 객체는 GregorianCalendar 형식으로 선언함
         Calendar NotifyTime = new GregorianCalendar();
-//        NotifyTime.setTimeInMillis(millis); 삭제예정
         //캘린더에 현재 시간 적용
         calendar.setTimeInMillis(System.currentTimeMillis());
         //캘린더에 알람 시각(시) 적용
-        calendar.set(Calendar.HOUR_OF_DAY, 21);
+        calendar.set(Calendar.HOUR_OF_DAY, 22);
         //캘린더에 알람 시각(분) 적용
-        calendar.set(Calendar.MINUTE, 52);
+        calendar.set(Calendar.MINUTE, 19);
         //캘린더에 알람 시각(초) 적용
         calendar.set(Calendar.SECOND, 0);
         //캘린더에 적용된 시각이 현재시각(캘린더.getinstance 현재시각 반환)보다 전인지 후인지 before 매소드를 통하여 확인, 전이면 캘린더 날짜에 1을 추가하게끔 하였음.
