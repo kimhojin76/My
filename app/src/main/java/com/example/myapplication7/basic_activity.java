@@ -26,7 +26,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import static android.content.Context.SENSOR_SERVICE;
+import static androidx.core.content.ContextCompat.getSystemService;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 
@@ -46,7 +47,7 @@ public class basic_activity extends AppCompatActivity
     String DATE;
     FoodAdapter2 morning_adapter, lunch_adapter, dinner_adapter, snack_adapter;
     ImageView mImageView;
-    int index,mSteps,mCounterSteps;
+    int index,mSteps=0,mCounterSteps=0;
     Drawable drawable;
     ArrayList<Drawable> mList = new ArrayList<>();
     private SensorManager sensorManager;
@@ -119,6 +120,12 @@ public class basic_activity extends AppCompatActivity
 
         //알람 설정
         Calendar calendar = Calendar.getInstance();
+        //만보기용 켈린더 설정, 시각 정각으로 설정
+        Calendar Pedometercalendar = Calendar.getInstance();
+        Pedometercalendar.set(Calendar.HOUR_OF_DAY, 24);
+        Pedometercalendar.set(Calendar.MINUTE, 0);
+        Pedometercalendar.set(Calendar.SECOND, 0);
+
         //추상클래스 calendar의 알람시간 객체 선언 해당 객체는 GregorianCalendar 형식으로 선언함
         Calendar NotifyTime = new GregorianCalendar();
         //캘린더에 현재 시간 적용
@@ -135,6 +142,7 @@ public class basic_activity extends AppCompatActivity
         }
         //현재 저장된 알람시각 정보를 NotifyTime 키값으로 쉐어드에 입력
         edit.putLong("NotifyTime", (long)calendar.getTimeInMillis());
+        edit.putLong("Pedometer", (long)calendar.getTimeInMillis());
         //해당내용을 저장
         edit.commit();
         //diaryNotification 함수에 알람시각정보를 담은 객체를 넣어 실행
@@ -206,7 +214,7 @@ public class basic_activity extends AppCompatActivity
         } else if (v.getId() == R.id.walk_reset) {
             mSteps = 0;
             mCounterSteps = 0;
-            StepCount.setText(String.format("%.0f", mSteps));
+            StepCount.setText(Integer.toString(mSteps));
 
 //
 //
@@ -549,12 +557,12 @@ public class basic_activity extends AppCompatActivity
     public void onSensorChanged(SensorEvent event) {
         //재시작으로 인해 값이 null값이면
         if(event.sensor.getType() == Sensor.TYPE_STEP_COUNTER) {
-//            if (mCounterSteps < 1) {
-//                // initial value
-//                mCounterSteps = (int) event.values[0];
-//            }
+            if (mCounterSteps < 1) {
+                // initial value
+                mCounterSteps = (int) event.values[0];
+            }
             //리셋 안된 값 + 현재값 - 리셋 안된 값
-//            mSteps = (int) event.values[0] - mCounterSteps;
+            mSteps = (int) event.values[0] - mCounterSteps;
             Log.i("log: ", "New step detected by STEP_COUNTER sensor. Total step count: " + mSteps );
         }
 
