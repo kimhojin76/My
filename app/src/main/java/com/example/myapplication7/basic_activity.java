@@ -351,7 +351,8 @@ public class basic_activity extends AppCompatActivity
             calDateDays = Math.abs(calDateDays);
             Log.v("베이직 엑티비티", calDateDays + "다이어트 시작일 확인");
             double now_dday = Double.parseDouble(diet_maxdate) - calDateDays;
-            basic_intext3.setText(Double.toString(now_dday));
+            basic_intext3.setText(String.format("%.0f", now_dday));
+
             basic_in_seekBar3.setProgress((int) calDateDays);
 
 

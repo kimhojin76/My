@@ -68,7 +68,7 @@
             android:name=".basic_activity"
             android:launchMode="singleTop"
 
-            android:label="기본 화면">
+            android:label="요약">
 
 
         </activity>
