@@ -11,6 +11,10 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -21,6 +25,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
@@ -36,21 +41,32 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class basic_activity extends AppCompatActivity
-        implements View.OnClickListener {
+        implements View.OnClickListener, SensorEventListener {
     public String PREFERENCE = "com.studio572.samplesharepreference";
     String DATE;
     FoodAdapter2 morning_adapter, lunch_adapter, dinner_adapter, snack_adapter;
     ImageView mImageView;
-    int index;
+    int index,mSteps,mCounterSteps;
     Drawable drawable;
     ArrayList<Drawable> mList = new ArrayList<>();
-
+    private SensorManager sensorManager;
+    private Sensor stepCountSensor;
+    TextView StepCount;
+    Button mReset;
     Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView(R.layout.basic);
+        //센서값 입력될 텍스트뷰 연결
+        StepCount = (TextView)findViewById(R.id.StepCount);
+        //안드로이드 센서를 관리하고 이용할 수 있게 도와주는 클래스, 어떤 센서가 있고 제공하는 값의 범위를 알려준다. 센서값을 받아올때 값을 받아올 수 있게 해준다.
+        sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
+        //걸음을 측정하는 센서로 핸드폰을 재시작 하지 않는이상 값을 계속 초기화하며 핸드폰을 재시작하지 않는 이상 초기화되지 않음(TYPE_STEP_COUNTER) 앱을 종료후 재시작하면 초기화(TYPE_STEP_DETECTOR)
+        stepCountSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+        sensorManager.registerListener(this, stepCountSensor, SensorManager.SENSOR_DELAY_NORMAL);
+
         SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
         SharedPreferences.Editor edit = pref.edit();
         String ID = "admin";
@@ -65,8 +81,8 @@ public class basic_activity extends AppCompatActivity
         mImageView.setOnClickListener(this);
         AnimThread thread = new AnimThread();
         thread.start();
-
-
+        mReset = (Button) findViewById(R.id.walk_reset);
+        mReset.setOnClickListener(this);
 
 
 
@@ -96,10 +112,6 @@ public class basic_activity extends AppCompatActivity
         basic_kcal_image.setOnClickListener(this);
         final ImageView basic_forum_image = (ImageView) findViewById(R.id.imageView7);
         basic_forum_image.setOnClickListener(this);
-        final Button youtube_button1 = (Button) findViewById(R.id.youtube_button1);
-        youtube_button1.setOnClickListener(this);
-        final Button youtube_button2 = (Button) findViewById(R.id.youtube_button2);
-        youtube_button2.setOnClickListener(this);
         final TextView in_profile = (TextView) findViewById(R.id.basic_in_profile);
         in_profile.setOnClickListener(this);
         final TextView logout = (TextView) findViewById(R.id.basic_in_logout);
@@ -128,6 +140,11 @@ public class basic_activity extends AppCompatActivity
         //diaryNotification 함수에 알람시각정보를 담은 객체를 넣어 실행
         diaryNotification(calendar);
     }
+
+
+
+
+
 
     @Override
     //인터페이스 활용하여 클릭시 이곳으로 오게 하였음
@@ -184,23 +201,26 @@ public class basic_activity extends AppCompatActivity
             Intent intent = new Intent(basic_activity.this, forum_activity.class);
             startActivity(intent);
             finish();
-        } else if (v.getId() == R.id.youtube_button1) {
-            String url = "https://www.youtube.com/watch?v=By7i6rDTjLg&feature=youtu.be";
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-            startActivity(intent);
+            //초기화 버튼 : 다시 숫자를 0으로 만들어준다.
 
+        } else if (v.getId() == R.id.walk_reset) {
+            mSteps = 0;
+            mCounterSteps = 0;
+            StepCount.setText(String.format("%.0f", mSteps));
 
-
-
-
-
-
-
-
-        } else if (v.getId() == R.id.youtube_button2) {
-            String url = "https://www.fatsecret.kr/%EC%B9%BC%EB%A1%9C%EB%A6%AC-%EC%98%81%EC%96%91%EC%86%8C/";
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-            startActivity(intent);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//        } else if (v.getId() == R.id.youtube_button2) {
+//            String url = "https://www.fatsecret.kr/%EC%B9%BC%EB%A1%9C%EB%A6%AC-%EC%98%81%EC%96%91%EC%86%8C/";
+//            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+//            startActivity(intent);
         } else if (v.getId() == R.id.basic_in_profile) {
             Intent intent = new Intent(basic_activity.this, profile_activity.class);
             startActivity(intent);
@@ -334,6 +354,10 @@ public class basic_activity extends AppCompatActivity
         basic_intext12.setText(max_car);
         basic_intext15.setText(max_pro);
         basic_intext18.setText(max_fat);
+
+        //만보기로 활용해야 하기 때문에 계속 센서가 계속 켜진 상태로 유지하게끔 하였음.
+//        sensorManager.registerListener(this, stepCountSensor, SensorManager.SENSOR_DELAY_NORMAL);
+
 //프로그래스바 최대 수치 입력
         try {//String Type을 Date 타입으로 변환하면서 생기는 예외로 인한 오류 방지
             SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd");
@@ -516,6 +540,31 @@ public class basic_activity extends AppCompatActivity
     protected void onPause() {
         Log.v("베이직 엑티비티", "Pause");
         super.onPause();
+        //만보기로 활용해야 하므로 센서가 꺼지지 않도록 조치하였음
+//        sensorManager.unregisterListener(this);
+
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        //재시작으로 인해 값이 null값이면
+        if(event.sensor.getType() == Sensor.TYPE_STEP_COUNTER) {
+//            if (mCounterSteps < 1) {
+//                // initial value
+//                mCounterSteps = (int) event.values[0];
+//            }
+            //리셋 안된 값 + 현재값 - 리셋 안된 값
+//            mSteps = (int) event.values[0] - mCounterSteps;
+            Log.i("log: ", "New step detected by STEP_COUNTER sensor. Total step count: " + mSteps );
+        }
+
+        StepCount.setText("걸음 수 : " + String.format("%.0f", event.values[0]));
+        }
+
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
     }
 
     class AnimThread extends Thread {

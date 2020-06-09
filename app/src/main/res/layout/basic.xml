@@ -62,7 +62,7 @@
 
     <ImageView
         android:id="@+id/basic_imageview1"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:layout_width="330dp"
         android:layout_height="300dp"
         android:background="@drawable/btn_green_gra"
@@ -167,6 +167,7 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
+
         android:outlineAmbientShadowColor="@color/colorPrimary"
         android:outlineSpotShadowColor="@color/colorPrimary"
         app:layout_constraintLeft_toLeftOf="@id/basic_intext5"
@@ -496,25 +497,38 @@
         app:layout_constraintLeft_toRightOf="@+id/textView5"
         app:layout_constraintTop_toTopOf="@+id/textView10" />
 
-    <Button
-        android:id="@+id/youtube_button1"
-        android:layout_width="160dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/btn_gray"
-        android:text="웨이트 vs 유산소 \n고민 해결영상\n(유튜브 링크)"
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_marginTop="10dp"
+        android:layout_width="0dp"
+
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/basic_imageview1"
         app:layout_constraintStart_toStartOf="@+id/basic_imageview1"
-        app:layout_constraintTop_toBottomOf="@+id/basic_imageview1" />
+        app:layout_constraintTop_toBottomOf="@+id/basic_imageview1"
+        app:srcCompat="@drawable/walking2" />
+
+    <TextView
+        android:id="@+id/StepCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="step"
+        app:layout_constraintBottom_toTopOf="@+id/walk_reset"
+        app:layout_constraintEnd_toEndOf="@+id/imageView11"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/imageView11"
+        app:layout_constraintTop_toBottomOf="@+id/basic_imageview1"
+        app:layout_constraintVertical_bias="0.571" />
 
     <Button
-        android:id="@+id/youtube_button2"
-        android:layout_width="160dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/btn_gray"
-        android:text="음식 칼로리\n 손쉽개 확인하자\n(fatsecret 사이트)"
-        app:layout_constraintEnd_toEndOf="@+id/basic_imageview1"
-        app:layout_constraintTop_toBottomOf="@+id/basic_imageview1" />
+        android:id="@+id/walk_reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:text="걸음 초기화"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView11"
+        app:layout_constraintEnd_toEndOf="@+id/imageView11"
+        app:layout_constraintStart_toStartOf="@+id/imageView11" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

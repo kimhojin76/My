@@ -116,11 +116,27 @@ public class forum_detail extends AppCompatActivity implements View.OnClickListe
     protected void onDestroy() {
         Log.v("포럼디테일 엑티비티", "Destroy");
         super.onDestroy();
+
     }
 
     protected void onPause() {
         Log.v("포럼디테일 엑티비티", "Pause");
         super.onPause();
+        Intent intent = new Intent(forum_detail.this, forum_activity.class);
+        intent.putExtra("리플수",Integer.toString(adapter.items.size()));
+        intent.putExtra("포지션",position);
+        Log.v("포럼엑티비티 게시글 클릭 포지션", position);
+        Log.v("포럼엑티비티 게시글 클릭 리플 갯수", Integer.toString(adapter.items.size()));
+
+        setResult(1031,intent);
+        SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        Gson gson = new Gson();
+        String gson_reple_adapter = gson.toJson(adapter.items);
+        //에디터에 json형식으로 변환된 객체값 집어넣기
+        editor.putString(NICKNAME+date+"gson_reple_adapter",gson_reple_adapter);
+        //쉐어드에 저장하기
+        editor.commit();
     }
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -178,13 +194,7 @@ public class forum_detail extends AppCompatActivity implements View.OnClickListe
 
         }
     public void onBackPressed() {
-        Intent intent = new Intent(forum_detail.this, forum_activity.class);
-        intent.putExtra("리플수",Integer.toString(adapter.items.size()));
-        intent.putExtra("포지션",position);
-        Log.v("포럼엑티비티 게시글 클릭 포지션", position);
-        Log.v("포럼엑티비티 게시글 클릭 리플 갯수", Integer.toString(adapter.items.size()));
 
-        setResult(1031,intent);
         finish();
     }
     }
