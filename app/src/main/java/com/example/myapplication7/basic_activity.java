@@ -54,7 +54,7 @@ public class basic_activity extends AppCompatActivity
     TextView StepCount;
     Button mReset;
     Handler handler = new Handler();
-
+// d
     @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
