@@ -118,5 +118,25 @@
 
         </androidx.recyclerview.widget.RecyclerView>
 
+        <ImageView
+            android:id="@+id/write_edit"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+
+
+            app:layout_constraintStart_toEndOf="@+id/forum_detail_date"
+            app:layout_constraintTop_toTopOf="@+id/forum_detail_date"
+            />
+
+        <ImageView
+            android:id="@+id/write_clear"
+            android:layout_width="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_height="30dp"
+
+            app:layout_constraintStart_toEndOf="@+id/write_edit"
+            app:layout_constraintTop_toTopOf="@+id/write_edit" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

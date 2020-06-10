@@ -73,7 +73,6 @@ public class basic_activity extends AppCompatActivity
         String ID = "admin";
         String NICKNAME = "관리자";
         edit.putString("ID", ID);
-        edit.commit();
         mList.add(getDrawable(R.drawable.ad1));
         mList.add(getDrawable(R.drawable.ad2));
         mList.add(getDrawable(R.drawable.ad3));
@@ -84,7 +83,6 @@ public class basic_activity extends AppCompatActivity
         thread.start();
         mReset = (Button) findViewById(R.id.walk_reset);
         mReset.setOnClickListener(this);
-
 
 
         edit.putString(ID + "NICKNAME", NICKNAME);

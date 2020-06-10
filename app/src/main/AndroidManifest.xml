@@ -72,7 +72,14 @@
 
 
         </activity>
+        <activity
+            android:name=".forum_edit"
+            android:launchMode="singleTop"
 
+            android:label="게시판 글 수정">
+
+
+        </activity>
         <activity android:name=".bmr_activity"
             android:launchMode="singleTop"
 

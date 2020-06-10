@@ -145,7 +145,37 @@ public class forum_activity extends AppCompatActivity
             member item = adapter.getitem(Integer.parseInt(pos1));
             item.setReple_amount(reple_amount1);
             recyclerView.setAdapter(adapter);
-
+            Gson gson = new Gson();
+            //gson을 이용해 Json형식으로 변환하여 어뎁터데이터를 저장
+            String gson_member_adapter = gson.toJson(adapter.items);
+            //쉐어드프리퍼런스 pref에 쉐어드 주소,타입 지정해서 매칭
+            //에디터 선언
+            SharedPreferences.Editor editor = pref.edit();
+            //에디터에 json형식으로 변환된 객체값 집어넣기
+            editor.putString("gson_member_adapter",gson_member_adapter);
+            //에디터에 저장
+            editor.commit();
+            //디테일에서 수정 완료시 이쪽으로
+        }else if(resultCode==1066){
+            Log.v("포럼 엑티비티", "1066(삭제) 도착");
+            String pos1 = data.getExtras().getString("포지션");
+            String reple_amount1 = data.getExtras().getString("리플수");
+            Log.v("포럼 엑티비티", pos1);
+            Log.v("포럼 엑티비티", reple_amount1);
+            adapter.items.remove(Integer.parseInt(pos1));
+            Log.v("포럼 엑티비티", Integer.toString(adapter.items.size()));
+            recyclerView.setAdapter(adapter);
+            Gson gson = new Gson();
+            //gson을 이용해 Json형식으로 변환하여 어뎁터데이터를 저장
+            String gson_member_adapter = gson.toJson(adapter.items);
+            //쉐어드프리퍼런스 pref에 쉐어드 주소,타입 지정해서 매칭
+            //에디터 선언
+            SharedPreferences.Editor editor = pref.edit();
+            //에디터에 json형식으로 변환된 객체값 집어넣기
+            editor.putString("gson_member_adapter",gson_member_adapter);
+            //에디터에 저장
+            editor.commit();
+            //디테일에서 수정 완료시 이쪽으로
         }
     }
     @Override

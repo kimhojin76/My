@@ -3,6 +3,7 @@ package com.example.myapplication7;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -81,7 +82,6 @@ public class memberAdapter extends RecyclerView.Adapter<memberAdapter.ViewHolder
             date = itemView.findViewById(R.id.forum_date);
             contents = itemView.findViewById(R.id.forum_contents);
             amount = itemView.findViewById(R.id.forum_reple_amount);
-//            profile_image = itemView.findViewById(R.id.forum_profile);
 
             itemView.setOnCreateContextMenuListener(this); // 온크리에잇 리스터 현재 클레스에 구현
             //온클릭부분
@@ -101,8 +101,14 @@ public class memberAdapter extends RecyclerView.Adapter<memberAdapter.ViewHolder
             title.setText(item.getTitle());
             date.setText(item.getDate());
             contents.setText(item.getContents());
-            if(item.getReple_amount()!=null || item.getReple_amount()!= ""){
-                amount.setText(item.getReple_amount());
+            Log.v("맴버 아답터 엑티비티", "셋아이템 체크");
+            if(item.getReple_amount()!=null){
+                if(!item.getReple_amount().equals("0")) {
+                    Log.v("맴버 아답터 엑티비티", "널값체크");
+                    Log.v("맴버 아답터 엑티비티", "[" + item.getReple_amount() + "]");
+
+                    amount.setText("[" + item.getReple_amount() + "]");
+                }
             }
         }
 
