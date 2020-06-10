@@ -94,7 +94,7 @@ public class memberAdapter extends RecyclerView.Adapter<memberAdapter.ViewHolder
                     }
                 }
             });
-
+//d
         }
         public void setItem(member item){
             nickname.setText(item.getNickname());
