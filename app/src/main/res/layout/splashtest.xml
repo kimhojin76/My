@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/btn_blue2"
+    tools:context=".Splash_activity">
+
+    <ImageView
+        android:id="@+id/loading_image1"
+        android:layout_width="322dp"
+        android:layout_height="251dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginBottom="252dp"
+        app:layout_constraintBottom_toTopOf="@+id/loading_image4"
+        app:layout_constraintStart_toStartOf="@+id/loading_image4"
+        app:srcCompat="@drawable/loading10" />
+
+    <ImageView
+        android:id="@+id/loading_image2"
+        android:layout_width="278dp"
+        android:layout_height="270dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginBottom="124dp"
+        app:layout_constraintBottom_toTopOf="@+id/loading_image4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/loading11" />
+
+    <ImageView
+        android:id="@+id/loading_image3"
+        android:layout_width="372dp"
+        android:layout_height="241dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/loading_image4"
+        app:layout_constraintStart_toStartOf="@+id/loading_image1"
+        app:srcCompat="@drawable/loading12" />
+
+    <ImageView
+        android:id="@+id/loading_image4"
+        android:layout_width="433dp"
+        android:layout_height="144dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.947"
+        app:srcCompat="@drawable/loading6" />
+</androidx.constraintlayout.widget.ConstraintLayout>
