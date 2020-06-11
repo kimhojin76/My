@@ -62,8 +62,8 @@ public class active_metabolism extends AppCompatActivity implements View.OnClick
         basic_kcal_image.setOnClickListener(this);
         final ImageView basic_forum_image = (ImageView) findViewById(R.id.imageView7);
         basic_forum_image.setOnClickListener(this);
-        final ImageView custom_act_add = (ImageView) findViewById(R.id.imageView8);
-        custom_act_add.setOnClickListener(this);
+//        final ImageView custom_act_add = (ImageView) findViewById(R.id.imageView8);
+//        custom_act_add.setOnClickListener(this);
         TextView BMR_input = (TextView) findViewById(R.id.basal_metabolism) ;
         Intent intent = getIntent();
         String BMR = intent.getStringExtra("BMR");
@@ -143,33 +143,35 @@ public class active_metabolism extends AppCompatActivity implements View.OnClick
             Intent intent = new Intent(active_metabolism.this, forum_activity.class);
             startActivity(intent);
             finish();
-        } else if (v.getId() == R.id.imageView8) {
-            Intent intent = new Intent(active_metabolism.this, metabolism_coustom.class);
-            startActivity(intent);
-
+//        } else if (v.getId() == R.id.imageView8) {
+//            Intent intent = new Intent(active_metabolism.this, metabolism_coustom.class);
+//            startActivity(intent);
+//            의자에 않아만 있음 BMR*1.2 조금 활동적(주1~3회 가벼운 운동) BMR*1.375
+//            적당히 활동적(주3~5회 중강도 운동) BMR*1.55 주6~7회 운동 BMR*1.725
+//            스포츠, 육체작업 직장BMR*1.9
 
         } else if (v.getId() == R.id.par_button1) {
 
             Log.v("활동관리 엑티비티", "par 버튼 1 클릭");
             Log.v("활동관리 엑티비티", BMR_input.getText().toString());
             double BMR = Double.parseDouble(BMR_input.getText().toString());
-            active_input.setText(Double.toString(Math.round(BMR * 1.5 * 10) / 10));
+            active_input.setText(Double.toString(Math.round(BMR * 1.2 * 10) / 10));
 
         } else if (v.getId() == R.id.par_button4) {
             Log.v("활동관리 엑티비티", "par 버튼 2 클릭");
             Log.v("활동관리 엑티비티", BMR_input.getText().toString());
             double BMR = Double.parseDouble(BMR_input.getText().toString());
-            active_input.setText(Double.toString(Math.round(BMR * 1.75 * 10) / 10));
+            active_input.setText(Double.toString(Math.round(BMR * 1.375 * 10) / 10));
         } else if (v.getId() == R.id.par_button3) {
             Log.v("활동관리 엑티비티", "par 버튼 3 클릭");
             Log.v("활동관리 엑티비티", BMR_input.getText().toString());
             double BMR = Double.parseDouble(BMR_input.getText().toString());
-            active_input.setText(Double.toString(Math.round(BMR * 1.62 * 10) / 10));
+            active_input.setText(Double.toString(Math.round(BMR * 1.55 * 10) / 10));
         } else if (v.getId() == R.id.par_button5) {
             Log.v("활동관리 엑티비티", "par 버튼 4 클릭");
             Log.v("활동관리 엑티비티", BMR_input.getText().toString());
             double BMR = Double.parseDouble(BMR_input.getText().toString());
-            active_input.setText(Double.toString(Math.round(BMR * 1.65 * 10) / 10));
+            active_input.setText(Double.toString(Math.round(BMR * 1.9 * 10) / 10));
             //지금 속해있는 액티비티
         } else if (v.getId() == R.id.textView10) {
             Intent intent = new Intent(active_metabolism.this, basic_activity.class);

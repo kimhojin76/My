@@ -81,8 +81,8 @@ public class basic_activity extends AppCompatActivity
         mImageView.setOnClickListener(this);
         AnimThread thread = new AnimThread();
         thread.start();
-        mReset = (Button) findViewById(R.id.walk_reset);
-        mReset.setOnClickListener(this);
+//        mReset = (Button) findViewById(R.id.walk_reset);
+//        mReset.setOnClickListener(this);
 
 
         edit.putString(ID + "NICKNAME", NICKNAME);
@@ -209,10 +209,10 @@ public class basic_activity extends AppCompatActivity
             finish();
             //초기화 버튼 : 다시 숫자를 0으로 만들어준다.
 
-        } else if (v.getId() == R.id.walk_reset) {
-            mSteps = 0;
-            mCounterSteps = 0;
-            StepCount.setText(Integer.toString(mSteps));
+//        } else if (v.getId() == R.id.walk_reset) {
+//            mSteps = 0;
+//            mCounterSteps = 0;
+//            StepCount.setText(Integer.toString(mSteps));
 
 //
 //
@@ -431,10 +431,10 @@ public class basic_activity extends AppCompatActivity
         double user_snack_car = 0;
         double user_snack_pro = 0;
         double user_snack_fat = 0;
-        morning_adapter = new FoodAdapter2();
-        lunch_adapter = new FoodAdapter2();
-        dinner_adapter = new FoodAdapter2();
-        snack_adapter = new FoodAdapter2();
+        morning_adapter = new FoodAdapter2(this);
+        lunch_adapter = new FoodAdapter2(this);
+        dinner_adapter = new FoodAdapter2(this);
+        snack_adapter = new FoodAdapter2(this);
         if (gson_morning_adapter != "") {
             ArrayList<Food> morninglist = gson.fromJson(gson_morning_adapter, new TypeToken<ArrayList<Food>>() {
             }.getType());

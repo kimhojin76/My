@@ -129,10 +129,10 @@ public class memberAdapter extends RecyclerView.Adapter<memberAdapter.ViewHolder
 //    }
         @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-            MenuItem Edit = menu.add(Menu.NONE,1001,1,"수정");
-            MenuItem Delete = menu.add(Menu.NONE, 1002, 2, "삭제");
-            Edit.setOnMenuItemClickListener(onMenuItemClickListener);
-            Delete.setOnMenuItemClickListener(onMenuItemClickListener);
+//            MenuItem Edit = menu.add(Menu.NONE,1001,1,"수정");
+//            MenuItem Delete = menu.add(Menu.NONE, 1002, 2, "삭제");
+//            Edit.setOnMenuItemClickListener(onMenuItemClickListener);
+//            Delete.setOnMenuItemClickListener(onMenuItemClickListener);
 
         }
         private final MenuItem.OnMenuItemClickListener onMenuItemClickListener = new MenuItem.OnMenuItemClickListener() {
@@ -140,18 +140,18 @@ public class memberAdapter extends RecyclerView.Adapter<memberAdapter.ViewHolder
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case 1001: //편집 클릭시
-                        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-
-                        // 다이얼로그를 보여주기 위해 edit_box.xml 파일을 사용합니다.
-
-                        View view = LayoutInflater.from(mContext)
-                                .inflate(R.layout.forum_edit, null, false);
-                        builder.setView(view);
-                        final Button ButtonSubmit = (Button) view.findViewById(R.id.forum_edit_register);
-                        final EditText editTexttitle = (EditText) view.findViewById(R.id.forum_edit_title);
-                        final EditText editTextcontents = (EditText) view.findViewById(R.id.forum_edit_contents);
-                        final TextView editTextdate = (TextView) view.findViewById(R.id.forum_edit_date);
-                        final TextView editTextnickname = (TextView) view.findViewById(R.id.forum_edit_nickname);
+//                        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+//
+//                        // 다이얼로그를 보여주기 위해 edit_box.xml 파일을 사용합니다.
+//
+//                        View view = LayoutInflater.from(mContext)
+//                                .inflate(R.layout.forum_edit, null, false);
+//                        builder.setView(view);
+//                        final Button ButtonSubmit = (Button) view.findViewById(R.id.forum_edit_register);
+//                        final EditText editTexttitle = (EditText) view.findViewById(R.id.forum_edit_title);
+//                        final EditText editTextcontents = (EditText) view.findViewById(R.id.forum_edit_contents);
+//                        final TextView editTextdate = (TextView) view.findViewById(R.id.forum_edit_date);
+//                        final TextView editTextnickname = (TextView) view.findViewById(R.id.forum_edit_nickname);
 //                        editTextID.setText(mList.get(getAdapterPosition()).getId());
 //                        editTextEnglish.setText(mList.get(getAdapterPosition()).getEnglish());
 //                        editTextKorean.setText(mList.get(getAdapterPosition()).getKorean());

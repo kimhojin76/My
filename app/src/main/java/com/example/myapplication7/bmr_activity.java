@@ -277,10 +277,10 @@ public class bmr_activity extends AppCompatActivity implements View.OnClickListe
         double user_snack_car = 0;
         double user_snack_pro = 0;
         double user_snack_fat = 0;
-        FoodAdapter2 morning_adapter = new FoodAdapter2();
-        FoodAdapter2 lunch_adapter = new FoodAdapter2();
-        FoodAdapter2 dinner_adapter = new FoodAdapter2();
-        FoodAdapter2 snack_adapter = new FoodAdapter2();
+        FoodAdapter2 morning_adapter = new FoodAdapter2(this);
+        FoodAdapter2 lunch_adapter = new FoodAdapter2(this);
+        FoodAdapter2 dinner_adapter = new FoodAdapter2(this);
+        FoodAdapter2 snack_adapter = new FoodAdapter2(this);
         if(gson_morning_adapter != ""){
             ArrayList<Food> morninglist = gson.fromJson(gson_morning_adapter,new TypeToken<ArrayList<Food>>(){}.getType());
 //            ArrayList<Food> dinnerlist = gson.fromJson(gson_dinner_adapter,new TypeToken<ArrayList<Food>>(){}.getType());

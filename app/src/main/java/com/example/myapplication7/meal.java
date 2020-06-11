@@ -33,12 +33,14 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
     String ID,DATE;
     String food_name,food_kcal,food_car,food_pro,foodfat;
     String meal = "아침식단";
+    public static TextView userkcal;
     SharedPreferences pref;
     double user_kcal = 0;
     FoodAdapter2 morning_adapter,lunch_adapter,dinner_adapter,snack_adapter;
     String[] spinner_item = {"아침식단","점심식단","저녘식단","간식"};
 //gj
     protected void onCreate(Bundle bundle) {
+
         pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         ID = pref.getString("ID","");
@@ -70,10 +72,10 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
 
         //어뎁터 선언
         adapter = new FoodAdapter(this);
-        morning_adapter = new FoodAdapter2();
-        lunch_adapter = new FoodAdapter2();
-        dinner_adapter = new FoodAdapter2();
-        snack_adapter = new FoodAdapter2();
+        morning_adapter = new FoodAdapter2(this);
+        lunch_adapter = new FoodAdapter2(this);
+        dinner_adapter = new FoodAdapter2(this);
+        snack_adapter = new FoodAdapter2(this);
 
         //어뎁터에 수치 입력
         adapter.addItem(new Food("쌀밥","270","61","5","0.7","100"));
@@ -104,7 +106,7 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
             @Override
 
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                TextView userkcal = (TextView) findViewById(R.id.textView26);
+                userkcal = (TextView) findViewById(R.id.textView26);
                 Log.v("식단입력 엑티비티",spinner_item[position]);
                 if(spinner_item[position]=="아침식단"){
                     meal = "아침식단";
@@ -291,7 +293,6 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
                 //쉐어드에 저장하기
                 editor.commit();
                 Log.v("식단입력 모닝 엑티비티", gson.toJson(dinner_adapter.items));
-
 
             }else if(meal=="간식"){
                 snack_adapter.addItem(new Food(intent.getStringExtra("음식명"),intent.getStringExtra("칼로리"),intent.getStringExtra("탄수화물"),intent.getStringExtra("단백질"),intent.getStringExtra("지방"),intent.getStringExtra("중량")));

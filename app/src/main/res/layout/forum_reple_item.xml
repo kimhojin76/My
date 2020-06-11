@@ -38,6 +38,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="2019-04-30 12:30" />
+                <ImageView
+                    android:id="@+id/forum_reple_edit"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"/>
+                <ImageView
+                    android:id="@+id/forum_reple_clear"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"/>
+
 
 
             </LinearLayout>

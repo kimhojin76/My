@@ -17,6 +17,7 @@ public class act_hour extends AppCompatActivity implements View.OnClickListener 
     EditText add_hour;
     String name;
 
+
     @Override
     protected void onCreate(Bundle bundle) {
         Log.v("푸드셀렉트 엑티비티형 다이얼로그", "create");
