@@ -1,6 +1,7 @@
 package com.example.myapplication7;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -25,6 +26,7 @@ public class FoodAdapter2 extends RecyclerView.Adapter<FoodAdapter2.ViewHolder> 
     ArrayList<Food> items = new ArrayList<Food>();
     OnFoodItemClickListener listener;
     private Context mContext;
+    public String PREFERENCE = "com.studio572.samplesharepreference";
     public FoodAdapter2(Context context) {
         mContext = context; }
         TextView kcal;
@@ -121,6 +123,7 @@ public class FoodAdapter2 extends RecyclerView.Adapter<FoodAdapter2.ViewHolder> 
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
+
                     case 1001: //편집 클릭시
                         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
 //
@@ -151,11 +154,11 @@ public class FoodAdapter2 extends RecyclerView.Adapter<FoodAdapter2.ViewHolder> 
                                 double strpro = Double.parseDouble(items.get(getAdapterPosition()).getPro()) / before_food_weight;
                                 double strfat = Double.parseDouble(items.get(getAdapterPosition()).getFat()) / before_food_weight;
                                 double strweight = Double.parseDouble(add_foodweight_input.getText().toString());
-                                String strkcal2 = Double.toString(strkcal *strweight);
-                                String strcar2 = Double.toString(strcar *strweight);
-                                String strpro2 = Double.toString(strpro *strweight);
-                                String strfat2 = Double.toString(strfat *strweight);
-                                String strweight2 = Double.toString(strweight);
+                                String strkcal2 = String.format("%.0f",strkcal *strweight);
+                                String strcar2 = String.format("%.0f",strcar *strweight);
+                                String strpro2 =String.format("%.0f",strpro *strweight);
+                                String strfat2 =  String.format("%.0f",strfat *strweight);
+                                String strweight2 = String.format("%.0f",strweight);
 
                                 Food dict = new Food(strname, strkcal2, strcar2, strpro2,strfat2,strweight2);
 
@@ -173,7 +176,6 @@ public class FoodAdapter2 extends RecyclerView.Adapter<FoodAdapter2.ViewHolder> 
                         });
 
                         dialog.show();
-//
                         break;
 
                     case 1002:

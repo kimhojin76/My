@@ -19,6 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="15dp"
         android:textSize="20dp"
+        android:text="프로필"
         app:layout_constraintBottom_toBottomOf="@+id/bottom_imageView2"
         app:layout_constraintRight_toLeftOf="@id/basic_in_logout"
         app:layout_constraintTop_toTopOf="@id/bottom_imageView2" />
@@ -29,6 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="8dp"
         android:textSize="20dp"
+        android:text="로그아웃"
         app:layout_constraintBottom_toBottomOf="@+id/bottom_imageView2"
         app:layout_constraintRight_toRightOf="@id/bottom_imageView2"
         app:layout_constraintTop_toTopOf="@id/bottom_imageView2" />

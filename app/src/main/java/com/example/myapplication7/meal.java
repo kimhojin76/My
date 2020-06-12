@@ -2,6 +2,7 @@ package com.example.myapplication7;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -30,14 +31,14 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
     RecyclerView recyclerView, morning_recyclerView;
     FoodAdapter adapter;
     public String PREFERENCE = "com.studio572.samplesharepreference";
-    String ID,DATE;
+    static String ID,DATE,M,L,D,S;
     String food_name,food_kcal,food_car,food_pro,foodfat;
-    String meal = "아침식단";
+    static String meal = "아침식단";
     public static TextView userkcal;
     SharedPreferences pref;
     double user_kcal = 0;
     FoodAdapter2 morning_adapter,lunch_adapter,dinner_adapter,snack_adapter;
-    String[] spinner_item = {"아침식단","점심식단","저녘식단","간식"};
+    public String[] spinner_item = {"아침식단","점심식단","저녘식단","간식"};
 //gj
     protected void onCreate(Bundle bundle) {
 
@@ -101,12 +102,17 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
         spinner_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //스피너에 어댑터 설정
         spinner.setAdapter(spinner_adapter);
+
         //스피너에 리스너 설정
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
 
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 userkcal = (TextView) findViewById(R.id.textView26);
+                SharedPreferences pref = getSharedPreferences(PREFERENCE,MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("선택식단",spinner_item[position]);
+                editor.commit();
                 Log.v("식단입력 엑티비티",spinner_item[position]);
                 if(spinner_item[position]=="아침식단"){
                     meal = "아침식단";
@@ -122,7 +128,8 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
                         Log.v("식단입력 엑티비티", item1.getName());
                         user_kcal = user_kcal + Double.parseDouble(item1.getKcal());
                         userkcal.setText(Double.toString(user_kcal));
-                    }}
+                    }M=Double.toString(user_kcal);
+                    }
                 }else if(spinner_item[position]=="점심식단"){
                     meal = "점심식단";
 
@@ -137,7 +144,8 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
                         Log.v("식단입력 엑티비티", item1.getName());
                         user_kcal = user_kcal + Double.parseDouble(item1.getKcal());
                         userkcal.setText(Double.toString(user_kcal));
-                    }}
+                    }L=Double.toString(user_kcal);
+                    }
 
                 }else if(spinner_item[position]=="저녘식단"){
                     meal = "저녘식단";
@@ -152,7 +160,8 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
                         Log.v("식단입력 엑티비티", item1.getName());
                         user_kcal = user_kcal + Double.parseDouble(item1.getKcal());
                         userkcal.setText(Double.toString(user_kcal));
-                    }}
+                    }D=Double.toString(user_kcal);
+                    }
 
                 }else if(spinner_item[position]=="간식"){
                     meal = "간식";
@@ -167,7 +176,8 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
                         Log.v("식단입력 엑티비티", item1.getName());
                         user_kcal = user_kcal + Double.parseDouble(item1.getKcal());
                         userkcal.setText(Double.toString(user_kcal));
-                    }}
+                    }S=Double.toString(user_kcal);
+                    }
                 }else{
 
                 }
@@ -213,6 +223,38 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
 
     }
 
+    public void get_mornig(){
+        for (int i = 0; i < morning_adapter.items.size(); i++) {
+            Food item1 = morning_adapter.getItem(i);
+            Log.v("식단입력 엑티비티", item1.getName());
+            user_kcal = user_kcal + Double.parseDouble(item1.getKcal());
+            userkcal.setText(Double.toString(user_kcal));
+        }
+    }
+    public void get_lunch(){
+        for (int i = 0; i < lunch_adapter.items.size(); i++) {
+            Food item1 = lunch_adapter.getItem(i);
+            Log.v("식단입력 엑티비티", item1.getName());
+            user_kcal = user_kcal + Double.parseDouble(item1.getKcal());
+            userkcal.setText(Double.toString(user_kcal));
+        }
+    }
+    public void get_dinner(){
+        for (int i = 0; i < dinner_adapter.items.size(); i++) {
+            Food item1 = dinner_adapter.getItem(i);
+            Log.v("식단입력 엑티비티", item1.getName());
+            user_kcal = user_kcal + Double.parseDouble(item1.getKcal());
+            userkcal.setText(Double.toString(user_kcal));
+        }
+    }
+    public void get_snack(){
+        for (int i = 0; i < snack_adapter.items.size(); i++) {
+            Food item1 = snack_adapter.getItem(i);
+            Log.v("식단입력 엑티비티", item1.getName());
+            user_kcal = user_kcal + Double.parseDouble(item1.getKcal());
+            userkcal.setText(Double.toString(user_kcal));
+        }
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

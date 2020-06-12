@@ -1,6 +1,7 @@
 package com.example.myapplication7;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -18,30 +20,52 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.GenericLifecycleObserver;
 
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class signup_activity extends AppCompatActivity
         implements View.OnClickListener{
     static final int REQUEST_IMAGE_GET = 1;
-
+    public String PREFERENCE = "com.studio572.samplesharepreference";
+    SharedPreferences pref;
+    ArrayList<signup> list;
+    EditText signup_id,signup_nickname,signup_password,signup_repassword,signup_email;
+    Uri imageUri;
 //f
 
     @Override
     protected void onCreate(Bundle bundle){
         Log.v("회원가입 엑티비티","create");
+         pref =getSharedPreferences(PREFERENCE,MODE_PRIVATE);
+        SharedPreferences.Editor edit = pref.edit();
+        Gson gson = new Gson();
+
 
         super.onCreate(bundle);
         setContentView(R.layout.acrivi_sign_up);
-
         final Button image_button = (Button) findViewById(R.id.image_upload_button);
         image_button.setOnClickListener(this);
-
-
         Button id_test_button = (Button) findViewById(R.id.id_check_button);
         id_test_button.setOnClickListener(this);
         Button signup_activity_button = (Button) findViewById(R.id.button3);
         signup_activity_button.setOnClickListener(this);
+         signup_id = (EditText)findViewById(R.id.signup_id);
+         signup_nickname = (EditText)findViewById(R.id.signup_nickname);
+         signup_password = (EditText)findViewById(R.id.signup_password);
+         signup_repassword = (EditText)findViewById(R.id.signup_repassword);
+         signup_email = (EditText)findViewById(R.id.signup_email);
+        list = new ArrayList<signup>();
+        list.add(new signup("admin","관리자","0000","crazybear1@naver.com",""));
+        String first = gson.toJson(list);
+        Log.v("회원가입 엑티비티",first);
+        edit.putString("ID_list",first);
+        edit.commit();
+
+
+
     }
 
     @Override
@@ -49,10 +73,29 @@ public class signup_activity extends AppCompatActivity
         if(v.getId() == R.id.id_check_button){
             Toast.makeText(signup_activity.this, "아이디 중복 확인",Toast.LENGTH_SHORT).show();
         }else if(v.getId() == R.id.button3) {
+            String idlist=pref.getString("ID_list","");
+            Gson gson = new Gson();
+            String firstidlist = gson.toJson(list);
+            Log.v("회원가입 엑티비티",firstidlist);
+            SharedPreferences.Editor edit = pref.edit();
+            edit.commit();
+
+//            if(idlist == ""){
+//                list.add(new signup(signup_id.getText().toString(),signup_nickname.getText().toString(),signup_password.getText().toString(),signup_email.getText().toString(),imageUri.toString()));
+//                //gson을 이용해 Json형식으로 변환하여 어뎁터데이터를 저장
+//                idlist = gson.toJson(list);
+//                Log.v("회원가입 엑티비티",idlist);
+//                //에디터에 json형식으로 변환된 객체값 집어넣기
+//                edit.putString("ID_list",idlist);
+//                edit.commit();
+//            }else if (idlist != ""){
+//                ArrayList<signup> jsonidlist = gson.fromJson(idlist,new TypeToken<ArrayList<signup>>(){}.getType());
+//
+//            }
             Toast.makeText(signup_activity.this, "회원가입 되었습니다.", Toast.LENGTH_SHORT).show();
             //이미지 업로드 버튼 클릭
         }else if(v.getId() == R.id.image_upload_button) {
-            Log.v("비번찾기 엑티비티","이미지 업로드 버튼 클릭");
+            Log.v("회원가입 엑티비티","이미지 업로드 버튼 클릭");
             //이미지 요청 암시적 인텐트 생성
             Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
             //이미지파일로 한정
@@ -70,7 +113,7 @@ public class signup_activity extends AppCompatActivity
         //리퀘스트 코드가 1000이며, 리절트 코드가 OK이고 데이터가 null값이 아닐떄
         if(requestCode==1000 && resultCode == RESULT_OK && data != null){
             //사진 경로
-            Uri imageUri = data.getData();
+            imageUri = data.getData();
                 //사진을 비트맵으로 얻기
                // Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(),imageUri);
                 //이비지뷰에 비트맵 설정
