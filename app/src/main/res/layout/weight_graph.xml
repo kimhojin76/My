@@ -22,8 +22,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="@id/imageView3"
         app:layout_constraintBottom_toBottomOf="parent" />
-    <ImageView
-        android:id="@+id/graph_background_imageview1"
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/linechart"
         android:layout_width="match_parent"
         android:layout_marginRight="33dp"
         android:layout_marginLeft="33dp"
@@ -41,7 +41,7 @@
         android:layout_marginTop="5dp"
         android:text="그래프 시작 날짜"
         android:textSize="25sp"
-        app:layout_constraintTop_toBottomOf="@id/graph_background_imageview1"
+        app:layout_constraintTop_toBottomOf="@id/linechart"
         app:layout_constraintLeft_toRightOf="@id/graph_imageview1"
         app:layout_constraintHorizontal_bias="0.0"
         />
@@ -50,7 +50,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         app:srcCompat="@drawable/baseline_calendar_today_black_18dp"
-        app:layout_constraintLeft_toLeftOf="@id/graph_background_imageview1"
+        app:layout_constraintLeft_toLeftOf="@id/linechart"
         app:layout_constraintRight_toLeftOf="@id/graph_textView1"
         app:layout_constraintTop_toTopOf="@id/graph_textView1"
         />
@@ -60,7 +60,7 @@
         android:layout_height="30dp"
         android:layout_marginTop="5dp"
         app:srcCompat="@drawable/baseline_calendar_today_black_18dp"
-        app:layout_constraintLeft_toLeftOf="@id/graph_background_imageview1"
+        app:layout_constraintLeft_toLeftOf="@id/linechart"
         app:layout_constraintRight_toLeftOf="@id/graph_textView1"
         app:layout_constraintTop_toBottomOf="@id/graph_textView1"
         />

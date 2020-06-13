@@ -9,6 +9,14 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+
+import java.util.ArrayList;
+import java.util.Map;
+
 public class weight_graph extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle bundle){
@@ -16,6 +24,28 @@ public class weight_graph extends AppCompatActivity implements View.OnClickListe
 
         super.onCreate(bundle);
         setContentView(R.layout.weight_graph);
+
+        LineChart lineChart = (LineChart)findViewById(R.id.linechart);
+        LineData chartdate = new LineData();
+        ArrayList<Entry> weights = new ArrayList<>();
+        ArrayList<Entry> weights2 = new ArrayList<>();
+        weights.add(new Entry(4f,0));
+        weights.add(new Entry(8f,1));
+        weights.add(new Entry(6f,2));
+//        weights.add(new Entry(2f,3));
+//        weights.add(new Entry(18f,4));
+//        weights.add(new Entry(9f,5));
+
+        LineDataSet lineDataSet = new LineDataSet(weights,"꺽은선1");
+        chartdate.addDataSet(lineDataSet);
+        lineChart.setData(chartdate);
+        lineChart.invalidate();
+
+        //그래프에 들어갈 좌표값 입력
+
+
+
+
 
         final TextView kcal = (TextView) findViewById(R.id.textView5);
         kcal.setOnClickListener(this);
@@ -39,6 +69,9 @@ public class weight_graph extends AppCompatActivity implements View.OnClickListe
         basic_forum_image.setOnClickListener(this);
 
     }
+
+
+
 
     @Override
     //인터페이스 활용하여 클릭시 이곳으로 오게 하였음
