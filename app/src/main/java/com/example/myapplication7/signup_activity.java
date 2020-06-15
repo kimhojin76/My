@@ -58,28 +58,54 @@ public class signup_activity extends AppCompatActivity
          signup_repassword = (EditText)findViewById(R.id.signup_repassword);
          signup_email = (EditText)findViewById(R.id.signup_email);
         list = new ArrayList<signup>();
-        list.add(new signup("admin","관리자","0000","crazybear1@naver.com",""));
-        String first = gson.toJson(list);
-        Log.v("회원가입 엑티비티",first);
-        edit.putString("ID_list",first);
-        edit.commit();
-
+        if(pref.getString("ID_list","") == "") {
+            list.add(new signup("admin", "관리자", "0000", "crazybear1@naver.com", "content://com.android.providers.media.documents/document/image%3A16196"));
+            String first = gson.toJson(list);
+            Log.v("회원가입 엑티비티", first);
+            edit.putString("ID_list", first);
+            edit.commit();
+        }
 
 
     }
 
     @Override
     public void onClick(View v) {
+        SharedPreferences.Editor edit = pref.edit();
+
         if(v.getId() == R.id.id_check_button){
             Toast.makeText(signup_activity.this, "아이디 중복 확인",Toast.LENGTH_SHORT).show();
         }else if(v.getId() == R.id.button3) {
             String idlist=pref.getString("ID_list","");
-            Gson gson = new Gson();
-            String firstidlist = gson.toJson(list);
-            Log.v("회원가입 엑티비티",firstidlist);
-            SharedPreferences.Editor edit = pref.edit();
-            edit.commit();
+            if (idlist=="") {
+                Gson gson = new Gson();
+                String firstidlist = gson.toJson(list);
+                Log.v("회원가입 엑티비티", firstidlist);
+                edit.commit();
 
+            }else if (idlist!=""){
+                Gson gson = new Gson();
+                String firstidlist = pref.getString("ID_list","");
+
+                ArrayList<signup> signuplist = gson.fromJson(firstidlist,new TypeToken<ArrayList<signup>>(){}.getType());
+                for (int i = 0; i < signuplist.size(); i++) {
+                    if (signup_id.getText().toString() == signuplist.get(i).getId()){
+                        Toast.makeText(signup_activity.this, "중복된 아이디입니다.",Toast.LENGTH_SHORT).show();
+                        finish();
+                    }else if(signup_nickname.getText().toString() == signuplist.get(i).getNickname()){
+                        Toast.makeText(signup_activity.this, "중복된 닉네임입니다.",Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                }
+                signuplist.add(new signup(signup_id.getText().toString(),signup_nickname.getText().toString(),signup_password.getText().toString(),signup_email.getText().toString(),imageUri.toString()));
+                String list = gson.toJson(signuplist);
+                edit.putString("ID_list",list);
+                edit.commit();
+                Log.v("회원가입 엑티비티", list);
+
+                Toast.makeText(signup_activity.this, "회원가입 되었습니다.", Toast.LENGTH_SHORT).show();
+                finish();
+            }
 //            if(idlist == ""){
 //                list.add(new signup(signup_id.getText().toString(),signup_nickname.getText().toString(),signup_password.getText().toString(),signup_email.getText().toString(),imageUri.toString()));
 //                //gson을 이용해 Json형식으로 변환하여 어뎁터데이터를 저장
@@ -92,7 +118,6 @@ public class signup_activity extends AppCompatActivity
 //                ArrayList<signup> jsonidlist = gson.fromJson(idlist,new TypeToken<ArrayList<signup>>(){}.getType());
 //
 //            }
-            Toast.makeText(signup_activity.this, "회원가입 되었습니다.", Toast.LENGTH_SHORT).show();
             //이미지 업로드 버튼 클릭
         }else if(v.getId() == R.id.image_upload_button) {
             Log.v("회원가입 엑티비티","이미지 업로드 버튼 클릭");

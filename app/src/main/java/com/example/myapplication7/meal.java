@@ -21,22 +21,35 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import static java.sql.DriverManager.println;
 
 public class meal extends AppCompatActivity implements View.OnClickListener {
-    RecyclerView recyclerView, morning_recyclerView;
-    FoodAdapter adapter;
+    RecyclerView recyclerView, morning_recyclerView,recyclerView2;
+    FoodAdapter adapter,adapter2;
     public String PREFERENCE = "com.studio572.samplesharepreference";
     static String ID,DATE,M,L,D,S;
     String food_name,food_kcal,food_car,food_pro,foodfat;
     static String meal = "아침식단";
     public static TextView userkcal;
     SharedPreferences pref;
+    EditText editText;
     double user_kcal = 0;
+    static RequestQueue requestQueue;
     FoodAdapter2 morning_adapter,lunch_adapter,dinner_adapter,snack_adapter;
     public String[] spinner_item = {"아침식단","점심식단","저녘식단","간식"};
 //gj
@@ -58,21 +71,30 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(bundle);
         //모닝 액티비티 레이아웃 food_recyle_ex 연결
         setContentView(R.layout.food_recyle_ex);
+        if(requestQueue == null){
+            requestQueue = Volley.newRequestQueue(getApplicationContext());
+        }
+
         //레이아웃 xml에 작성해준 리사이클러뷰를 자바로 가져와서 초기화
         recyclerView = findViewById(R.id.food_recyleview_ex);
+        recyclerView2 = findViewById(R.id.food_recyleview_ex2);
+
         //레이아웃 xml에 작성해준 리사이클러뷰를 자바로 가져와서 초기화
         morning_recyclerView = findViewById(R.id.morning_food_recyle_selected);
         //레이아웃 메너저를 통해 List형식으로 할지 Grid형식으로 할지 결정정
         LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        LinearLayoutManager layoutManager2 = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         LinearLayoutManager morning_layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         final Intent intent = getIntent();
         //음식 리사이클러뷰에 레이아웃 메니져 설정
         recyclerView.setLayoutManager(layoutManager);
+        recyclerView2.setLayoutManager(layoutManager2);
         //아침 리사이클러뷰에 레이아웃 메니져 설정
         morning_recyclerView.setLayoutManager(morning_layoutManager);
 
         //어뎁터 선언
         adapter = new FoodAdapter(this);
+        adapter2 = new FoodAdapter(this);
         morning_adapter = new FoodAdapter2(this);
         lunch_adapter = new FoodAdapter2(this);
         dinner_adapter = new FoodAdapter2(this);
@@ -92,8 +114,13 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
         //칼로리계산기 버튼 연결 및 클릭이벤트 설정
         final Button add_foodadapter_button = (Button) findViewById(R.id.add_food);
         add_foodadapter_button.setOnClickListener(this);
+        final Button search_foodadapter_button = (Button) findViewById(R.id.search_food);
+        search_foodadapter_button.setOnClickListener(this);
         final Button kcal_sum_button = (Button) findViewById(R.id.kcal_sum_button);
         kcal_sum_button.setOnClickListener(this);
+        editText = (EditText) findViewById(R.id.editText2);
+
+
         //스피너에 아이템 연결
         final Spinner spinner = findViewById(R.id.spiner);
         //스피터 어댑터 선언
@@ -189,6 +216,8 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
             }
         });
 
+
+        recyclerView2.setAdapter(adapter2);
         recyclerView.setAdapter(adapter);
         morning_recyclerView.setAdapter(morning_adapter);
         adapter.setOnItemClickListener(new OnFoodItemClickListener() {
@@ -435,6 +464,8 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
             Log.v("식단입력 엑티비티", "음식 추가 버튼 클릭");
             Intent intent = new Intent(meal.this, Food_custom_add.class);
             startActivityForResult(intent,1001);
+        }else if (v.getId() == R.id.search_food){
+            makeRequest();
         }
     }
 
@@ -486,6 +517,61 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
         Log.v("식단입력 엑티비티","Stop");
         super.onStop();
     }
+    public void makeRequest() {
+        String url = editText.getText().toString();
+
+        StringRequest request = new StringRequest(
+                Request.Method.GET,
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        println("응답 -> " + response);
+
+                        processResponse(response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        println("에러 -> " + error.getMessage());
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params = new HashMap<String,String>();
+
+                return params;
+            }
+        };
+
+        request.setShouldCache(false);
+        requestQueue.add(request);
+        println("요청 보냄.");
+    }
+
+    public void println(String data) {
+        Log.d("MainActivity", data);
+    }
+
+    public void processResponse(String response) {
+//        Gson gson = new Gson();
+//        Foodlist foodlist = gson.fromJson(response, MovieList.class);
+//
+//        println("영화정보의 수 : " + foodlist.boxOfficeResult.dailyBoxOfficeList.size());
+//
+//        for (int i = 0; i < foodlist.boxOfficeResult.dailyBoxOfficeList.size(); i++) {
+//            Food food = foodlist.boxOfficeResult.dailyBoxOfficeList.get(i);
+//
+//            adapter.addItem(food);
+//        }
+//
+//        adapter.notifyDataSetChanged();
+    }
+//
+//}
+
 
     @Override
     protected void onDestroy() {

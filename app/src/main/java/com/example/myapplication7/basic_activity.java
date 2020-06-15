@@ -70,9 +70,7 @@ public class basic_activity extends AppCompatActivity
 
         SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
         SharedPreferences.Editor edit = pref.edit();
-        String ID = "admin";
-        String NICKNAME = "관리자";
-        edit.putString("ID", ID);
+        String ID = pref.getString("ID","");
         mList.add(getDrawable(R.drawable.ad1));
         mList.add(getDrawable(R.drawable.ad2));
         mList.add(getDrawable(R.drawable.ad3));
@@ -85,10 +83,10 @@ public class basic_activity extends AppCompatActivity
 //        mReset.setOnClickListener(this);
 
 
-        edit.putString(ID + "NICKNAME", NICKNAME);
 
         edit.commit();
-        DATE = pref.getString(ID + "date", "");
+        DATE = pref.getString(ID + "date", "0");
+        Log.v("베이직 엑티비티", DATE);
 
 
         final TextView kcal = (TextView) findViewById(R.id.textView5);
@@ -380,11 +378,11 @@ public class basic_activity extends AppCompatActivity
 
             calDateDays = Math.abs(calDateDays);
             Log.v("베이직 엑티비티", calDateDays + "다이어트 시작일 확인");
-            double now_dday = Double.parseDouble(diet_maxdate) - calDateDays;
-            basic_intext3.setText(String.format("%.0f", now_dday));
-
-            basic_in_seekBar3.setProgress((int) calDateDays);
-
+//            if (!diet_maxdate.equals("0")) {
+//                double now_dday = Double.parseDouble(diet_maxdate) - calDateDays;
+//                basic_intext3.setText(String.format("%.0f", now_dday));
+//                basic_in_seekBar3.setProgress((int) calDateDays);
+//            }
 
             Log.v("베이직 엑티비티", format2.format(currentTime) + "현재일 확인");
 
@@ -394,7 +392,9 @@ public class basic_activity extends AppCompatActivity
 
 
         basic_in_seekBar2.setMax(Integer.parseInt(max_kcal));
-        basic_in_seekBar3.setMax(Integer.parseInt(diet_maxdate));
+//        if (!diet_maxdate.equals("0")) {
+//        basic_in_seekBar3.setMax(Integer.parseInt(diet_maxdate));
+//        }
         basic_in_seekBar4.setMax(Integer.parseInt(max_car));
         basic_in_seekBar5.setMax(Integer.parseInt(max_pro));
         basic_in_seekBar6.setMax(Integer.parseInt(max_fat));
