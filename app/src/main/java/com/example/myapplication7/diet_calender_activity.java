@@ -15,7 +15,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -23,6 +27,7 @@ public class diet_calender_activity extends AppCompatActivity
         implements View.OnClickListener {
     public String PREFERENCE = "com.studio572.samplesharepreference";
     String ID;
+    ArrayList<weight> list;
     @Override
     protected void onCreate(Bundle bundle){
         Log.v("식단/체중 엑티비티","create");
@@ -107,6 +112,8 @@ public class diet_calender_activity extends AppCompatActivity
     @Override
     //인터페이스 활용하여 클릭시 이곳으로 오게 하였음
     public void onClick(View v) {
+        Gson gson = new Gson();
+
         final EditText weight_text  = (EditText) findViewById(R.id.weight_text);
         if(v.getId() == R.id.textView5){
             Intent intent = new Intent(diet_calender_activity.this, bmr_activity.class);
@@ -177,8 +184,43 @@ public class diet_calender_activity extends AppCompatActivity
             String DATEtitle = pref.getString(ID+"datetitle","");
             edit.putString(ID+DATE+"weight",dateweight);
 
+
+            String weightlist = pref.getString(ID+"weight_list","");
+            list.clear();
+            if(weightlist.equals("")){
+                Log.v("체중/식단 엑티비티","꺼짐확인");
+                ArrayList<weight> list = new ArrayList<weight>();
+                list.add(new weight(DATE,dateweight));
+                String json_weight_list = gson.toJson(list);
+                edit.putString(ID+"weight_list",json_weight_list);
+                edit.commit();
+                Log.v("체중/식단 엑티비티","꺼짐확인2");
+
+            }else {
+
+                list = gson.fromJson(weightlist, new TypeToken<ArrayList<weight>>() {}.getType());
+                for(int i = 0; i < list.size();i++){
+                    if(list.get(i).getDATE() == DATE){
+                        list.get(i).setDATE(DATE);
+                        list.get(i).setWeight(dateweight);
+                        Log.v("체중/식단 엑티비티",list.toString());
+                        finish();
+                    }
+
+                }
+                list.add(new weight(DATE, dateweight));
+                String json_weight_list = gson.toJson(list);
+                edit.putString(ID + "weight_list", json_weight_list);
+                edit.commit();
+                Log.v("체중/식단 엑티비티",json_weight_list);
+            }
+
+
+
+            Log.v("체중/식단 엑티비티",DATE);
+
+
             String todayweight = pref.getString(ID+DATE+"weight","");
-            edit.commit();
 
             Toast.makeText(diet_calender_activity.this, DATEtitle+todayweight+"Kg", Toast.LENGTH_LONG).show();
 
