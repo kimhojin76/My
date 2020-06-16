@@ -10,20 +10,27 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class forum_write extends AppCompatActivity implements View.OnClickListener {
     EditText title, contents;
     TextView date, nickcame;
+
     public String PREFERENCE = "com.studio572.samplesharepreference";
-    String ID;
+    String ID,NICK;
+    SharedPreferences pref;
+    ArrayList<signup> list;
 
 //    ImageView reple_input_image;
 //    Uri imageUri;
@@ -33,6 +40,14 @@ public class forum_write extends AppCompatActivity implements View.OnClickListen
         Log.v("포럼 글쓰기", "create");
         super.onCreate(bundle);
         setContentView(R.layout.forum_write);
+        pref =getSharedPreferences(PREFERENCE,MODE_PRIVATE);
+        SharedPreferences.Editor edit = pref.edit();
+        Gson gson = new Gson();
+        ID = pref.getString("ID", "");
+        String list2 = pref.getString("ID_list","");
+        list = gson.fromJson(list2, new TypeToken<ArrayList<signup>>() {}.getType());
+
+
 
         title = (EditText) findViewById(R.id.forum_write_title);
         contents = (EditText) findViewById(R.id.forum_write_contents);
@@ -42,7 +57,7 @@ public class forum_write extends AppCompatActivity implements View.OnClickListen
         Button register = (Button) findViewById(R.id.write_register);
         register.setOnClickListener(this);
         nickcame = (TextView) findViewById(R.id.forum_write_nickname);
-        nickcame.setText("관리자");
+        nickcame.setText(pref.getString(ID+"NICKNAME",""));
     }
 
 

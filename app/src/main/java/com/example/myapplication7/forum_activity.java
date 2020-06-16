@@ -23,7 +23,7 @@ public class forum_activity extends AppCompatActivity
         implements View.OnClickListener {
     RecyclerView recyclerView;
     memberAdapter adapter= new memberAdapter();
-    private String ID,pos,reple_amount;
+    private String ID,pos,reple_amount,NICKNAME;
     public String PREFERENCE = "com.studio572.samplesharepreference";
 
 
@@ -43,7 +43,7 @@ public class forum_activity extends AppCompatActivity
         SharedPreferences.Editor editor = pref.edit();
 
         ID = pref.getString("ID","");
-
+        NICKNAME = pref.getString(ID+"NICKNAME","");
 
 
 

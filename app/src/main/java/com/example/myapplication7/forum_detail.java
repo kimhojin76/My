@@ -95,11 +95,14 @@ public class forum_detail extends AppCompatActivity implements View.OnClickListe
 
     @Override
     protected void onResume() {
+
         Log.v("포럼디테일 엑티비티", "Resume");
         super.onResume();
         Gson gson = new Gson();
         SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
-        String gson_reple_adapter = pref.getString(NICKNAME+date+"gson_reple_adapter","");
+        ID = pref.getString("ID","");
+        NICKNAME = pref.getString(ID+"NICKNAME","");
+        String gson_reple_adapter = pref.getString(date+"gson_reple_adapter","");
         if(gson_reple_adapter !=""){
             ArrayList<reple> replelist = gson.fromJson(gson_reple_adapter,new TypeToken<ArrayList<reple>>(){}.getType());
             adapter.items = replelist;
@@ -204,7 +207,7 @@ public class forum_detail extends AppCompatActivity implements View.OnClickListe
             Gson gson = new Gson();
             String gson_reple_adapter = gson.toJson(adapter.items);
             //에디터에 json형식으로 변환된 객체값 집어넣기
-            editor.putString(NICKNAME+date+"gson_reple_adapter",gson_reple_adapter);
+            editor.putString(date+"gson_reple_adapter",gson_reple_adapter);
             //쉐어드에 저장하기
             editor.commit();
         }else if(v.getId() == R.id.write_clear){

@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".profile_activity">
 
 
     <ImageView
@@ -27,7 +28,7 @@
         android:layout_height="44dp"
         android:layout_marginTop="7dp"
         android:ems="10"
-        android:hint="비밀번호 확인"
+        android:hint="변경할 비밀번호"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="@+id/add_pro_input"
         app:layout_constraintHorizontal_bias="0.0"
@@ -68,7 +69,7 @@
 
         android:layout_marginTop="7dp"
         android:ems="10"
-        android:hint="변경할 비밀번호"
+        android:hint="기존 비밀번호"
         android:inputType="textPassword"
         app:layout_constraintStart_toStartOf="@+id/add_car_input"
         app:layout_constraintTop_toBottomOf="@+id/add_car_input" />
