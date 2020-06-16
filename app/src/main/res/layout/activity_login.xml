@@ -39,7 +39,7 @@
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_marginTop="14dp"
-
+        android:inputType="textPassword"
         app:layout_constraintTop_toBottomOf="@id/id_text1"
         app:layout_constraintLeft_toLeftOf="@id/id_text1"
         android:hint="Password"

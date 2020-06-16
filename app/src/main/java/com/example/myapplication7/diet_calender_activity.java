@@ -186,7 +186,6 @@ public class diet_calender_activity extends AppCompatActivity
 
 
             String weightlist = pref.getString(ID+"weight_list","");
-            list.clear();
             if(weightlist.equals("")){
                 Log.v("체중/식단 엑티비티","꺼짐확인");
                 ArrayList<weight> list = new ArrayList<weight>();
@@ -197,18 +196,22 @@ public class diet_calender_activity extends AppCompatActivity
                 Log.v("체중/식단 엑티비티","꺼짐확인2");
 
             }else {
-
+                Log.v("체중/식단 엑티비티 조건문 진입 확인","확인2");
                 list = gson.fromJson(weightlist, new TypeToken<ArrayList<weight>>() {}.getType());
+                boolean bool = false;
                 for(int i = 0; i < list.size();i++){
-                    if(list.get(i).getDATE() == DATE){
+                    if(list.get(i).getDATE().equals(DATE)){
                         list.get(i).setDATE(DATE);
                         list.get(i).setWeight(dateweight);
-                        Log.v("체중/식단 엑티비티",list.toString());
-                        finish();
+                        bool = true;
+                        Log.v("체중/식단 엑티비티 변경",list.toString());
                     }
 
+                }if(!bool) {
+                    list.add(new weight(DATE, dateweight));
+                    Log.v("체중/식단 엑티비티 신규추가", list.toString());
+
                 }
-                list.add(new weight(DATE, dateweight));
                 String json_weight_list = gson.toJson(list);
                 edit.putString(ID + "weight_list", json_weight_list);
                 edit.commit();
@@ -222,7 +225,6 @@ public class diet_calender_activity extends AppCompatActivity
 
             String todayweight = pref.getString(ID+DATE+"weight","");
 
-            Toast.makeText(diet_calender_activity.this, DATEtitle+todayweight+"Kg", Toast.LENGTH_LONG).show();
 
 
 

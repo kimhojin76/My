@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.v("로그인 엑티비티", list);
                 Log.v("로그인 엑티비티", Integer.toString(signuplist.size()));
 
-
+                boolean a = false;
                 for (int i = 0; i < signuplist.size(); i++) {
                     Log.v("로그인 엑티비티", nametext.getText().toString() + signuplist.get(i).getId());
 
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                             edit.putString(ID+"EMAIL", signuplist.get(i).getEmail());
                             edit.putString(ID+"URI", signuplist.get(i).getImage_uri());
                             edit.putString(ID+"PASSWORD", signuplist.get(i).getPassword());
-
+                            a = true;
 
                             Intent intent = new Intent(getApplicationContext(), basic_activity.class);
                             startActivity(intent);
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                     }
-                }Toast.makeText(MainActivity.this, "아이디,패스워드 정보를 확인해주세요.",Toast.LENGTH_SHORT).show();
+                }if(a=false){Toast.makeText(MainActivity.this, "아이디,패스워드 정보를 확인해주세요.",Toast.LENGTH_SHORT).show();}
 
 
             }

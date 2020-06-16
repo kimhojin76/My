@@ -46,9 +46,11 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:hint="체중"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         app:layout_constraintLeft_toLeftOf="@id/calendarView"
-        app:layout_constraintTop_toBottomOf="@id/calendarView"></EditText>
+        app:layout_constraintTop_toBottomOf="@id/calendarView">
+
+    </EditText>
 
     <ImageView
         android:id="@+id/imageView3"
