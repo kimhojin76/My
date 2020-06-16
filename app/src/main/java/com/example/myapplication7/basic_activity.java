@@ -44,7 +44,7 @@ import java.util.GregorianCalendar;
 public class basic_activity extends AppCompatActivity
         implements View.OnClickListener, SensorEventListener {
     public String PREFERENCE = "com.studio572.samplesharepreference";
-    String DATE;
+    String DATE,ID;
     FoodAdapter2 morning_adapter, lunch_adapter, dinner_adapter, snack_adapter;
     ImageView mImageView;
     int index,mSteps=0,mCounterSteps=0;
@@ -55,6 +55,7 @@ public class basic_activity extends AppCompatActivity
     TextView StepCount;
     Button mReset;
     Handler handler = new Handler();
+    boolean klogcheck;
 // d
     @Override
     protected void onCreate(Bundle bundle) {
@@ -70,23 +71,40 @@ public class basic_activity extends AppCompatActivity
 
         SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
         SharedPreferences.Editor edit = pref.edit();
-        String ID = pref.getString("ID","");
+        ID = pref.getString("ID","");
         mList.add(getDrawable(R.drawable.ad1));
         mList.add(getDrawable(R.drawable.ad2));
         mList.add(getDrawable(R.drawable.ad3));
         mList.add(getDrawable(R.drawable.ad4));
         mImageView = (ImageView) findViewById(R.id.basic_adimage);
+        Gson gson = new Gson();
         mImageView.setOnClickListener(this);
         AnimThread thread = new AnimThread();
         thread.start();
 //        mReset = (Button) findViewById(R.id.walk_reset);
 //        mReset.setOnClickListener(this);
+        klogcheck = true;
+        String list = pref.getString("ID_list", "");
+            ArrayList<signup> signuplist = gson.fromJson(list, new TypeToken<ArrayList<signup>>() {}.getType());
+        for (int i = 0; i < signuplist.size(); i++) {
+            Log.v("베이직 엑티비티 회원 리스트 점검", signuplist.get(i).getId());
+            Log.v("베이직 엑티비티 회원 리스트 점검", ID);
 
+            if (ID.equals(signuplist.get(i).getId())) {
+                klogcheck=false;
+            }
+        }
+        if(klogcheck=true){
+            Log.v("베이직 엑티비티 논리 점검", "true");
+        }else{
+            Log.v("베이직 엑티비티 논리 점검", "false");
 
+        }
 
-        edit.commit();
+        ID = pref.getString(ID,"");
         DATE = pref.getString(ID + "date", "0");
         Log.v("베이직 엑티비티", DATE);
+        edit.commit();
 
 
         final TextView kcal = (TextView) findViewById(R.id.textView5);
@@ -113,7 +131,12 @@ public class basic_activity extends AppCompatActivity
         in_profile.setOnClickListener(this);
         final TextView logout = (TextView) findViewById(R.id.basic_in_logout);
         logout.setOnClickListener(this);
+        if(klogcheck = true){
+            in_profile.setText("");
+        }else if(klogcheck = false){
+            in_profile.setText("프로필");
 
+        }
         //알람 설정
         Calendar calendar = Calendar.getInstance();
         //만보기용 켈린더 설정, 시각 정각으로 설정
@@ -445,7 +468,6 @@ public class basic_activity extends AppCompatActivity
             Log.v("베이직 엑티비티 리줌", gson_morning_adapter);
             for (int i = 0; i < morninglist.size(); i++) {
                 Food item1 = morning_adapter.getItem(i);
-                Log.v("식단입력 엑티비티", item1.getName());
                 user_morning_car = user_morning_car + Double.parseDouble(item1.getCar());
                 user_morning_pro = user_morning_pro + Double.parseDouble(item1.getPro());
                 user_morning_fat = user_morning_fat + Double.parseDouble(item1.getFat());
