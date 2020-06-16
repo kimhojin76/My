@@ -34,6 +34,7 @@ public class forum_detail extends AppCompatActivity implements View.OnClickListe
     repleadapter adapter;
     public String PREFERENCE = "com.studio572.samplesharepreference";
     EditText reple_input_edittext;
+    //sadf
     @Override
     protected void onCreate(Bundle bundle) {
         Log.v("포럼디테일 엑티비티", "create");
