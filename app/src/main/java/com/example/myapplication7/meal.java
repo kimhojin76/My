@@ -1,8 +1,10 @@
 package com.example.myapplication7;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.DataSetObserver;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,6 +33,11 @@ import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,6 +50,9 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
     FoodAdapter adapter,adapter2;
     public String PREFERENCE = "com.studio572.samplesharepreference";
     static String ID,DATE,M,L,D,S;
+    String basicurl,searchurl;
+    private ArrayList<Food> list = new ArrayList();
+
     String food_name,food_kcal,food_car,food_pro,foodfat;
     static String meal = "아침식단";
     public static TextView userkcal;
@@ -231,19 +241,24 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
                 fooddata.putExtra("탄수화물",item.getCar().toString());
                 fooddata.putExtra("단백질",item.getPro().toString());
                 fooddata.putExtra("지방",item.getFat().toString());
-
                 startActivityForResult(fooddata,1020);
-
-
-
-
-
             }
         });
         morning_adapter.setOnItemClickListener(new OnFoodItemClickListener() {
             @Override
             public void onItemClick(FoodAdapter.ViewHolder holder, View view, int position) {
                 Food item = morning_adapter.getItem(position);
+            }
+        });
+        adapter2.setOnItemClickListener(new OnFoodItemClickListener() {
+            @Override
+            public void onItemClick(FoodAdapter.ViewHolder holder, View view, int position) {
+                Log.v("식단입력 엑티비티","아답터2 클릭확인");
+                Food item = adapter2.getItem(position);
+                adapter.addItem(new Food(item.getName(),item.getKcal(),item.getCar(),item.getPro(),item.getFat(),item.getWeight()));
+                recyclerView.setAdapter(adapter);
+
+
             }
         });
 
@@ -465,7 +480,8 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
             Intent intent = new Intent(meal.this, Food_custom_add.class);
             startActivityForResult(intent,1001);
         }else if (v.getId() == R.id.search_food){
-            makeRequest();
+            searchurl= editText.getText().toString();
+            new Description().execute();
         }
     }
 
@@ -572,6 +588,77 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
 //
 //}
 
+    private class Description extends AsyncTask<Void, Void, Void> {
+
+        //진행바표시
+        private ProgressDialog progressDialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            //진행다일로그 시작
+            progressDialog = new ProgressDialog(meal.this);
+            progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            progressDialog.setMessage("잠시 기다려 주세요.");
+            progressDialog.show();
+
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            basicurl = "https://www.fatsecret.kr/%EC%B9%BC%EB%A1%9C%EB%A6%AC-%EC%98%81%EC%96%91%EC%86%8C/%EC%9D%BC%EB%B0%98%EB%AA%85/";
+
+            try {
+                Document doc = Jsoup.connect(basicurl+searchurl).get();
+                //추출한 전체 <li> 출력해 보자.
+                Elements element = doc.select(".breadcrumb_noLink");
+                Elements element2 = doc.select(".factValue");
+                Elements element3 = doc.select(".greyText");
+
+
+
+                String a = element.text();
+                String b = element2.text();
+                String c = element3.text();
+                String[] array = b.split(" ");
+
+
+//                String title = element.select("<h1 style=\"text-transform:none\">").text().substring(0, 4);
+
+                String d = c.substring(1,4);
+
+
+                System.out.println("테스트중"+a);
+                System.out.println("테스트 중량"+d);
+                String kcal=array[0];
+                String fat=array[1].substring(0, array[1].length()-1);
+                String car=array[2].substring(0, array[2].length()-1);
+                String pro=array[3].substring(0, array[3].length()-1);
+                System.out.println("테스트 중량"+a+kcal+car+pro+fat+b);
+
+                String string2=array[1].replace("g","");
+
+                adapter2.items.add(new Food(a,kcal,car,pro,fat,b));
+//                recyclerView2.setAdapter(adapter2);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+//            ArraList를 인자로 해서 어답터와 연결한다.
+            MyAdapter myAdapter = new MyAdapter(list);
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+            recyclerView2.setLayoutManager(layoutManager);
+            recyclerView2.setAdapter(adapter2);
+
+            progressDialog.dismiss();
+        }
+    }
 
     @Override
     protected void onDestroy() {
