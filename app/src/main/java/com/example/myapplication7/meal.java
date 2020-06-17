@@ -635,11 +635,23 @@ public class meal extends AppCompatActivity implements View.OnClickListener {
                 String fat=array[1].substring(0, array[1].length()-1);
                 String car=array[2].substring(0, array[2].length()-1);
                 String pro=array[3].substring(0, array[3].length()-1);
+                double t = Double.parseDouble(d);
+                double q = (Double.parseDouble(kcal)/t)*100 ;
+                double w = (Double.parseDouble(fat)/t)*100;
+                double e = (Double.parseDouble(car)/t)*100;
+                double r = (Double.parseDouble(pro)/t)*100;
+                String Kcal2 = String.format("%.1f", q);
+                String fat2 = String.format("%.1f", w);
+                String car2 = String.format("%.1f", e);
+                String pro2 = String.format("%.1f", r);
+
+                System.out.println("테스트 중량"+Kcal2+fat2+car2+pro2);
+
                 System.out.println("테스트 중량"+a+kcal+car+pro+fat+b);
 
                 String string2=array[1].replace("g","");
 
-                adapter2.items.add(new Food(a,kcal,car,pro,fat,b));
+                adapter2.items.add(new Food(a,Kcal2,car2,pro2,fat2,b));
 //                recyclerView2.setAdapter(adapter2);
 
             } catch (IOException e) {
